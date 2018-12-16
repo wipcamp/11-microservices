@@ -15,10 +15,10 @@ class Authentication extends Migration
     {
         Schema::create('authentication', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('provider_id');
-            $table->enum('prodier_name', ['facebook', 'line'])->nullable()->default(['facebook', 'line']);
-            $table->enum('role', ['itim_applicant', 'itim_passing'])->nullable()->default(['itim_applicant', 'itim_passing']);
-            $table->unsignedInteger('wip_id');
+            $table->bigInteger('provider_id');
+            $table->enum('provider_name', ['facebook', 'line']);
+            $table->enum('role', ['itim_applicant', 'itim_passing']);
+            $table->unsignedInteger('wip_id')->nullable();
         });
     }
 
