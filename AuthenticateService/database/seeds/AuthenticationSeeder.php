@@ -12,12 +12,12 @@ class AuthenticationSeeder extends Seeder
     public function run()
     {
         $MAX_RANDOM = 2;
-        $provider_id = [1234567, 89101113];
+        $provider_id = ["112452273135656", "89101113"];
         $provider_name = ['facebook', 'facebook'];
         $role = ['itim_applicant','itim_passing'];
         $wip_id = null;
         for($i = 0 ; $i < $MAX_RANDOM ; $i++){
-            DB::table('authentication')->insert([
+            DB::table('credential')->insert([
                 'provider_id' => $provider_id[$i],
                 'provider_name' => $provider_name[$i],
                 'role' => $role[$i],
