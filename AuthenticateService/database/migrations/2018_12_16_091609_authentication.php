@@ -13,9 +13,9 @@ class Authentication extends Migration
      */
     public function up()
     {
-        Schema::create('authentication', function (Blueprint $table) {
+        Schema::create('credential', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('provider_id');
+            $table->string('provider_id');
             $table->enum('provider_name', ['facebook', 'line']);
             $table->enum('role', ['itim_applicant', 'itim_passing']);
             $table->unsignedInteger('wip_id')->nullable();
@@ -29,6 +29,6 @@ class Authentication extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authentication');
+        Schema::dropIfExists('credential');
     }
 }
