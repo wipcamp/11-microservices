@@ -10,6 +10,8 @@ class CreateQuestions extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
+            $table->collation = 'utf8_general_ci';
+            $table->charset = 'utf8';
             $table->increments('id');
             $table->text('content');
             $table->integer('intelligent_weight');
