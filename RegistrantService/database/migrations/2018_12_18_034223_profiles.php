@@ -15,6 +15,7 @@ class Profiles extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('wip_id');
+            $table->string('prefix_name')->nullable();
             $table->string('fistname_th', 100)->nullable();
             $table->string('lastname_th', 100)->nullable();
             $table->string('fistname_en', 100)->nullable();

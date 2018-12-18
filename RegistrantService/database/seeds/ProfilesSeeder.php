@@ -14,6 +14,7 @@ class ProfilesSeeder extends Seeder
 
         for ($i=0; $i < 2; $i++) { 
             DB::table('profiles')->insert([
+                'prefix_name' => 'นาย',
                 'fistname_th' =>'ทินภัทร',
                 'lastname_th' => 'มงคลธนโชค',
                 'fistname_en' => null,

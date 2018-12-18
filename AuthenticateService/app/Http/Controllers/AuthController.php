@@ -41,7 +41,7 @@ class AuthController extends Controller
         $wipId = null;
 
         if (is_null($user->wip_id)) {
-            $URL = env('GUZZLE_URL'.'profile');
+            $URL = env('GUZZLE_URL') . '/profile';
             $headers = ['Authorization' => 'Bearer ' . $token];
             $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
             $response = $client->request('POST');

@@ -10,17 +10,8 @@ class AuthenticationRepository  implements AuthenticationRepositoryInterface
 {
 
  public function createUser($data) {
-    
-    $provider_id = $data['provider_id'];
-    $provider_name = 'facebook';
-
-    $user = Authentication::create([
-      'provider_id'=>$provider_id,
-      'provider_name' => $provider_name,
-      'role' => 'itim_applicant',
-      'wip_id' => null
-    ]);
-    return $user;
+  $user = Authentication::create($data);
+  return $user;
   }
 
 
