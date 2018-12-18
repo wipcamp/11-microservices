@@ -16,7 +16,7 @@ class AuthController extends Controller
     protected $authentication;
 
     public function __construct(AuthenticationRepositoryInterface $authentication){
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'connect']]);
         $this->authentication = $authentication;
     }
 
@@ -52,6 +52,18 @@ class AuthController extends Controller
         }
         
         return $this->respondWithToken($token, $user['wip_id']);
+    }
+
+    public function connect(){
+        $credentials = request(['provider_fb', 'accessTokenFB','provider_line','accessTokenLine']);
+        $auth = new AuthProvider;
+        $auth = $auth->checkAttributes($credentials);
+
+        if(gettype($auth) == 'object') {
+            return $auth;
+        }
+        
+
     }
 
 

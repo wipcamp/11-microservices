@@ -20,8 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/questions','QuestionController@getQuestions');
 
 //API Answers
-Route::get('/answers','AnswerController@getAnswers');
-Route::post('/','AnswerController@createAnswers');
+//Route::get('/answers','AnswerController@getAnswersByWipID');
+Route::post('/answer','AnswerController@createTest');
+
 
 //API Profiles
 Route::get('/profile','ProfileController@getProfile');
