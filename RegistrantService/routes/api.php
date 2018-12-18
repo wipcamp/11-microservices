@@ -21,5 +21,4 @@ Route::get('/questions','QuestionController@getQuestions');
 
 //API Answers
 Route::get('/answers','AnswerController@getAnswersByWipID');
-Route::post('/','AnswerController@createAnswers');
-
+Route::get('/answer','AnswerController@createTest');
