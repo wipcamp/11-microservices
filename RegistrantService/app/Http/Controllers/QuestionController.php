@@ -14,10 +14,13 @@ class QuestionController extends Controller
     public function getQuestions()
     {
         $question = new QuestionRepository;
-        return response()->json([
-            'questions' => $question->findAllQuesions(),
-             'status'=> 200
-        ]);
-
+        return $question->findAllQuesions();
+    }
+    private function getAnswers(){
+        $answerCtrl = new AnswerController();
+        return $answerCtrl->getAnswers();
+    }
+    public function getQuesAndAns(){
+        return response()->json(['question'=>QuestionController::getQuestions(),'answer'=>QuestionController::getAnswersByWipId()]);
     }
 }
