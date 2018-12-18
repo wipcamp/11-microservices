@@ -15,8 +15,10 @@ class AuthProvider
                 'error' => $credentials
             ]);
         }
-
-        $URL = "https://graph.facebook.com/me?access_token=${credentials['accessToken']}";
+          
+        $send = "me?access_token=${credentials['accessToken']}";
+        $URL = env('FACEBOOK_URL') . $send;
+        dd($URL);
         $client = new \GuzzleHttp\Client;
         $res = null;
         try {
@@ -24,7 +26,6 @@ class AuthProvider
             $res = (string) $res->getBody();
             $res = json_decode($res, true);
         } catch (\Exception $e) { }
-        // dd($res);
         if ($res == null || $credentials['provider_id'] !== $res['id']) {   
             return response()->json(['error' => 'Invalid Facebook Account']);
         }
