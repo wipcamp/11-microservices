@@ -18,7 +18,7 @@ class AnswersSeeder extends Seeder
             for ($j = 0; $j < 5; $j++) {
                 DB::table('answers')->insert([
                     'question_id' => $question_id[$j], //get id from question
-                    'wip_id' => $wip_id[$i], //get wip_id form credentials
+                    'wip_id' => $wip_id[$i],
                     'ans_content' => $ans_content[$j],
                 ]);
             }
