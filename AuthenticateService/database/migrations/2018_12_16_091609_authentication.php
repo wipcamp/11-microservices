@@ -18,8 +18,9 @@ class Authentication extends Migration
             $table->string('provider_id');
             $table->enum('provider_name', ['facebook', 'line']);
             $table->enum('role', ['itim_applicant', 'itim_passing']);
-            $table->unsignedInteger('wip_id')->nullable();
+            $table->integer('wip_id')->nullable();
         });
+
     }
 
     /**

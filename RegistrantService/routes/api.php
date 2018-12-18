@@ -20,5 +20,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/questions','QuestionController@getQuestions');
 
 //API Answers
+
 Route::get('/answers','AnswerController@getAnswersByWipID');
 Route::get('/answer','AnswerController@createTest');
+
+Route::get('/profile','ProfileController@getProfile');
+Route::post('/profile','ProfileController@createProfile');
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    // API User
+    Route::group(['middleware' => ['checkUserByUserId']], function () {
+        // API User with user_id
+        Route::prefix('/users/{token}')->group(function () {
+            Route::get('/', 'UserController@getByUserId');
+        });
+    });
+  });

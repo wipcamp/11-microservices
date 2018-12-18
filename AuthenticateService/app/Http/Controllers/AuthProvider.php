@@ -9,17 +9,15 @@ class AuthProvider
             'provider_name' => 'required',
             'accessToken' => 'required'
         ];
-        // get request data
-        // validate
         $validator = Validator::make($credentials, $schema);
-        // dd($credentials);
         if ($validator->fails()) {
             return response()->json([
                 'error' => $credentials
             ]);
         }
-
-        $URL = "https://graph.facebook.com/me?access_token=${credentials['accessToken']}";
+          
+        $send = "me?access_token=${credentials['accessToken']}";
+        $URL = env('FACEBOOK_URL') . $send;
         $client = new \GuzzleHttp\Client;
         $res = null;
         try {

@@ -38,7 +38,7 @@ class Profiles extends Migration
             $table->string('guardian_telno', 100)->nullable();
             $table->boolean('medical_approved')->nullable();
         });
-        DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110000;");
+        DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110001;");
     }
 
     /**
