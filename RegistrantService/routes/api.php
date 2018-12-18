@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //API Questions
 Route::get('/questions','QuestionController@getQuestions');
-
+Route::get('/questions/show','QuestionControllrt@getQuesAndAns');
 //API Answers
 Route::get('/answers','AnswerController@getAnswersByWipID');
 Route::post('/answer','AnswerController@create');

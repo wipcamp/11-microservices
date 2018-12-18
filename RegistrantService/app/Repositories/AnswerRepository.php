@@ -44,9 +44,10 @@ class AnswerRepository implements AnswerRepositoryInterface
                     'wip_id' => json_decode($answer_data)->answers->wip_id,
                 ])
                     ->update
-                    (['ans_content' => $answer_data->ans_content]);
-
+                    (['ans_content' => $answer_data->ans_content,
+                    'updated_at' => Carbon::now()->toDateTimeString()]);
             }
+           // $answer->save();
         }
 
         return json(['message' => 'Update answer success']);
