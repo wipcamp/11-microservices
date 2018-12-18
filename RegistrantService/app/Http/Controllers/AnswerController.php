@@ -13,10 +13,7 @@ class AnswerController extends Controller
         $this->answer = new AnswerRepository;
     }
 
-    public function createAnswers(){
-
-    }
-    public function getAnswers(){
+    public function getAnswersByWipId(){
         $answer = new AnswerRepository;
         //get wip_id from credentials;
         $wip_id = 110001;

@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/questions','QuestionController@getQuestions');
 
 //API Answers
-Route::get('/answers','AnswerController@getAnswers');
+Route::get('/answers','AnswerController@getAnswersByWipID');
 Route::post('/','AnswerController@createAnswers');
 
