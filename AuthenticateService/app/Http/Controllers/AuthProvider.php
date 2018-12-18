@@ -18,7 +18,6 @@ class AuthProvider
           
         $send = "me?access_token=${credentials['accessToken']}";
         $URL = env('FACEBOOK_URL') . $send;
-        dd($URL);
         $client = new \GuzzleHttp\Client;
         $res = null;
         try {
