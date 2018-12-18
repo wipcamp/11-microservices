@@ -16,6 +16,10 @@ class CreateAnswers extends Migration
             $table->integer('question_id')->unsigned();
             $table->integer('wip_id')->unsigned();
             $table->text('ans_content')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at') ->default(
+                DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+            );   ;
             $table->foreign('question_id')->references('id')->on('questions');
             $table->foreign('wip_id')->references('wip_id')->on('profiles');
 
