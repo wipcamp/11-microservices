@@ -21,7 +21,7 @@ class Profiles extends Migration
             $table->string('lastname_en', 100)->nullable();
             $table->string('telno', 100)->nullable();
             $table->string('nickname', 100)->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable()->default(['male', 'female']);
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('school_id', 100)->nullable();
             $table->string('school_name', 100)->nullable();
             $table->string('school_level', 100)->nullable();
@@ -33,12 +33,12 @@ class Profiles extends Migration
             $table->string('cangenital_disease', 100)->nullable();
             $table->string('email', 100)->nullable();
             $table->dateTime('dob')->nullable();
-            $table->bigInteger('citizen_no')->nullable()->default(13);
+            $table->bigInteger('citizen_no')->default(13);
             $table->string('guardian_relative', 100)->nullable();
             $table->string('guardian_telno', 100)->nullable();
             $table->boolean('medical_approved')->nullable();
-            $table->timestamps();
         });
+        DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110000;");
     }
 
     /**
