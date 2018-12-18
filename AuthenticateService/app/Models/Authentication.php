@@ -8,12 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Authentication extends Authenticatable implements JWTSubject
 {
-    protected $guarded = [
-        'id','provider_id', 'provider_name',
-    ];
 
     protected $fillable = [
-        'provider_id', 'provider_name',
+        'provider_id', 'provider_name', 'role', 'wip_id'
     ];
 
     protected $hidden = [
