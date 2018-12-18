@@ -58,10 +58,10 @@ class AuthProvider
             return response()->json(['error' => 'Invalid Facebook Account']);
         }
 
-        $user = $this->authentication->getByProviderId($providerId);
+        $user = $this->authentication->getByProviderId($credentials['provider_fb']);
 
         if(is_null($user)){
-            return response()->json(['error' => 'Invalid Facebook Account']);
+            return response()->json(['error' => 'Please Register By Facebook Account Before Connect With Line']);
         }
 
         $URL = env('LINE_URL') . '/profile';
@@ -70,17 +70,26 @@ class AuthProvider
         $response = $client->request('GET');
         $res = (string) $response->getBody();
         $lineId = json_decode($res)->userId;
-
+        
         if ($res == null || $credentials['provider_line'] !== $lineId) {   
             return response()->json(['error' => 'Invalid Line Account']);
         }
-
-        $user = $this->authentication->getByProviderId($providerId);
-
+        $wipId = $user['wip_id'];
+        
+        $user = $this->authentication->getByProviderId($credentials['provider_line']);
+        
         if(is_null($user)){
-            return response()->json(['error' => 'Invalid Line Account']);
+            $user = [
+                "provider_id" => $credentials['provider_line'],
+                "provider_name" => "line",
+                "role" => "itim_applicant",
+                "wip_id" => $wipId
+            ];
+            $user = $this->authentication->createUser($user);
+            return response()->json($user);
         }
-        return true;
+        
+        return response()->json(['error' => 'You already connect']);
     }
 
     public function checkProviderCredentials($url){
