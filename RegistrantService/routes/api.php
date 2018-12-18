@@ -20,13 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/questions','QuestionController@getQuestions');
 
 //API Answers
+//Route::get('/answers','AnswerController@getAnswersByWipID');
+Route::post('/answer','AnswerController@createTest');
 
-Route::get('/answers','AnswerController@getAnswersByWipID');
-Route::get('/answer','AnswerController@createTest');
 
+//API Profiles
 Route::get('/profile','ProfileController@getProfile');
 Route::post('/profile','ProfileController@createProfile');
-
 Route::group(['middleware' => 'jwt.auth'], function () {
     // API User
     Route::group(['middleware' => ['checkUserByUserId']], function () {
@@ -35,4 +35,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
             Route::get('/', 'UserController@getByUserId');
         });
     });
-  });
+});
+
+//API Schools
+Route::get('/schools','SchoolController@getSchool');
