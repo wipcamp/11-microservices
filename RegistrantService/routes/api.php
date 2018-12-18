@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,9 +35,15 @@ Route::prefix('answers')->group(function () {
 });
 
 //API Profiles
+
 Route::get('/profile', 'ProfileController@getProfile');
 Route::post('/profile', 'ProfileController@createProfile');
 Route::put('/profile/update', 'ProfileController@updateProfile');
+
+Route::get('/profile','ProfileController@getProfile');
+Route::post('/profile','ProfileController@createProfile');
+Route::put('/profile','ProfileController@updateProfile');
+
 Route::group(['middleware' => 'jwt.auth'], function () {
     // API User
     Route::group(['middleware' => ['checkUserByUserId']], function () {
