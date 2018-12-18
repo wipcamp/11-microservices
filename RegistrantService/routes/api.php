@@ -30,7 +30,7 @@ Route::put('/answer/edit','AnswerController@edit');
 //API Profiles
 Route::get('/profile','ProfileController@getProfile');
 Route::post('/profile','ProfileController@createProfile');
-Route::put('/profile/update','ProfileController@updateProfile');
+Route::put('/profile','ProfileController@updateProfile');
 Route::group(['middleware' => 'jwt.auth'], function () {
     // API User
     Route::group(['middleware' => ['checkUserByUserId']], function () {
