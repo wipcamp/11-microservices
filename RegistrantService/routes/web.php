@@ -14,5 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/questions','QuestionController@getQuestions');
-Route::get('/answer','AnswerController@createTest');
