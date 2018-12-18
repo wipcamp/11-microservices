@@ -14,16 +14,18 @@ php artisan jwt:secret
 > yes
 ```
 
-3. Copy env `JWT_SECRET` from `AuthenticateService` to `RegistrantService`
+3. copy .env.example in `AuthenticateService` and `RegistrantService` to .env
 
-4. Set env `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
+4. Copy env `JWT_SECRET` from `AuthenticateService` to `RegistrantService`
 
-5. Run `AuthenticateService`
+5. Set env `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
+
+6. Run `AuthenticateService`
 ```
 php artisan serve
 ```
 
-6. Run `RegistrantService`
+7. Run `RegistrantService`
 ```
 php artisan serve --port 8001
 ```
