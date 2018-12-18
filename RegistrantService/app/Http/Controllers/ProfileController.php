@@ -25,4 +25,11 @@ class ProfileController extends Controller
     $profile = $this->profileRepository->createProfile([]);
     return response()->json($profile);
   }
+
+  public function updateProfile(Request $req)
+  {
+    $profile = $req->all();
+    $update = $this->profileRepository->updateProfile($profile['wip_id'], $profile);
+   return response()->json($update);
+  }
 }
