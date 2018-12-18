@@ -24,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $models = array(
+            'Question',
+            'Profile'
+        );
+        foreach ($models as $model) {
+            $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
+        }
     }
 }

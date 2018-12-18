@@ -9,10 +9,7 @@ class AuthProvider
             'provider_name' => 'required',
             'accessToken' => 'required'
         ];
-        // get request data
-        // validate
         $validator = Validator::make($credentials, $schema);
-        // dd($credentials);
         if ($validator->fails()) {
             return response()->json([
                 'error' => $credentials
@@ -27,6 +24,7 @@ class AuthProvider
             $res = (string) $res->getBody();
             $res = json_decode($res, true);
         } catch (\Exception $e) { }
+        // dd($res);
         if ($res == null || $credentials['provider_id'] !== $res['id']) {   
             return response()->json(['error' => 'Invalid Facebook Account']);
         }

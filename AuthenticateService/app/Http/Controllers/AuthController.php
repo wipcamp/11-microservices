@@ -33,16 +33,17 @@ class AuthController extends Controller
         $user = $userNew->getByProviderId($credentials['provider_id']);
 
         if(is_null($user)){
+
             $createUser = $userNew->createUser($credentials);
-            $token = auth()->login($user);
-            return $this->respondWithToken($token);
+            $token = auth()->login($createUser);
+            return $this->respondWithToken($token,$createUser['wip_id']);
         }
 
         $token = auth()->login($user);
         if (!$token) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token,$user['wip_id']);
     }
 
 
@@ -79,11 +80,12 @@ class AuthController extends Controller
     }
 
 
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$wip_id)
     {
         return response()->json([
             'token' => $token,
-            'expires' => auth()->factory()->getTTL() * 60
+            'expires' => auth()->factory()->getTTL() * 60,
+            'wip_id' => $wip_id
         ]);
     }
 }

@@ -13,15 +13,16 @@ class AuthenticationRepository  implements AuthenticationRepositoryInterface
   
   $provider_id = $data['provider_id'];
   $provider_name = 'facebook';
-  // dd($data['provider_id']);
+
   $user = Authentication::create([
     'provider_id'=>$provider_id,
     'provider_name' => $provider_name,
     'role' => 'itim_applicant',
-    'wip_id'=>null
+    'wip_id' => null
   ]);
   return $user;
 }
+
 
 public function getByProviderId($provider_id) {
   return Authentication::where('provider_id', $provider_id)->first();

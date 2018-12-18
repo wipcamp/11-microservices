@@ -14,7 +14,7 @@ class Profiles extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->increments('wip_id');
+            $table->increments('wip_id',110001);
             $table->string('fistname_th', 100)->nullable();
             $table->string('lastname_th', 100)->nullable();
             $table->string('fistname_en', 100)->nullable();
@@ -38,7 +38,7 @@ class Profiles extends Migration
             $table->string('guardian_telno', 100)->nullable();
             $table->boolean('medical_approved')->nullable();
         });
-        DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110000;");
+        // DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110001;");
     }
 
     /**
