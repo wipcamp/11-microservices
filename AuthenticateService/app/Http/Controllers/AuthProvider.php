@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Repositories\AuthenticationRepositoryInterface;
 use Validator;
+
 class AuthProvider
 {
     protected $authentication;

@@ -4,9 +4,8 @@ namespace App\Repositories;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Authentication;
-// use App\Repositories\AuthenticationRepositoryInterface;
 
-class AuthenticationRepository  implements AuthenticationRepositoryInterface
+class AuthenticationRepository implements AuthenticationRepositoryInterface
 {
 
  public function createUser($data) {

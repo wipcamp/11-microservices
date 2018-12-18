@@ -14,18 +14,19 @@ class AuthController extends Controller
 {
 
     protected $authentication;
+    protected $authProvider;
 
     public function __construct(AuthenticationRepositoryInterface $authentication){
         $this->middleware('auth:api', ['except' => ['login', 'connect']]);
         $this->authentication = $authentication;
+        $this->authProvider = new AuthProvider($authentication);
     }
 
 
     public function login()
     {   
         $credentials = request(['provider_id', 'provider_name','accessToken']);
-        $auth = new AuthProvider;
-        $auth = $auth->Authentication($credentials);
+        $auth = $this->authProvider->Authentication($credentials);
     
         if(gettype($auth) == 'object') {
             return $auth;
@@ -41,7 +42,7 @@ class AuthController extends Controller
         $wipId = null;
 
         if (is_null($user->wip_id)) {
-            $URL = env('GUZZLE_URL') . '/profile';
+            $URL = env('RIGISTANT_URL') . '/profile';
             $headers = ['Authorization' => 'Bearer ' . $token];
             $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
             $response = $client->request('POST');
@@ -56,8 +57,7 @@ class AuthController extends Controller
 
     public function connect(){
         $credentials = request(['provider_fb', 'accessTokenFB','provider_line','accessTokenLine']);
-        $auth = new AuthProvider;
-        $auth = $auth->checkAttributes($credentials);
+        $auth = $this->authProvider->checkAttributes($credentials);
 
         if(gettype($auth) == 'object') {
             return $auth;
