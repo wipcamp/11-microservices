@@ -31,21 +31,17 @@ class AuthController extends Controller
 
         $userNew = new AuthenticationRepository;
         $user = $userNew->getByProviderId($credentials['provider_id']);
-        // dd($user['id']);
 
         if(is_null($user)){
-            // dd($credentials);
             $createUser = $userNew->createUser($credentials);
-            return "It is null";
+            $token = auth()->login($user);
+            return $this->respondWithToken($token);
         }
 
         $token = auth()->login($user);
         if (!$token) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        // if (! $token = auth()->attempt($credentials)) {
-            //     return response()->json(['error' => 'Unauthorized'], 401);
-            // }
         return $this->respondWithToken($token);
     }
 
