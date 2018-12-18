@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Repositories\AuthenticationRepository;
 use App\Repositories\AuthenticationRepositoryInterface;
 use App\Repositories\UserRepository;
 
@@ -14,8 +13,11 @@ use JWTFactory;
 class AuthController extends Controller
 {
 
-    public function __construct(){
+    protected $authentication;
+
+    public function __construct(AuthenticationRepositoryInterface $authentication){
         $this->middleware('auth:api', ['except' => ['login']]);
+        $this->authentication = $authentication;
     }
 
 
@@ -29,21 +31,27 @@ class AuthController extends Controller
             return $auth;
         }
 
-        $userNew = new AuthenticationRepository;
-        $user = $userNew->getByProviderId($credentials['provider_id']);
-
+        $providerId = $credentials['provider_id'];
+        $user = $this->authentication->getByProviderId($providerId);
         if(is_null($user)){
-
-            $createUser = $userNew->createUser($credentials);
-            $token = auth()->login($createUser);
-            return $this->respondWithToken($token,$createUser['wip_id']);
+            $user = $this->authentication->createUser($credentials);
         }
 
         $token = auth()->login($user);
-        if (!$token) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        $wipId = null;
+
+        if (is_null($user->wip_id)) {
+            $URL = env('GUZZLE_URL'.'profile');
+            $headers = ['Authorization' => 'Bearer ' . $token];
+            $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+            $response = $client->request('POST');
+            $body = (string) $response->getBody();
+            $wipId = json_decode($body)->id;
+            $this->authentication->updateByProviderId($providerId, $wipId);
+            $user['wip_id'] = $wipId;
         }
-        return $this->respondWithToken($token,$user['wip_id']);
+        
+        return $this->respondWithToken($token, $user['wip_id']);
     }
 
 
@@ -80,7 +88,7 @@ class AuthController extends Controller
     }
 
 
-    protected function respondWithToken($token,$wip_id)
+    protected function respondWithToken($token, $wip_id)
     {
         return response()->json([
             'token' => $token,
