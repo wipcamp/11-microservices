@@ -17,8 +17,8 @@ class ProfileController extends Controller
   }
 
   public function getProfile(){
-      $profile = $this->profileRepository->getProfile();
-      return response()->json($profile);
+      // $profile = $this->profileRepository->getProfile();
+      return response()->json([]);
   }
 
   public function createProfile(Request $req){
