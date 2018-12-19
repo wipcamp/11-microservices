@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
         $models = array(
             'Question',
             'Profile',
-            'School'
+            'School',
+            'Answer'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
