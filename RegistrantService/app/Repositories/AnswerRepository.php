@@ -17,10 +17,11 @@ class AnswerRepository implements AnswerRepositoryInterface
 
     public function createAnswer(Request $request)
     {
+        $profile = $request;
         for ($i = 1; $i < 6; $i++) {
             $answer = Answer::create([
                 'question_id' => $i,
-                'wip_id' => $request->all()->json_decode($request)->wip_id,
+                'wip_id' => $profile['wip_id'],
                 'ans_content' => '',
             ]);
         }
