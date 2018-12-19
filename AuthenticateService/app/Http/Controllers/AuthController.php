@@ -38,10 +38,9 @@ class AuthController extends Controller
             $user = $this->authentication->createUser($credentials);
         }
 
-        $token = auth()->login($user);
-        $wipId = null;
+        $wipId = $user->wip_id;
 
-        if (is_null($user->wip_id)) {
+        if (is_null($wipId)) {
             $URL = env('RIGISTANT_URL') . '/profile';
             $headers = ['Authorization' => 'Bearer ' . $token];
             $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
@@ -51,6 +50,12 @@ class AuthController extends Controller
             $this->authentication->updateByProviderId($providerId, $wipId);
             $user['wip_id'] = $wipId;
         }
+        $user['id'] = $wipId;
+        $token = JWTAuth::fromUser($user, ['sub' => $wipId, 'aud' => $providerId]);
+        // $payload = JWTFactory::sub($wipId)->wip_id($wipId)->make();
+        // $payload = JWTFactory::make($customClaims);
+        // $token = JWTAuth::encode($payload);
+
         
         return $this->respondWithToken($token, $user['wip_id']);
     }
