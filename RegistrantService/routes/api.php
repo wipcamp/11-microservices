@@ -17,9 +17,9 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('jwt', function (Request $request) {
+    return response()->json('hello' . $request['wip_id']);
+})->middleware('checkAuth');
 //API Questions
 Route::get('/questions','QuestionController@getQuestions');
 Route::get('/questions/show','QuestionControllrt@getQuesAndAns');
@@ -29,17 +29,12 @@ Route::post('/answer','AnswerController@create');
 Route::put('/answer/edit','AnswerController@edit');
 
 //API Profiles
-Route::get('/profile','ProfileController@getProfile');
 Route::post('/profile','ProfileController@createProfile');
-Route::put('/profile','ProfileController@updateProfile');
-Route::group(['middleware' => 'jwt.auth'], function () {
+
+Route::group(['middleware' => ['checkAuth']], function () {
     // API User
-    Route::group(['middleware' => ['checkUserByUserId']], function () {
-        // API User with user_id
-        Route::prefix('/users/{token}')->group(function () {
-            Route::get('/', 'UserController@getByUserId');
-        });
-    });
+    Route::put('/profile','ProfileController@updateProfile');
+    Route::get('/profile','ProfileController@getProfile');
 });
 
 //API Schools
