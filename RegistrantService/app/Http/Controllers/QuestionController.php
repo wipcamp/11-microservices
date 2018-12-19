@@ -16,11 +16,12 @@ class QuestionController extends Controller
         $question = new QuestionRepository;
         return $question->findAllQuesions();
     }
-    private function getAnswers(){
-        $answerCtrl = new AnswerController();
-        return $answerCtrl->getAnswers();
-    }
     public function getQuesAndAns(){
-        return response()->json(['question'=>QuestionController::getQuestions(),'answer'=>QuestionController::getAnswersByWipId()]);
+        return response()->json(['questions'=>QuestionController::getQuestions(),'answers'=>QuestionController::getAnswersByWipId()]);
+    }
+
+    public function getQuestionById($question_id){
+        $question = new QuestionRepository;
+        return response()->json($question->findQuestionById($question_id));
     }
 }

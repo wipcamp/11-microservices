@@ -12,8 +12,9 @@ class QuestionRepository implements QuestionRepositoryInterface{
         $questions = Question::get();
         return $questions;
     }
-    public function findQuestionById(int $question_id){
+    public function findQuestionById($question_id){
         $question = Question::where('id',$question_id)->first();
        return $question;
     }
+
 }
