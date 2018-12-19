@@ -26,9 +26,12 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 // });
 
 Route::group([
-  'middleware' => 'api',
+  'middleware' => ['api'],
   'prefix' => 'auth'
 ], function ($router) {
+  Route::get('', function ($request, $response) {
+    return 'hello';
+  });
   Route::post('login', 'AuthController@login');
   Route::post('logout', 'AuthController@logout');
   Route::post('refresh', 'AuthController@refresh');
