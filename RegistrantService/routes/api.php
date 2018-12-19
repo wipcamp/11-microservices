@@ -22,8 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //API Questions
 Route::prefix('questions')->group(function(){
-    Route::get('/', 'QuestionController@getQuestions');
-    Route::get('/listAll', 'QuestionControllrt@getQuesAndAns');
+    Route::get('/', 'QuestionController@getQuestions');;
     Route::get('/{question_id}','QuestionController@getQuestionById');
 });
 
@@ -35,14 +34,13 @@ Route::prefix('answers')->group(function () {
 });
 
 //API Profiles
+Route::prefix('profile')->group(function(){
+    Route::get('/profile', 'ProfileController@getProfile');
+    Route::post('/profile', 'ProfileController@createProfile');
+    Route::put('/update', 'ProfileController@updateProfile');
+    Route::get('/getAnswers', 'ProfileController@getAnswers');
+});
 
-Route::get('/profile', 'ProfileController@getProfile');
-Route::post('/profile', 'ProfileController@createProfile');
-Route::put('/profile/update', 'ProfileController@updateProfile');
-
-Route::get('/profile','ProfileController@getProfile');
-Route::post('/profile','ProfileController@createProfile');
-Route::put('/profile','ProfileController@updateProfile');
 
 Route::group(['middleware' => 'jwt.auth'], function () {
     // API User
