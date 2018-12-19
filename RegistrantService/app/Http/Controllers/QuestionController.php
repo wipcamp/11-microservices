@@ -3,25 +3,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\QuestionRepository;
+use App\Repositories\QuestionRepositoryInterface;
 
 class QuestionController extends Controller
 {
-    public function _construct()
+    protected $question ;
+    public function __construct(QuestionRepositoryInterface $questionRepo)
     {
-        $this->question = new QuestionRepository;
+        $this->question = $questionRepo;
     }
 
     public function getQuestions()
     {
-        $question = new QuestionRepository;
-        return $question->findAllQuesions();
-    }
-    public function getQuesAndAns(){
-        return response()->json(['questions'=>QuestionController::getQuestions(),'answers'=>QuestionController::getAnswersByWipId()]);
+        return response()->json($this->question->findAllQuesions());
     }
 
     public function getQuestionById($question_id){
-        $question = new QuestionRepository;
-        return response()->json($question->findQuestionById($question_id));
+        return response()->json($this->question->findQuestionById($question_id));
     }
+
 }
