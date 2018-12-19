@@ -35,7 +35,7 @@ Route::prefix('answers')->group(function () {
 });
 
 //API Profiles
-// Route::post('/profile','ProfileController@createProfile');
+Route::post('/profile','ProfileController@createProfile');
 
 Route::group(['middleware' => ['checkAuth']], function () {
     // API User

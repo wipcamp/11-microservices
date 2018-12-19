@@ -39,6 +39,7 @@ class AuthController extends Controller
         }
 
         $wipId = $user->wip_id;
+        $token = $credentials['accessToken'];
 
         if (is_null($wipId)) {
             $URL = env('RIGISTANT_URL') . '/profile';
