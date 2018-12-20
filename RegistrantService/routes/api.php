@@ -35,14 +35,15 @@ Route::prefix('answers')->group(function () {
 
 //API Profiles
 Route::prefix('profile')->group(function(){
-    Route::get('/', 'ProfileController@getProfile');
-    Route::post('/', 'ProfileController@createProfile');
-    Route::put('/update', 'ProfileController@updateProfile');
+    // Route::get('/', 'ProfileController@getProfile');
+    // Route::post('/', 'ProfileController@createProfile');
+    // Route::put('/update', 'ProfileController@updateProfile');
     Route::get('/getAnswers', 'ProfileController@getAnswers');
 });
 
 Route::group(['middleware' => ['checkAuth']], function () {
     // API User
+    Route::post('/profile', 'ProfileController@createProfile');
     Route::put('/profile','ProfileController@updateProfile');
     Route::get('/profile','ProfileController@getProfile');
 });

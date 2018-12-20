@@ -39,7 +39,7 @@ class AuthController extends Controller
         }
 
         $wipId = $user->wip_id;
-        $token = $credentials['accessToken'];
+        $token = auth()->login($user);
 
         if (is_null($wipId)) {
             $URL = env('RIGISTANT_URL') . '/profile';
@@ -47,7 +47,8 @@ class AuthController extends Controller
             $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
             $response = $client->request('POST');
             $body = (string) $response->getBody();
-            $wipId = json_decode($body)->id;
+            // dd(json_decode($body)->wip_id);
+            $wipId = json_decode($body)->wip_id;
             $this->authentication->updateByProviderId($providerId, $wipId);
             $user['wip_id'] = $wipId;
         }
