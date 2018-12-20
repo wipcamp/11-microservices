@@ -5,9 +5,10 @@ use App\Models\Profile;
 
 class ProfileRepository implements ProfileRepositoryInterface
 {
-    public function getProfile()
+    public function getProfile($wipId)
     {
-        return Profile::all();
+        $profile = Profile::where('wip_id',$wipId)->get()->first();
+        return $profile;
     }
 
     public function createProfile($profile)
