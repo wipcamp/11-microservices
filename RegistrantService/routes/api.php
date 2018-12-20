@@ -43,9 +43,9 @@ Route::prefix('profile')->group(function(){
 
 Route::group(['middleware' => ['checkAuth']], function () {
     // API User
+    Route::get('/profile','ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@createProfile');
     Route::put('/profile','ProfileController@updateProfile');
-    Route::get('/profile','ProfileController@getProfile');
 });
 
 //API Schools
