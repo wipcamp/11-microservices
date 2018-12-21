@@ -17,7 +17,7 @@ class CheckAuth
     public function handle($request, Closure $next)
     {
         $jwt_secret = env('JWT_SECRET');
-        $token = $request->header('authorization');
+        $token = $request->header('Authorization');
         $jwt = substr($token, 7);
         $decoded = JWT::decode($jwt, $jwt_secret, array('HS256'));
         $wipId = $decoded->sub;
