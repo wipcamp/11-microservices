@@ -39,7 +39,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
     
 //API Answers
     Route::prefix('answers')->group(function () {
-        Route::get('/wip_id', 'AnswerController@getAnswersByWipId');
+        Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@create');
         Route::put('/', 'AnswerController@edit');
     });

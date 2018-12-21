@@ -11,25 +11,19 @@ class AnswerRepository implements AnswerRepositoryInterface
 
     public function findAllAnswersById(int $id)
     {
-        $answers = Answer::select('ans_id', 'ans_content')->where('wip_id', $id)->get();
+        $answers = Answer::select('ans_id','question_id', 'ans_content')->where('wip_id', $id)->get();
         return $answers;
     }
 
-    public function createAnswer(Request $request)
+    public function createAnswer($answers)
     {
-        $profile = $request;
-        for ($i = 1; $i < 6; $i++) {
-            $answer = Answer::create([
-                'question_id' => $i,
-                'wip_id' => $profile['wip_id'],
-                'ans_content' => '',
-            ]);
-        }
-        return json(['message' => 'Create Answer Success']);
+      
+     return Answer::insert($answers);
+
     }
-    public function updateAnswer(Request $request_form)
+    public function editAnswer(Request $request)
     {
-        $data = $request_form->all();
+        $data = $request->all();
         $answer_data = json_decode($data)->answers;
 
         //array data
