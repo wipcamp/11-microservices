@@ -6,14 +6,45 @@
 	},
 	"item": [
 		{
-			"name": "Post :profile",
+			"name": "PUT  :profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a85197b-6208-493d-8472-090613d6e079",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "248281d8-28ed-4808-a5e2-13811acfc6a0",
+						"exec": [
+							"pm.test(\"ส่ง Request ไป profile ได้ Status 200\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"ข้อมูลของ profile อัพเดทได้สำเร็จ\", function () {",
+							"    var profile= pm.response;",
+							"    console.log(profile.body)",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM2NDIzNiwiZXhwIjoxNTQ1MzY3ODM2LCJuYmYiOjE1NDUzNjQyMzYsImp0aSI6IjdJSWQ5SmlYcnhuczdrSXUiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.VTl58V1E7x7Ag6V5nbiql3EiiFZ8Apan9HZ8yO-gNvA",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM5NTU2OCwiZXhwIjoxNTQ1Mzk5MTY4LCJuYmYiOjE1NDUzOTU1NjgsImp0aSI6IkRSa1pvOVpOamQxMlFRV1EiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.8BK9cxVaqBC_wgGefvdIVqo-3olQemHPM7WnVWNsTPM",
 							"type": "string"
 						}
 					]
@@ -23,8 +54,8 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -48,6 +79,20 @@
 		},
 		{
 			"name": "GET :profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "176ca3a2-47e2-4fce-a5d1-ae0bf30a79a7",
+						"exec": [
+							"pm.test(\"get profile ได้ Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -98,7 +143,19 @@
 					"script": {
 						"id": "1f548967-09c5-4dcf-bfc2-1f79e497e818",
 						"exec": [
-							"pm.test()"
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5762b9e5-ebd8-4182-abe9-dfc4990772a9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -123,6 +180,55 @@
 						"schools"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST :profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1e3f09f-f011-492b-b671-5d0eb8d1115e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM5NTU2OCwiZXhwIjoxNTQ1Mzk5MTY4LCJuYmYiOjE1NDUzOTU1NjgsImp0aSI6IkRSa1pvOVpOamQxMlFRV1EiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.8BK9cxVaqBC_wgGefvdIVqo-3olQemHPM7WnVWNsTPM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"profile"
+					]
+				},
+				"description": "สร้าง profile\n"
 			},
 			"response": []
 		}
