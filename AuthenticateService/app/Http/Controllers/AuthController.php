@@ -53,12 +53,7 @@ class AuthController extends Controller
             $user['wip_id'] = $wipId;
         }
         $user['id'] = $wipId;
-        $token = JWTAuth::fromUser($user, ['sub' => $wipId, 'aud' => $providerId]);
-        // $payload = JWTFactory::sub($wipId)->wip_id($wipId)->make();
-        // $payload = JWTFactory::make($customClaims);
-        // $token = JWTAuth::encode($payload);
-
-        
+        $token = JWTAuth::fromUser($user, ['sub' => $wipId, 'aud' => $providerId]);  
         return $this->respondWithToken($token, $user['wip_id']);
     }
 
