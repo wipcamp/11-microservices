@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "d3b021cf-4ae2-4414-93b5-8827c36ac191",
+		"name": "AuthenticationService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST :provider_id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0acef576-6376-4f7e-8fec-fa2ec2c18fb0",
+						"exec": [
+							"pm.test(\"ส่ง Request ไป /login ได้ Status 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"ส่ง provider_id=1234567 ได้ \", function() {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData)",
+							"});",
+							"",
+							"pm.test(\"Update environment\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"dex_token\", jsonData.id_token);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9da0757f-1803-40e1-90e2-829842cabc27",
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTMyMTQ2NSwiZXhwIjoxNTQ1MzI1MDY1LCJuYmYiOjE1NDUzMjE0NjUsImp0aSI6IlR2M3ZPaWU5OHdHV2ZYMlkiLCJzdWIiOjMsInBydiI6IjlhZDU4NTc3ZmFiNmZiYzE1NTQzNGQzNTkxZWRmMTY0YTE3NzY1YWEifQ.QS1EHzFw77fizUL_KjXT3mURhdrTQc_SX_gCJKFw9k4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"provider_id\" : \"2244915192208332\",\n\t\"provider_name\" : \"facebook\",\n\t\"accessToken\" : \"EAAELCDJ8RmoBAO3LRMDN1ibNTurl2ZBznF9DTNhA0uMtw8wKafyTyK17g3JZArCOl6JJ7WdzpjB60ZBnT3Ms9jyAi4K0rZAUbaOnIh3uEL11yu1jgT7IuNJlh5s049nBQZAbJL0JHCXhobyM7E6DISqsCrNAPzCIyuHU7RgN7LUu9QUCR8dfc6rYp2ExhOq4gsHgFWMosXwZDZD\"\n}\n\n"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET :api/login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Quse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM2NDIzNiwiZXhwIjoxNTQ1MzY3ODM2LCJuYmYiOjE1NDUzNjQyMzYsImp0aSI6IjdJSWQ5SmlYcnhuczdrSXUiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.VTl58V1E7x7Ag6V5nbiql3EiiFZ8Apan9HZ8yO-gNvA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"questions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
