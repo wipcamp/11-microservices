@@ -51,5 +51,8 @@ Route::group(['middleware' => ['checkAuth']], function () {
 
 //API Schools
     Route::get('/schools', 'SchoolController@getSchool');
+
+//API Registrant
+    Route::get('/registrant', 'RegistrantController@getRegistrant');
 });
 
