@@ -29,7 +29,7 @@
 							"",
 							"pm.test(\"ข้อมูลของ profile อัพเดทได้สำเร็จ\", function () {",
 							"    var profile= pm.response;",
-							"    console.log(profile.body)",
+							"    console.log(profile.wip_id)",
 							"});",
 							"",
 							""
@@ -44,7 +44,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM5NTU2OCwiZXhwIjoxNTQ1Mzk5MTY4LCJuYmYiOjE1NDUzOTU1NjgsImp0aSI6IkRSa1pvOVpOamQxMlFRV1EiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.8BK9cxVaqBC_wgGefvdIVqo-3olQemHPM7WnVWNsTPM",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTQwODMzMSwiZXhwIjoxNTQ1NDExOTMxLCJuYmYiOjE1NDU0MDgzMzEsImp0aSI6IllZYVN0UGY4YVNqUGsyMFEiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.0y4mtcw2F0s9nzGvmPyZZLC6aK-4DWt4gKT4pQKXRZM",
 							"type": "string"
 						}
 					]
@@ -60,7 +60,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"wip_id\":\"110003\",\r\n  \"fistname_th\": \"Mild\",\r\n  \"lastname_th\": \"ohvp9k\",\r\n  \"fistname_en\": \"mild\",\r\n  \"lastname_en\": \"Noita\",\r\n  \"telno\": \"088-870-2122\",\r\n  \"nickname\": \"fame\",\r\n  \"gender\": \"female\",\r\n  \"school_id\": \"073\",\r\n  \"school_name\": \"nongphai\",\r\n  \"school_level\": \"m6\",\r\n  \"school_major\": \"วิทย์-คณิต\",\r\n  \"gpax\": \"4.00\",\r\n  \"religion\": \"พุทธ\",\r\n  \"allergic_food\": \"-\",\r\n  \"allergic_drug\": \"-\",\r\n  \"cangenital_disease\": \"-\",\r\n  \"email\":  \"mild20091931@gmail.com\",\r\n  \"dob\": \"2018-12-02 00:00:00\",\r\n  \"citizen_no\": \"1041672158743\",\r\n  \"guardian_relative\": \"แม่\",\r\n  \"guardian_telno\": \"088-870-2122\",\r\n  \"medical_approved\": 0,\r\n  \"confirm_register\": true\r\n}\r\n"
+					"raw": "{\r\n  \"wip_id\":110003,\r\n  \"fistname_th\": \"Mild\",\r\n  \"lastname_th\": \"ohvp9k\",\r\n  \"fistname_en\": \"mild\",\r\n  \"lastname_en\": \"Noita\",\r\n  \"telno\": \"088-870-2122\",\r\n  \"nickname\": \"fame\",\r\n  \"gender\": \"female\",\r\n  \"school_id\": \"073\",\r\n  \"school_name\": \"nongphai\",\r\n  \"school_level\": \"m6\",\r\n  \"school_major\": \"วิทย์-คณิต\",\r\n  \"gpax\": \"4.00\",\r\n  \"religion\": \"พุทธ\",\r\n  \"allergic_food\": \"-\",\r\n  \"allergic_drug\": \"-\",\r\n  \"cangenital_disease\": \"-\",\r\n  \"email\":  \"mild20091931@gmail.com\",\r\n  \"dob\": \"1997-09-02\",\r\n  \"citizen_no\": \"1041672158743\",\r\n  \"guardian_relative\": \"แม่\",\r\n  \"guardian_telno\": \"088-870-2122\",\r\n  \"medical_approved\": false,\r\n  \"confirm_register\": false\r\n}\r\n"
 				},
 				"url": {
 					"raw": "http://localhost:8001/api/profile",
@@ -205,16 +205,23 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM5NTU2OCwiZXhwIjoxNTQ1Mzk5MTY4LCJuYmYiOjE1NDUzOTU1NjgsImp0aSI6IkRSa1pvOVpOamQxMlFRV1EiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.8BK9cxVaqBC_wgGefvdIVqo-3olQemHPM7WnVWNsTPM",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTQzMDM3NiwiZXhwIjoxNTQ1NDMzOTc2LCJuYmYiOjE1NDU0MzAzNzYsImp0aSI6IkxFMWgwS0k2emtuRndpRWYiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.UtOU35ts3a-iPVmLSL_jJvsE1JbK32MGgrVb2iMOIr4",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\r\n  \"wip_id\":110003,\r\n  \"fistname_th\": \"Mild\",\r\n  \"lastname_th\": \"ohvp9k\",\r\n  \"fistname_en\": \"mild\",\r\n  \"lastname_en\": \"Noita\",\r\n  \"telno\": \"088-870-2122\",\r\n  \"nickname\": \"fame\",\r\n  \"gender\": \"female\",\r\n  \"school_id\": \"073\",\r\n  \"school_name\": \"nongphai\",\r\n  \"school_level\": \"m6\",\r\n  \"school_major\": \"วิทย์-คณิต\",\r\n  \"gpax\": \"4.00\",\r\n  \"religion\": \"พุทธ\",\r\n  \"allergic_food\": \"-\",\r\n  \"allergic_drug\": \"-\",\r\n  \"cangenital_disease\": \"-\",\r\n  \"email\":  \"mild20091931@gmail.com\",\r\n  \"dob\": \"2018-12-02\",\r\n  \"citizen_no\": \"1041672158743\",\r\n  \"guardian_relative\": \"แม่\",\r\n  \"guardian_telno\": \"088-870-2122\",\r\n  \"medical_approved\": 0,\r\n  \"confirm_register\": true\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8001/api/profile",
@@ -229,6 +236,127 @@
 					]
 				},
 				"description": "สร้าง profile\n"
+			},
+			"response": []
+		},
+		{
+			"name": "GET :questions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b944cae-0f4a-4af8-bd00-6d5d4b7bbc07",
+						"exec": [
+							"pm.test(\"GET คำถาม ได้ Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"ได้รับข้อมูล คำถาม ทั้งหมด 5 คำถาม\", function () {",
+							"    var questions = pm.response.json();",
+							"    ",
+							"    pm.expect(questions.length).to.eql(5);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "yJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTQwMjU2MSwiZXhwIjoxNTQ1NDA2MTYxLCJuYmYiOjE1NDU0MDI1NjEsImp0aSI6IjF0aFVBeWUzVnZNeW40UUgiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.28Q2GRzsF_hL8M_LTie0VgCl2qBSfwb8bIuz_ogVbFw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"questions"
+					]
+				},
+				"description": "get questions for check middleware"
+			},
+			"response": []
+		},
+		{
+			"name": "GET :registrant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6591e9c3-fc09-41ff-ab43-c248f26fe51b",
+						"exec": [
+							"pm.test(\"ส่ง request ไป :api/registrant ได้ Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"get รายการของคนที่สมัครทั้งหมด ที :api/registrant ได้สำเร็จ \", function () {",
+							"        var registrant = pm.response.json();",
+							"    ",
+							"    pm.expect(registrant.length).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTQzNDIwNywiZXhwIjoxNTQ1NDM3ODA3LCJuYmYiOjE1NDU0MzQyMDcsImp0aSI6IndGSEJCbHZ6RlVQcUw4OHUiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.67cfrNu_F586hXli2BUsOJ6smUBdmH0rtuDnajKz8Hw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/registrant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"registrant"
+					]
+				}
 			},
 			"response": []
 		}
