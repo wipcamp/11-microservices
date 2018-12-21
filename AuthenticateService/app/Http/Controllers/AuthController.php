@@ -113,6 +113,6 @@ class AuthController extends Controller
             'token' => $token,
             'expires' => auth()->factory()->getTTL() * 60,
             'wip_id' => $wip_id
-        ]);
+        ],200);
     }
 }
