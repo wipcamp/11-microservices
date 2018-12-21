@@ -23,8 +23,10 @@ class ProfileRepository implements ProfileRepositoryInterface
     }
 
     public function updateProfile($wipId, $profile)
-    {
-        return Profile::where('wip_id', $wipId)->update($profile);
+    {   
+        $updateProfile = Profile::where('wip_id', $wipId)->update($profile);
+        dd($updateProfile);
+        return response()->json($updateProfile);
     }
 
     public function findAnswersByWipId($wip_id)
