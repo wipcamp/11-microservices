@@ -44,6 +44,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::put('/', 'AnswerController@edit');
     });
     
+//API Profile
     Route::get('/profile','ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@createProfile');
     Route::put('/profile','ProfileController@updateProfile');
