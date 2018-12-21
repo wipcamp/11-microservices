@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "6bfe5450-a69c-4241-80af-99ec9f570d80",
+		"name": "RegistantService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post :profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTM2NDIzNiwiZXhwIjoxNTQ1MzY3ODM2LCJuYmYiOjE1NDUzNjQyMzYsImp0aSI6IjdJSWQ5SmlYcnhuczdrSXUiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.VTl58V1E7x7Ag6V5nbiql3EiiFZ8Apan9HZ8yO-gNvA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"wip_id\":\"110003\",\r\n  \"fistname_th\": \"Mild\",\r\n  \"lastname_th\": \"ohvp9k\",\r\n  \"fistname_en\": \"mild\",\r\n  \"lastname_en\": \"Noita\",\r\n  \"telno\": \"088-870-2122\",\r\n  \"nickname\": \"fame\",\r\n  \"gender\": \"female\",\r\n  \"school_id\": \"073\",\r\n  \"school_name\": \"nongphai\",\r\n  \"school_level\": \"m6\",\r\n  \"school_major\": \"วิทย์-คณิต\",\r\n  \"gpax\": \"4.00\",\r\n  \"religion\": \"พุทธ\",\r\n  \"allergic_food\": \"-\",\r\n  \"allergic_drug\": \"-\",\r\n  \"cangenital_disease\": \"-\",\r\n  \"email\":  \"mild20091931@gmail.com\",\r\n  \"dob\": \"2018-12-02 00:00:00\",\r\n  \"citizen_no\": \"1041672158743\",\r\n  \"guardian_relative\": \"แม่\",\r\n  \"guardian_telno\": \"088-870-2122\",\r\n  \"medical_approved\": 0,\r\n  \"confirm_register\": true\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET :profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU0NTMyNzE0NSwiZXhwIjoxNTQ1MzMwNzQ1LCJuYmYiOjE1NDUzMjcxNDUsImp0aSI6IkFtSW9HT3FCbUhLQVEyYWUiLCJzdWIiOjExMDAwMywicHJ2IjoiOWFkNTg1NzdmYWI2ZmJjMTU1NDM0ZDM1OTFlZGYxNjRhMTc3NjVhYSJ9.-X5-sGQFiJHAiq1Wlu_obhl1N1J_I_2MSmFt72UgsKs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET :schools",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1f548967-09c5-4dcf-bfc2-1f79e497e818",
+						"exec": [
+							"pm.test()"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/schools",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"schools"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
