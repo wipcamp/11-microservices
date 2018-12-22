@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 interface AnswerRepositoryInterface{
 
-    public function findAllAnswersById(int $id);
+    public function findAllAnswersById($wip_id);
     public function createAnswer($answers);
     public function updateAnswer($data,$i,$wip_id);
     }
