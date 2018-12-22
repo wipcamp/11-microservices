@@ -2,7 +2,6 @@
 namespace App\Repositories;
 
 use App\Models\Profile;
-
 class ProfileRepository implements ProfileRepositoryInterface
 {
     public function getProfile($wipId)
@@ -23,8 +22,9 @@ class ProfileRepository implements ProfileRepositoryInterface
     }
 
     public function updateProfile($wipId, $profile)
-    {   
-        $updateProfile = Profile::where('wip_id', $wipId)->update($profile);
+    {
+        $profiles = Profile::where('wip_id',$wipId)->get()->first();
+        $updateProfile = $profiles->update($profile);
         return response()->json($updateProfile);
     }
 
@@ -33,5 +33,6 @@ class ProfileRepository implements ProfileRepositoryInterface
         $answers = Profile::find($wip_id)->answers()->get();
         return $answers;
     }
+
 
 }
