@@ -19,6 +19,7 @@ class Authentication extends Authenticatable implements JWTSubject
 
   protected $table = 'credential';
   public $timestamps = false;
+  public $timestamp = false;
 
   public function getJWTIdentifier()
   {
