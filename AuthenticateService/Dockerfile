@@ -3,6 +3,7 @@ WORKDIR /var/www/html
 COPY composer.json .
 RUN composer install --no-dev --no-autoloader --no-scripts
 
+COPY ./.env .
 COPY ./app ./app
 COPY ./bootstrap ./bootstrap
 COPY ./config ./config
@@ -22,9 +23,9 @@ COPY ./server.php .
 COPY ./webpack.mix.js .
 
 RUN composer dump-autoload
-RUN php artisan migrate
-RUN php artisan migrate:refresh
-RUN php artisan migrate --seed
+#RUN php artisan migrate
+#RUN php artisan migrate:refresh
+#RUN php artisan migrate --seed
 
 RUN chmod -R 777 bootstrap/cache
 RUN chmod -R 777 storage
