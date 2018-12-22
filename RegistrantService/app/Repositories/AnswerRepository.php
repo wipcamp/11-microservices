@@ -17,11 +17,11 @@ class AnswerRepository implements AnswerRepositoryInterface
 
     public function createAnswer($answers)
     {
-      
+
      return Answer::insert($answers);
 
     }
-    public function editAnswer(Request $request)
+    public function updateAnswer(Request $request)
     {
         $data = $request->all();
         $answer_data = json_decode($data)->answers;
