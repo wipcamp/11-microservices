@@ -27,6 +27,12 @@ class ProfileController extends Controller
 
     public function createProfile(Request $req)
     {
+        $wipId = $req->all();
+        $getWipId = $this->profileRepository->getProfile($wipId['wip_id']);
+        if ($wipId = $getWipId['wip_id']) {
+            return response()->json(["Error aleady wipid"]);
+        }
+        
         $profile = $this->profileRepository->createProfile([]);
         return response()->json($profile);
     }
