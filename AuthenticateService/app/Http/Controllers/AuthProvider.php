@@ -21,7 +21,7 @@ class AuthProvider
         $validator = Validator::make($credentials, $schema);
         if ($validator->fails()) {
             return response()->json([
-                'error' => $credentials
+                'error' => 'Invalid check your fild.'
             ]);
         }
           
