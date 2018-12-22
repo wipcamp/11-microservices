@@ -10,8 +10,8 @@ class Profile extends Model
       'wip_id', 'citizen_no',
     ];
     protected $primaryKey = 'wip_id';
-
     public $timestamps = false;
+    public $timestamp = false;
 
     public function answers(){
         return $this->hasMaNy('App\Models\Answer','wip_id');
