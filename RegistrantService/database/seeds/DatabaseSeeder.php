@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ProfilesSeeder::class,
             AnswersSeeder::class,
             SchoolSeeder::class,
+            Answer_evaluationSeeder::class,
         ]);
 
     }
