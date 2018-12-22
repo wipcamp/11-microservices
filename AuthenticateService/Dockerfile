@@ -25,11 +25,6 @@ RUN composer dump-autoload
 RUN php artisan migrate
 RUN php artisan migrate:refresh
 RUN php artisan migrate --seed
-RUN echo $JWT_SECRET
 
 RUN chmod -R 777 bootstrap/cache
 RUN chmod -R 777 storage
-
-
-CMD ["php" ,"artisan" ,"serve","--host=0.0.0.0"]
-
