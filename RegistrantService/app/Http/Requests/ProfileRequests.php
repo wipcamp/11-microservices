@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthenticationRequest extends FormRequest
+class ProfileRequests extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class AuthenticationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class AuthenticationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // 'wip_id' => 'required',
+            'firstname_th' => 'required|max:2'
         ];
     }
+
+    public function messages()
+{
+    return [
+        // 'wip_id.required' => 'A title is required',
+        'firstname_th.required'  => 'A message is required',
+    ];
+}
 }
