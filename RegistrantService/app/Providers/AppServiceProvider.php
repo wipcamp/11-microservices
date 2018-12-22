@@ -29,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
             'Profile',
             'School',
             'Answer',
-            'Authentication'
+            'Authentication',
+            'Registrant'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
