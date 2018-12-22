@@ -19,6 +19,8 @@ class Authentication extends Migration
             $table->enum('provider_name', ['facebook', 'line']);
             $table->enum('role', ['itim_applicant', 'itim_passing']);
             $table->integer('wip_id')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
 
     }

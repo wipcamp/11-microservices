@@ -14,6 +14,8 @@ class Profiles extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
+            $table->collation = 'utf8_general_ci';
+            $table->charset = 'utf8';
             $table->increments('wip_id');
             $table->string('prefix_name')->nullable();
             $table->string('fistname_th', 100)->nullable();
@@ -38,7 +40,9 @@ class Profiles extends Migration
             $table->string('guardian_relative', 100)->nullable();
             $table->string('guardian_telno', 100)->nullable();
             $table->boolean('medical_approved')->nullable();
-            $table->boolean('confirm_register')->nullable()->default(0);
+            $table->boolean('confirm_register')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
         DB::update("ALTER TABLE profiles AUTO_INCREMENT = 110001;");
     }
