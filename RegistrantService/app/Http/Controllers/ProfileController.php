@@ -58,7 +58,7 @@ class ProfileController extends Controller
             'email'=>'required|email',
             'dob'=>'required|date',
             'citizen_no'=>'required|max:13',
-            'guardian_relative'=>'required|',
+            'guardian_relative'=>'required',
             'guardian_telno'=>'required:max10',
         ]);
 
