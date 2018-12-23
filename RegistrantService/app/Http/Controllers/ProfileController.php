@@ -74,6 +74,6 @@ class ProfileController extends Controller
 
     public function getAnswers(Request $req)
     {   $profile = $req->all();
-        return response()->json(['answer' => $this->profileRepository->findAnswers($profile['wip_id'])]);
+        return response()->json(['answer' => $this->profileRepository->findAnswersByWipId($profile['wip_id'])]);
     }
 }
