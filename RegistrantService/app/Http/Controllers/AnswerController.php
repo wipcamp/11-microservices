@@ -20,10 +20,20 @@ class AnswerController extends Controller
         $wip_id = $request->all()['wip_id'];
         return response()->json($this->answer->findAllAnswersById($wip_id));
     }
-    public function create(Request $request)
+    public function manageAnswer(Request $request)
     {
+        $validator = Validator::make($req->all(), [
+            'question_id'=> 'required',
+            'wip_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Answer'
+            ]);
+        }
+
         $data = $request->all();
-        $question = $data[0]['question_id'];
         $wip_id = $data['wip_id'];
         $check = $this->answer->findAllAnswersById($wip_id);
 

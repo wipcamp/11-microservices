@@ -32,13 +32,13 @@ class ProfileController extends Controller
         if ($wipId = $getWipId['wip_id']) {
             return response()->json(["Error aleady wipid"]);
         }
-        
+
         $profile = $this->profileRepository->createProfile([]);
         return response()->json($profile);
     }
 
     public function updateProfile(Request $req)
-    {   
+    {
         $validator = Validator::make($req->all(), [
             'wip_id' => 'required',
             'prefix_name' => 'required|max:6',
@@ -59,6 +59,7 @@ class ProfileController extends Controller
             'dob'=>'required|date',
             'citizen_no'=>'required|max:13',
             'guardian_relative'=>'required',
+            'guardian_telno'=>'required',
             'guardian_telno'=>'required:max10',
         ]);
 

@@ -36,26 +36,30 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::get('/', 'QuestionController@getQuestions');
         Route::get('/{question_id}','QuestionController@getQuestionById');
     });
-    
+
 //API Answers
     Route::prefix('answers')->group(function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
-        Route::post('/', 'AnswerController@create');
+        Route::post('/', 'AnswerController@manageAnswer');
         Route::put('/', 'AnswerController@edit');
+        //API wippo
         Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
-    
+
 //API Profile
     Route::get('/profile','ProfileController@getProfile');
     Route::post('/profile', 'ProfileController@createProfile');
     Route::put('/profile','ProfileController@updateProfile');
 
-//API Schools
-    Route::get('/schools', 'SchoolController@getSchool');
+
 
 //API Registrant
     Route::get('/registrant', 'RegistrantController@getRegistrant');
-
-//API 
 });
 
+
+//API Schools
+Route::prefix('schools')->group(function () {
+    Route::get('/', 'SchoolController@getSchool');
+    Route::get('/name','SchoolController@getSchoolByName');
+   });
