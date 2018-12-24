@@ -59,4 +59,5 @@ Route::group(['middleware' => ['checkAuth']], function () {
 //API Schools
 Route::prefix('schools')->group(function () {
     Route::get('/', 'SchoolController@getSchool');
+    Route::get('/name','SchoolController@getSchoolByName');
    });
