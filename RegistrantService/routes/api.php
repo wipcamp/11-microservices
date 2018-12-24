@@ -42,6 +42,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@create');
         Route::put('/', 'AnswerController@edit');
+        Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
     
 //API Profile
@@ -54,5 +55,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
 
 //API Registrant
     Route::get('/registrant', 'RegistrantController@getRegistrant');
+
+//API 
 });
 

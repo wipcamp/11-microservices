@@ -36,7 +36,7 @@ class Profiles extends Migration
             $table->string('cangenital_disease', 100)->nullable();
             $table->string('email', 100)->nullable();
             $table->date('dob')->nullable();
-            $table->bigInteger('citizen_no')->nullable();
+            $table->bigInteger('citizen_no',13)->nullable();
             $table->string('guardian_relative', 20)->nullable();
             $table->string('guardian_telno', 10)->nullable();
             $table->boolean('medical_approved')->nullable();
