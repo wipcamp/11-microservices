@@ -30,10 +30,19 @@ class ProfileRequests extends FormRequest
     }
 
     public function messages()
-{
+    {
     return [
         // 'wip_id.required' => 'A title is required',
         'firstname_th.required'  => 'A message is required',
     ];
+    }
+
+    public function withValidator($validator)
+{
+    $validator->after(function ($validator) {
+        if ($this->rules()) {
+            $validator->errors()->add('field', 'Something is wrong with this field!');
+        }
+    });
 }
 }
