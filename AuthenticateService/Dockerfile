@@ -27,4 +27,4 @@ RUN php artisan migrate --seed
 
 RUN chmod -R 777 bootstrap/cache
 RUN chmod -R 777 storage
-CMD ["php" ,"artisan" ,"serve","--host=0.0.0.0"]
+
