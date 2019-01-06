@@ -34,7 +34,7 @@ class ProfileController extends Controller
         }
 
         $profile = $this->profileRepository->createProfile([]);
-        return response()->json(["success update your profile !"],200);
+        return response()->json($profile);
     }
 
     public function updateProfile(Request $req)
@@ -56,7 +56,7 @@ class ProfileController extends Controller
             'allergic_food'=>'required',
             'email'=>'required|email',
             'dob'=>'required',
-            'citizen_no'=>'required|string|max:13',
+            'citizen_no'=>'required|string',
             'guardian_relative'=>'required',
             'guardian_telno'=>'required',
             'guardian_telno'=>'required:max10',

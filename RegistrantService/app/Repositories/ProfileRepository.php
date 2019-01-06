@@ -24,6 +24,7 @@ class ProfileRepository implements ProfileRepositoryInterface
     public function updateProfile($wipId, $profile)
     {
         $profiles = Profile::where('wip_id',$wipId)->get()->first();
+        
         $updateProfile = $profiles->update($profile);
         return response()->json($updateProfile);
     }
