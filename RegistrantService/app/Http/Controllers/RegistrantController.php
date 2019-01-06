@@ -19,6 +19,6 @@ class RegistrantController extends Controller
   public function getRegistrant()
   {
     $wip = $this->registrantRepository->getRegistrant();
-    return response()->json($wip);
+    return response()->json($wip,200);
   }
 }

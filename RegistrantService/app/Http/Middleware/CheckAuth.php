@@ -31,11 +31,11 @@ class CheckAuth
             }
              catch (ExpiredException $exp) {
                 return response()->json([
-                    'error' => 'Expire token.']
+                    'error' => 'Expire token.'],401
                 );
             } 
             catch (\Exception $ex)  {
-                return response()->json(['error' => 'Invalid token.']);
+                return response()->json(['error' => 'Invalid token.'],401);
             }
         }else{
             return response()->json([

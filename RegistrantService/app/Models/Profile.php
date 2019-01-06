@@ -7,7 +7,7 @@ class Profile extends Model
 {
     protected $table = 'profiles';
     protected $guarded = [
-      'wip_id', 'citizen_no',
+      'wip_id',
     ];
     protected $primaryKey = 'wip_id';
     public $timestamps = false;

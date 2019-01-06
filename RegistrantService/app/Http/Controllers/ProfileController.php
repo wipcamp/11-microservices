@@ -56,7 +56,7 @@ class ProfileController extends Controller
             'allergic_food'=>'required',
             'email'=>'required|email',
             'dob'=>'required',
-            'citizen_no'=>'required|string',
+            'citizen_no'=>'required|string|max:13',
             'guardian_relative'=>'required',
             'guardian_telno'=>'required',
             'guardian_telno'=>'required:max10',
@@ -65,7 +65,7 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'error' => 'Invalid feild !'
-            ]);
+            ],401);
         }
         $profile = $req->all();
         $update = $this->profileRepository->updateProfile($profile['wip_id'], $profile);
