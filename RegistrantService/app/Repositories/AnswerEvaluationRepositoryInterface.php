@@ -5,5 +5,5 @@ use Illuminate\Http\Request;
 
 
 interface AnswerEvaluationRepositoryInterface{
-    public function getAnswerEvaluations($evaluation);
+    public function answerEvaluations($evaluation);
 }

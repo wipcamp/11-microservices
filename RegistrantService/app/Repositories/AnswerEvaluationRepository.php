@@ -7,7 +7,7 @@ use App\Repositories\AnswerEvaluationRepositoryInterface;
 
 class  AnswerEvaluationRepository implements AnswerEvaluationRepositoryInterface
 {
-  public function getAnswerEvaluations($evaluation)
+  public function answerEvaluations($evaluation)
   {
       return AnswerEvaluation::create([
         'answer_id' => $evaluation['answer_id'],

@@ -15,10 +15,10 @@ class AnswerEvaluationController extends Controller
     $this->answerEvaluations = $answerEvaluationsRepo;
   }
 
-  public function getAnswerEvaluations(Request $req)
+  public function answerEvaluations(Request $req)
   {
       $evaluations = $req->all();
-      $evaluations = $this->answerEvaluations->getAnswerEvaluations($evaluations);
+      $evaluations = $this->answerEvaluations->answerEvaluations($evaluations);
       return response()->json(["messege" => 'post Evaluations success ! '],201);
   }
 }
