@@ -22,6 +22,7 @@ COPY ./server.php .
 COPY ./webpack.mix.js .
 
 RUN composer dump-autoload
+RUN php artisan migrate
 RUN php artisan migrate:refresh
 RUN php artisan migrate --seed
 
