@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Repositories\AuthenticationRepositoryInterface;
 use Validator;
 
+
 class AuthProvider
 {
     protected $authentication;
@@ -26,7 +27,7 @@ class AuthProvider
         }
           
         $send = "me?access_token=${credentials['accessToken']}";
-        $URL = env('FACEBOOK_URL') . $send;
+        $URL = config('services.wip_config.facebook'). $send;
          
         $res = $this->checkProviderCredentials($URL);
         if ($res == null || $credentials['provider_id'] !== $res['id']) {   
@@ -51,7 +52,7 @@ class AuthProvider
 
 
         $send = "me?access_token=${credentials['accessTokenFB']}";
-        $URL = env('FACEBOOK_URL') . $send;
+        $URL = config('services.wip_config.facebook'). $send;
 
         $res = $this->checkProviderCredentials($URL);
         if ($res == null || $credentials['provider_fb'] !== $res['id']) {   

@@ -40,4 +40,7 @@ return [
         ],
     ],
 
+    'wip_config' =>[
+        'facebook' => env('FACEBOOK_URL','https://graph.facebook.com/'),
+    ]
 ];
