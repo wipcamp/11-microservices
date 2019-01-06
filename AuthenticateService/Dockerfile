@@ -22,8 +22,6 @@ COPY ./server.php .
 COPY ./webpack.mix.js .
 
 RUN composer dump-autoload
-RUN php artisan migrate:refresh
-RUN php artisan migrate --seed
 
 RUN chmod -R 777 bootstrap/cache
 RUN chmod -R 777 storage
