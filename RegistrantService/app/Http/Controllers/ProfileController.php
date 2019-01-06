@@ -49,7 +49,6 @@ class ProfileController extends Controller
             'telno'=>'required|string|max:10',
             'nickname'=>'required|string|max:10',
             'gender'=>'required|string|max:6',
-            'school_id'=>'required|string|max:3',
             'school_name'=>'required|string',
             'school_level'=>'required|string',
             'gpax'=>'required',
@@ -70,7 +69,7 @@ class ProfileController extends Controller
         }
         $profile = $req->all();
         $update = $this->profileRepository->updateProfile($profile['wip_id'], $profile);
-        return response()->json($update);
+        return response()->json(["success update your profile !"],200);
     }
 
     public function getAnswers(Request $req)
