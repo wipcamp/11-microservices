@@ -24,7 +24,6 @@ class ProfileRequests extends FormRequest
     public function rules()
     {
         return [
-            // 'wip_id' => 'required',
             'firstname_th' => 'required|max:2'
         ];
     }
@@ -32,7 +31,6 @@ class ProfileRequests extends FormRequest
     public function messages()
     {
     return [
-        // 'wip_id.required' => 'A title is required',
         'firstname_th.required'  => 'A message is required',
     ];
     }

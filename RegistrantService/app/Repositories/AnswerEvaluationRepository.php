@@ -9,7 +9,6 @@ class  AnswerEvaluationRepository implements AnswerEvaluationRepositoryInterface
 {
   public function getAnswerEvaluations($evaluation)
   {
-      // dd($evaluation);
       return AnswerEvaluation::create([
         'answer_id' => $evaluation['answer_id'],
         'checker_wip_id' => $evaluation['checker_wip_id'],
