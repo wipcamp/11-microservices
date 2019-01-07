@@ -20,8 +20,8 @@ class CreateAnswers extends Migration
             $table->timestamp('updated_at') ->default(
                 DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
             );
-            $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('wip_id')->references('wip_id')->on('profiles');
+            // $table->foreign('question_id')->references('id')->on('questions');
+            // $table->foreign('wip_id')->references('wip_id')->on('profiles');
 
         });
 

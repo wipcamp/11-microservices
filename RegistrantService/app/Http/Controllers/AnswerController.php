@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\AnswerRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
+use Validator;
 class AnswerController extends Controller
 {
     protected $answer;
@@ -22,7 +23,7 @@ class AnswerController extends Controller
     }
     public function manageAnswer(Request $request)
     {
-        $validator = Validator::make($req->all(), [
+        $validator = Validator::make($request->all(), [
             'question_id'=> 'required',
             'wip_id' => 'required',
         ]);
