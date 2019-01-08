@@ -47,10 +47,11 @@ Route::group(['middleware' => ['checkAuth']], function () {
     });
 
 //API Profile
-    Route::get('/profile','ProfileController@getProfile');
-    Route::post('/profile', 'ProfileController@createProfile');
-    Route::put('/profile','ProfileController@updateProfile');
-
+Route::prefix('profile')->group(function () {
+    Route::get('/','ProfileController@getProfile');
+    Route::post('/', 'ProfileController@createProfile');
+    Route::put('/','ProfileController@updateProfile');
+});
 
 
 //API Registrant

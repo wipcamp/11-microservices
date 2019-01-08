@@ -40,7 +40,7 @@ class CheckAuth
         }else{
             return response()->json([
                 'error' => 'Invalid User.'
-            ]);
+            ],401);
         }
     }
 
@@ -57,7 +57,7 @@ class CheckAuth
         }else {
             return response()->json([
                 'error' => 'Token is null.'
-            ]);
+            ],401);
         }
     }
 }
