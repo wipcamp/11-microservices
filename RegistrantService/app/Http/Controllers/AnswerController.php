@@ -23,16 +23,16 @@ class AnswerController extends Controller
     }
     public function manageAnswer(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'question_id'=> 'required',
-        //     'wip_id' => 'required',
-        // ]);
+        $validator = Validator::make($request->all(), [
+            // 'question_id'=> 'required',
+            'wip_id' => 'required',
+        ]);
 
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'error' => 'Invalid Answer'
-        //     ]);
-        // }
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Answer'
+            ]);
+        }
 
         $data = $request->all();
         $wip_id = $data['wip_id'];
