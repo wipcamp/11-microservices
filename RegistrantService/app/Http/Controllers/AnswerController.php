@@ -24,7 +24,6 @@ class AnswerController extends Controller
     public function manageAnswer(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            // 'question_id'=> 'required',
             'wip_id' => 'required',
         ]);
 

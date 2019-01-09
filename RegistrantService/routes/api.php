@@ -20,15 +20,7 @@ header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 Route::get('jwt', function (Request $request) {
     return response()->json('hello' . $request['wip_id']);
 })->middleware('checkAuth');
-//API Questions
 
-//API Profiles
-Route::prefix('profile')->group(function(){
-    // Route::get('/', 'ProfileController@getProfile');
-    // Route::post('/', 'ProfileController@createProfile');
-    // Route::put('/update', 'ProfileController@updateProfile');
-    Route::get('/getAnswers', 'ProfileController@getAnswers');
-});
 
 Route::group(['middleware' => ['checkAuth']], function () {
 // API User
@@ -63,4 +55,4 @@ Route::prefix('profile')->group(function () {
 Route::prefix('schools')->group(function () {
     Route::get('/', 'SchoolController@getSchool');
     Route::get('/name','SchoolController@getSchoolByName');
-   });
+});

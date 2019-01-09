@@ -24,7 +24,7 @@ class ProfileRequests extends FormRequest
     public function rules()
     {
         return [
-            'firstname_th' => 'required|max:2'
+            'firstname_th' => 'required'
         ];
     }
 

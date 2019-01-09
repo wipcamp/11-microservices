@@ -16,15 +16,6 @@ use Illuminate\Http\Request;
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::post('login', 'AuthController@login');
-// Route::middleware('jwt.auth')->get('users', function () {
-//     return auth('api')->user();
-// });
-
 Route::group([
   'middleware' => ['api'],
   'prefix' => 'auth'

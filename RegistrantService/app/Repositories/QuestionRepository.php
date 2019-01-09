@@ -16,6 +16,5 @@ class QuestionRepository implements QuestionRepositoryInterface{
         $question = Question::where('id',$question_id)->first();
        return $question;
     }
-
-    }
+}
 

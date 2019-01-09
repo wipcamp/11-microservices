@@ -13,13 +13,8 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
   return $user;
   }
 
-
   public function getByProviderId($provider_id) {
     return Authentication::where('provider_id', $provider_id)->first();
-  }
-
-  public function getByUserName($provider_name) {
-    return Authentication::where('provider_name', $provider_name)->first();
   }
   
   public function updateByProviderId($provider_id, $wip_id) {
