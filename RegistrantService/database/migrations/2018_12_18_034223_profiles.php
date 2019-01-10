@@ -23,7 +23,7 @@ class Profiles extends Migration
             $table->string('lastname_en', 100)->nullable();
             $table->string('telno', 10)->nullable();
             $table->string('nickname', 100)->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->enum('gender', ['ชาย', 'หญิง'])->nullable();
             $table->string('school_id', 3)->nullable();
             $table->string('school_name', 100)->nullable();
             $table->string('school_level',15)->nullable();
