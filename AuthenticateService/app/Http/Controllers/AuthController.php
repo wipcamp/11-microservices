@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     public function login()
     {   
-        $credentials = request(['provider_id', 'provider_name','accessToken']);
+        $credentials = request(['provider_id', 'provider_name','role','accessToken']);
         $auth = $this->authProvider->Authentication($credentials);
     
         if(gettype($auth) == 'object') {

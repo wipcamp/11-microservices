@@ -17,8 +17,10 @@ class AuthProvider
         $schema = [
             'provider_id' => 'required',
             'provider_name' => 'required',
-            'accessToken' => 'required'
+            'accessToken' => 'required',
+            'role' => 'required'
         ];
+        
         $validator = Validator::make($credentials, $schema);
         if ($validator->fails()) {
             return response()->json([
@@ -41,7 +43,8 @@ class AuthProvider
             'provider_fb' => 'required',
             'accessTokenFB' => 'required',
             'provider_line' => 'required',
-            'accessTokenLine' => 'required'
+            'accessTokenLine' => 'required',
+            'role' => 'required'
         ];
         $validator = Validator::make($credentials, $schema);
         if ($validator->fails()) {
@@ -83,7 +86,7 @@ class AuthProvider
             $user = [
                 "provider_id" => $credentials['provider_line'],
                 "provider_name" => "line",
-                "role" => "itim_applicant",
+                "role" =>  $credentials['role'],
                 "wip_id" => $wipId
             ];
             $user = $this->authentication->createUser($user);
