@@ -11,8 +11,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $MAX = 2;
-        $role_name = ['itim','wippper'];
+        $MAX = 5;
+        $role_name = ['itim','wippper','admin','pr','sponsor'];
         for($i = 0 ; $i < $MAX ; $i++){
             DB::table('roles')->insert([
                 'role_name' => $role_name[$i],
