@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/posts', 'SponsorController@getPosts');
-Route::get('/post/{sponsor_id}', 'SponsorController@getPost');
-Route::post('/create', 'SponsorController@createSponsor');
-Route::put('/updatespon', 'SponsorController@updateSpon');
-Route::delete('/delete/{sponsor_id}', 'SponsorController@delete');
+Route::get('/sponsors', 'SponsorController@getPosts');
+Route::get('/sponsor/{sponsor_id}', 'SponsorController@getPost');
+Route::post('/sponsor', 'SponsorController@createSponsor');
+Route::put('/sponsor/{sponsor_id}', 'SponsorController@updateSponname');
+Route::put('/sponsor/{sponsor_id}', 'SponsorController@updateSponorder');
+Route::delete('/sponsor/{sponsor_id}', 'SponsorController@delete');

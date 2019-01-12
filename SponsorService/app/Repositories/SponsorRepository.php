@@ -19,8 +19,12 @@ class SponsorRepository implements SponsorRepositoryInterface
         return $newspon::create($spon);
     }
 
-    public function updatespon($id,$spon){
-        return Sponsor::where('sponsor_id', $id)->update(['sponsor_name' => $spon['sponsor_name']]);
+    public function updatesponname($spon,$id){
+        return Sponsor::where('sponsor_id', $id)->update(['sponsor_name' => $spon]);
+    }
+
+    public function updatesponorder($spon,$id){
+        return Sponsor::where('sponsor_id', $id)->update(['sponsor_order' => $spon]);
     }
 
     public function delete($sponsor_id){
