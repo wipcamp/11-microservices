@@ -30,3 +30,10 @@ Route::group([
   Route::post('me', 'AuthController@me');
   Route::post('connect', 'AuthController@connect');
 });
+
+Route::group(['middleware' => ['checkAuth']], function () {
+  // Route::get('permissions', 'RolePermissionController@getPermissionByRole');
+  Route::get('permissions', function () {
+      return response()->json('Hello Permission !!');
+  });
+});
