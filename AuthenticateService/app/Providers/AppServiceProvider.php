@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $models = array(
             'Authentication',
+            'RolePermission'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
