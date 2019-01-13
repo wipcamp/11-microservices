@@ -32,8 +32,5 @@ Route::group([
 });
 
 Route::group(['middleware' => ['checkAuth']], function () {
-  // Route::get('permissions', 'RolePermissionController@getPermissionByRole');
-  Route::get('permissions', function () {
-      return response()->json('Hello Permission !!');
-  });
+    Route::get('permissions', 'RolePermissionController@getPermissionByWipId');
 });
