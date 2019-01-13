@@ -38,11 +38,12 @@ php artisan migrate
 
 Second migrate
 ```
+php artisan migrate:fresh
 php artisan migrate:refresh
 ```
 
 ## Seeding Database
 
 ```
-php artisan migrate --seed
+php artisan seed
 ```
