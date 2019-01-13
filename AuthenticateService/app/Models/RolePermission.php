@@ -1,7 +1,8 @@
 <?php
 namespace App\Models;
 
-class RolePermission extends Models
+use Illuminate\Database\Eloquent\Model;
+class RolePermission extends Model
 {
-  
+  protected $table = 'role_permissions';
 }

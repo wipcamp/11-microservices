@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\RolePermissionRepositoryInterface;
-
-class RolePermissionController extends Controllers
+use Illuminate\Http\Request;
+class RolePermissionController extends Controller
 {
   protected $rolepermission;
 
@@ -13,5 +13,12 @@ class RolePermissionController extends Controllers
     $this->rolepermission = $rolepermission;
   }
 
+  public function getPermissionByWipId(Request $req)
+  {
+    $role = $req->all();
+    $role_id = $role['wip_id'];
+    $permission = $this->rolepermission->getPermissionByWipId($role_id);
+    return response()->json(['permission'=>$permission]);
+  }
   
 }
