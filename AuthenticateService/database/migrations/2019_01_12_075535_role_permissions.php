@@ -15,10 +15,10 @@ class RolePermissions extends Migration
     {
         Schema::create('role_permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id')->unsigned();
-            $table->integer('permission_id')->unsigned();
-            $table->foreign('role_id')->references('role_id')->on('roles');
-            $table->foreign('permission_id')->references('permission_id')->on('permissions');
+            $table->integer('role_id');
+            $table->integer('permission_id');
+            // $table->foreign('role_id')->references('role_id')->on('roles');
+            // $table->foreign('permission_id')->references('permission_id')->on('permissions');
         });
     }
 
