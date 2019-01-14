@@ -30,7 +30,7 @@ php artisan serve
 php artisan serve --port 8001
 ```
 
-## Migration Database
+## Migration Database cd AuthenticateService and cd RegistrantService
 
 ```
 php artisan migrate
