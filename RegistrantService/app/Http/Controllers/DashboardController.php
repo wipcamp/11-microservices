@@ -14,4 +14,8 @@ class DashboardController extends Controller
     public function getRegistrantStats(){
       return  response()->json([$this->dashboard->getStats()]);
     }
+    public function getRegistrantStatsByDate (Request $req){
+        $start_date = $req->query('startdate');
+        $end_date = $req->query('enddate');
+    }
 }
