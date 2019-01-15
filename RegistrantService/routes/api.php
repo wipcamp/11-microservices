@@ -56,3 +56,8 @@ Route::prefix('schools')->group(function () {
     Route::get('/', 'SchoolController@getSchool');
     Route::get('/name','SchoolController@getSchoolByName');
 });
+
+//API Dashboard
+Route::prefix('stats')->group(function (){
+    Route::get('/registrants','DashboardController@getRegistrantStats');
+});
