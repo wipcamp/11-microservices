@@ -11,5 +11,7 @@ class DashboardController extends Controller
     public function __construct(DashboardRepositoryInterface $dashboardRepoInterface){
         $this->dashboard = $dashboardRepoInterface;
     }
-
+    public function getRegistrantStats(){
+      return  response()->json([$this->dashboard->getStats()]);
+    }
 }
