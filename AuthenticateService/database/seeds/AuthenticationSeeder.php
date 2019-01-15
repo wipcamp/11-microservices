@@ -14,7 +14,7 @@ class AuthenticationSeeder extends Seeder
         $MAX_RANDOM = 2;
         $provider_id = ["112452273135656", "89101113"];
         $provider_name = ['facebook', 'facebook'];
-        $role = ['itim_applicant','itim_passing'];
+        $role = [1,4];
         $wip_id = 11000;
         for($i = 0 ; $i < $MAX_RANDOM ; $i++){
             DB::table('credential')->insert([

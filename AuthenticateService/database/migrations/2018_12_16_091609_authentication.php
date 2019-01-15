@@ -13,16 +13,17 @@ class Authentication extends Migration
      */
     public function up()
     {
+
         Schema::create('credential', function (Blueprint $table) {
             $table->increments('id');
             $table->string('provider_id');
             $table->enum('provider_name', ['facebook', 'line']);
-            $table->string('role')->nuklable();
+            $table->integer('role');
             $table->integer('wip_id')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
-
+        
     }
 
     /**
