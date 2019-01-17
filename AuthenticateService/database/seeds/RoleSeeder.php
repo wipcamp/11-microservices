@@ -11,7 +11,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $MAX = 9;
+        $MAX = 10;
         $role_name = ['itim_applicant','itim_passing','pending','wipper','sponsor','pr','secretary','vice-president','president','admin'];
         for($i = 0 ; $i < $MAX ; $i++){
             DB::table('roles')->insert([
