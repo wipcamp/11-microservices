@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Profile;
 use App\Repositories\DashboardRepositoryInterface;
 use DB;
+use Carbon\Carbon;
 class DashboardRepository implements DashboardRepositoryInterface
 {
     public function getStats()
@@ -18,10 +19,11 @@ class DashboardRepository implements DashboardRepositoryInterface
     }
     public function getStatsByDate($start_date, $end_date)
     {
-        $date = Profile::select('created_at')->whereBetween('created_at', [$start_date, $end_date])
-        ->groupBy('created_at')->get();
+        $date = Profile::select(DB::raw('DATE(created_at) as date'))->
+        whereBetween(DB::raw('DATE(created_at)'), array($start_date, $end_date))->groupBy('created_at')->get();
+
         $count = Profile::select(DB::raw('count(*) as count'))->
-            whereBetween('created_at', [$start_date,$end_date])->groupBy('created_at')->get();
-        return response()->json(['date'=>$date,'count'=>$count]);
+        whereBetween(DB::raw('DATE(created_at)'), array($start_date, $end_date))->groupBy('created_at')->get();
+        return response()->json(['dates' => $date, 'counts' => $count]);
     }
 }
