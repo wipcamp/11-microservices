@@ -21,38 +21,44 @@ Route::get('jwt', function (Request $request) {
     return response()->json('hello' . $request['wip_id']);
 })->middleware('checkAuth');
 
-
 Route::group(['middleware' => ['checkAuth']], function () {
 // API User
-    Route::prefix('questions')->group(function(){
+    Route::prefix('questions')->group(function () {
         Route::get('/', 'QuestionController@getQuestions');
-        Route::get('/{question_id}','QuestionController@getQuestionById');
+        Route::get('/{question_id}', 'QuestionController@getQuestionById');
     });
 
 //API Answers
     Route::prefix('answers')->group(function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@manageAnswer');
-        Route::put('/', 'AnswerController@edit');
+        Route::put('/', 'AnswerController@manageAnswer');
+        Route::get('/{question_id}', 'AnswerController@getAnswersByQuestionId');
         //API wippo
         Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
 
 //API Profile
-Route::prefix('profile')->group(function () {
-    Route::get('/','ProfileController@getProfile');
-    Route::post('/', 'ProfileController@createProfile');
-    Route::put('/','ProfileController@updateProfile');
-});
-
+    Route::prefix('profile')->group(function () {
+        Route::get('/', 'ProfileController@getProfile');
+        Route::post('/', 'ProfileController@createProfile');
+        Route::put('/', 'ProfileController@updateProfile');
+    });
 
 //API Registrant
     Route::get('/registrant', 'RegistrantController@getRegistrant');
 });
 
-
 //API Schools
 Route::prefix('schools')->group(function () {
     Route::get('/', 'SchoolController@getSchool');
-    Route::get('/name','SchoolController@getSchoolByName');
+    Route::get('/name', 'SchoolController@getSchoolByName');
+});
+
+//API Dashboard
+Route::prefix('stats')->group(function () {
+    Route::prefix('/registrants')->group(function () {
+        Route::get('/', 'DashboardController@getRegistrantStats');
+        Route::get('/date', 'DashboardController@getRegistrantStatsByDate');
+    });
 });

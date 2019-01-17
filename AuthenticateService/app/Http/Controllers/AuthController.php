@@ -15,11 +15,13 @@ class AuthController extends Controller
 
     protected $authentication;
     protected $authProvider;
+    protected $role;
 
     public function __construct(AuthenticationRepositoryInterface $authentication){
         $this->middleware('auth:api', ['except' => ['login', 'connect']]);
         $this->authentication = $authentication;
         $this->authProvider = new AuthProvider($authentication);
+
     }
 
 
@@ -40,7 +42,6 @@ class AuthController extends Controller
         
         $wipId = $user->wip_id;
         $token = auth()->login($user);
-    
         if (is_null($wipId)) {
             $URL = env('RIGISTANT_URL') . '/profile';
             $headers = ['Authorization' => 'Bearer ' . $token];
@@ -50,9 +51,12 @@ class AuthController extends Controller
             $this->authentication->updateByProviderId($providerId, $wipId);
             $user['wip_id'] = $wipId;
         }
+        $role = $this->authentication->getRoleByWipId($wipId);
+        $permission = $this->authentication->getPermissionByWipId($wipId);
+        $permission_arr = json_decode($permission->content(),true);
         $user['id'] = $wipId;
         $token = JWTAuth::fromUser($user, ['sub' => $wipId, 'aud' => $providerId]);  
-        return $this->respondWithToken($token, $user['wip_id']);
+        return $this->respondWithToken($token, $user['wip_id'],$role['role'],$permission_arr);
     }
 
     public function connect(){
@@ -100,12 +104,14 @@ class AuthController extends Controller
     }
 
 
-    protected function respondWithToken($token, $wip_id)
+    protected function respondWithToken($token, $wip_id,$role,$permission)
     {
         return response()->json([
             'token' => $token,
             'expires' => auth()->factory()->getTTL() * 60,
-            'wip_id' => $wip_id
+            'wip_id' => $wip_id,
+            'role' => $role,
+            'permission' => $permission
         ],200);
     }
 }
