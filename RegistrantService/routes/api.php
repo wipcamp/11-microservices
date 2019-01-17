@@ -60,5 +60,6 @@ Route::prefix('stats')->group(function () {
     Route::prefix('/registrants')->group(function () {
         Route::get('/', 'DashboardController@getRegistrantStats');
         Route::get('/date', 'DashboardController@getRegistrantStatsByDate');
+        Route::get('/time', 'DashboardController@getRegistrantStatsByTime');
     });
 });
