@@ -18,6 +18,12 @@ class AnswerRepository implements AnswerRepositoryInterface
     {
         return Answer::insert($answers);
     }
+
+    public function getAnswersByQuestionId($question_id)
+    {
+        return Answer::select('ans_id', 'ans_content')->where('question_id', $question_id)->get();
+    }
+
     public function updateAnswer($data,$i,$wip_id)
     {
         $answer_content=$data[$i]['ans_content'];

@@ -32,7 +32,8 @@ Route::group(['middleware' => ['checkAuth']], function () {
     Route::prefix('answers')->group(function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@manageAnswer');
-        Route::put('/', 'AnswerController@edit');
+        Route::put('/', 'AnswerController@manageAnswer');
+        Route::get('/{question_id}', 'AnswerController@getAnswersByQuestionId');
         //API wippo
         Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
