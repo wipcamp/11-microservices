@@ -10,7 +10,7 @@ class Authentication extends Authenticatable implements JWTSubject
 {
 
     protected $fillable = [
-        'provider_id', 'provider_name','role'
+        'provider_id', 'provider_name','role','wip_id'
     ];
 
     protected $hidden = [

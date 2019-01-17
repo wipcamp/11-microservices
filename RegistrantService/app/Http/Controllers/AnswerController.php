@@ -26,7 +26,6 @@ class AnswerController extends Controller
         $validator = Validator::make($request->all(), [
             'wip_id' => 'required',
         ]);
-
         if ($validator->fails()) {
             return response()->json([
                 'error' => 'Invalid Answer'
