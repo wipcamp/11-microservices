@@ -83,7 +83,7 @@ class AuthProvider
             $user = [
                 "provider_id" => $credentials['provider_line'],
                 "provider_name" => "line",
-                "role" => "itim_applicant",
+                "role" => 0,
                 "wip_id" => $wipId
             ];
           $x = $this->authentication->createUser($user);
