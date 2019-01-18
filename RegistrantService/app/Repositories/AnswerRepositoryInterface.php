@@ -9,6 +9,7 @@ interface AnswerRepositoryInterface{
     public function findAllAnswersById($wip_id);
     public function createAnswer($answers);
     public function updateAnswer($data,$i,$wip_id);
-    public function getAnswersByQuestionId($question_id);
+    public function getAnswersByQuestionsId($question_id);
+    public function getAnswersByQuestionbywipId($question_id,$wip_id);
     }
 
