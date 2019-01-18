@@ -18,10 +18,20 @@ class DashboardRepository implements DashboardRepositoryInterface
     }
     public function getStatsByDate($start_date, $end_date)
     {
-        $date = Profile::select('created_at')->whereBetween('created_at', [$start_date, $end_date])
-        ->groupBy('created_at')->get();
-        $count = Profile::select(DB::raw('count(*) as count'))->
-            whereBetween('created_at', [$start_date,$end_date])->groupBy('created_at')->get();
-        return response()->json(['date'=>$date,'count'=>$count]);
+        $date = Profile::selectRaw('DATE(created_at) as date')->
+        whereBetween(DB::raw('DATE(created_at)'), array($start_date, $end_date))->groupBy(DB::raw('DATE(created_at)'))->get();
+
+        $count = Profile::selectRaw('count(*) as count')->
+        whereBetween(DB::raw('DATE(created_at)'), array($start_date, $end_date))->groupBy(DB::raw('DATE(created_at)'))->get();
+        return response()->json(['dates' => $date, 'counts' => $count]);
+    }
+    public function getStatsByTime($date)
+    {
+        $time = Profile::selectRaw('Hour(created_at) as time_one_hours')->
+        whereDate('created_at',$date)->groupBy(DB::raw('HOUR(created_at)'))->get();
+
+        $count = Profile::selectRaw('count(*) as count_one_hours')->
+        whereDate('created_at',$date)->groupBy(DB::raw('HOUR(created_at)'))->get();
+        return response()->json(['times' => $time, 'counts' => $count]);
     }
 }
