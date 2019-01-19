@@ -22,4 +22,12 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     ->get();
     return $permission;
   }
+
+  public function getRoleForRegistrants($role_id)
+  {
+    $wip_id = RolePermission::join('credential','credential.role','=','role_permissions.role_id')
+    ->select('wip_id')
+    ->where('role',$role_id)->get();
+    return $wip_id;
+  }
 }

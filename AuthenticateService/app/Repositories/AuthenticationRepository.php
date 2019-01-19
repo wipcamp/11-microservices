@@ -35,4 +35,5 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
     ->get();
     return response()->json($permission);
   }
+
 }
