@@ -33,7 +33,9 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@manageAnswer');
         Route::put('/', 'AnswerController@manageAnswer');
-        Route::get('/{question_id}', 'AnswerController@getAnswersByQuestionId');
+        Route::get('/{question_id}', 'AnswerController@getAnswersByQuestionsId');
+        //ของ line
+        Route::get('/line/{question_id}', 'AnswerController@getAnswersByQuestionbywipId');
         //API wippo
         Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
@@ -46,7 +48,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
     });
 
 //API Registrant
-    Route::get('/registrant', 'RegistrantController@getRegistrant');
+    Route::get('/registrants', 'RegistrantController@getRegistrants');
 });
 
 //API Schools

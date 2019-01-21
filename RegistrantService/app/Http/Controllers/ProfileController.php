@@ -41,9 +41,9 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($req->all(), [
             'wip_id' => 'required',
-            'fistname_th' => 'required|string',
+            'firstname_th' => 'required|string',
             'lastname_th' => 'required|string',
-            'fistname_en'=>'required|string',
+            'firstname_en'=>'required|string',
             'lastname_en'=>'required|string',
             'telno'=>'required|string|max:10',
             'nickname'=>'required|string|max:10',

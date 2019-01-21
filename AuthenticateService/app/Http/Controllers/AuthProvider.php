@@ -17,23 +17,23 @@ class AuthProvider
         $schema = [
             'provider_id' => 'required',
             'provider_name' => 'required',
-            'accessToken' => 'required',
-            'role' => 'required'
+            'accessToken' => 'required'
         ];
-        
         $validator = Validator::make($credentials, $schema);
         if ($validator->fails()) {
             return response()->json([
                 'error' => 'Invalid check your feild.'
             ]);
         }
-          
+          if($credentials['provider_name']==='line'){
+            return true;
+          }
         $send = "me?access_token=${credentials['accessToken']}";
-        $URL = config('services.wip_config.facebook'). $send;
+        $URL = config('services.wip_config.facebook').$send;
          
         $res = $this->checkProviderCredentials($URL);
         if ($res == null || $credentials['provider_id'] !== $res['id']) {   
-            return response()->json(['error' => 'Invalid Facebook Account'],401);
+            return response()->json(['error' => 'Invalid  Account'],401);
         }
         return true;
     }
@@ -43,8 +43,7 @@ class AuthProvider
             'provider_fb' => 'required',
             'accessTokenFB' => 'required',
             'provider_line' => 'required',
-            'accessTokenLine' => 'required',
-            'role' => 'required'
+            'accessTokenLine' => 'required'
         ];
         $validator = Validator::make($credentials, $schema);
         if ($validator->fails()) {
@@ -63,7 +62,6 @@ class AuthProvider
         }
 
         $user = $this->authentication->getByProviderId($credentials['provider_fb']);
-
         if(is_null($user)){
             return response()->json(['error' => 'Please Register By Facebook Account Before Connect With Line'],403);
         }
@@ -79,21 +77,20 @@ class AuthProvider
             return response()->json(['error' => 'Invalid Line Account'],403);
         }
         $wipId = $user['wip_id'];
-        
         $user = $this->authentication->getByProviderId($credentials['provider_line']);
         
         if(is_null($user)){
             $user = [
                 "provider_id" => $credentials['provider_line'],
                 "provider_name" => "line",
-                "role" =>  $credentials['role'],
+                "role" => 1,
                 "wip_id" => $wipId
             ];
-            $user = $this->authentication->createUser($user);
+          $x = $this->authentication->createUser($user);
             return response()->json($user);
         }
         
-        return response()->json(['error' => 'You already connect'],200);
+        return response()->json(['status' => true],200);
     }
 
     public function checkProviderCredentials($url){
