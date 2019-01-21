@@ -21,7 +21,7 @@ class AnswerRepository implements AnswerRepositoryInterface
 
     public function getAnswersByQuestionId($question_id)
     {
-        return Answer::select('ans_id', 'ans_content')->where('question_id', $question_id)->get();
+        return Answer::select('ans_id', 'ans_content','wip_id')->where('question_id', $question_id)->get();
     }
 
     public function updateAnswer($data,$i,$wip_id)
