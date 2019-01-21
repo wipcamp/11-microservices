@@ -3,5 +3,5 @@
 namespace App\Repositories;
 
 interface RegistrantRepositoryInterface {
-    public function getRegistrant();
+    public function getRegistrants($wip_id);
 }

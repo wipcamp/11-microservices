@@ -49,7 +49,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
     });
 
 //API Registrant
-    Route::get('/registrant', 'RegistrantController@getRegistrant');
+    Route::get('/registrants', 'RegistrantController@getRegistrants');
 });
 
 //API Schools

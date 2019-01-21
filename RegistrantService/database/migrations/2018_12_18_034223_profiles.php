@@ -17,9 +17,9 @@ class Profiles extends Migration
             $table->collation = 'utf8_general_ci';
             $table->charset = 'utf8';
             $table->increments('wip_id');
-            $table->string('fistname_th', 100)->nullable();
+            $table->string('firstname_th', 100)->nullable();
             $table->string('lastname_th', 100)->nullable();
-            $table->string('fistname_en', 100)->nullable();
+            $table->string('firstname_en', 100)->nullable();
             $table->string('lastname_en', 100)->nullable();
             $table->string('telno', 10)->nullable();
             $table->string('nickname', 100)->nullable();

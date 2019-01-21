@@ -114,4 +114,5 @@ class AuthController extends Controller
             'permission' => $permission
         ],200);
     }
+
 }
