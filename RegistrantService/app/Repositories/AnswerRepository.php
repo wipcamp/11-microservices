@@ -13,11 +13,16 @@ class AnswerRepository implements AnswerRepositoryInterface
         $answers = Answer::select('ans_id', 'question_id', 'ans_content')->where('wip_id', $wip_id)->get();
         return $answers;
     }
+    public function findAnswersById($wip_id,$question_id)
+    {
+        return Answer::select('ans_id','ans_content','question_id')->where('wip_id', $wip_id)->where('question_id', $question_id)->get();
+    }
 
     public function createAnswer($answers)
     {
         return Answer::insert($answers);
     }
+  
 
     public function getAnswersByQuestionsId($question_id)
     {
@@ -27,6 +32,10 @@ class AnswerRepository implements AnswerRepositoryInterface
     public function getAnswersByQuestionbywipId($question_id,$wip_id)
     {
         return Answer::select('ans_id','ans_content')->where('wip_id', $wip_id)->where('question_id', $question_id)->get();
+    }
+    public function updateAnswerline($data)
+    {
+        Answer::where('wip_id', $data['wip_id'])->where('question_id', $data['question_id'])->update(['ans_content' => $data['ans_content']]);
     }
 
     public function updateAnswer($data,$i,$wip_id)
@@ -42,7 +51,11 @@ class AnswerRepository implements AnswerRepositoryInterface
                     (['ans_content' => $answer_content
                     ]);
             }
-        }
+    }
+     public function sendAnswerbyline($data,$wip_id)
+    {
+        # code...
+    }
 
 
 

@@ -62,4 +62,27 @@ class AnswerController extends Controller
         }
     }
 
+    //line send answer
+     public function sendAnswerbyline(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'wip_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'failjwt'
+            ]);
+        }
+        $data = $request->all();
+        $wip_id = $data['wip_id'];
+        $check = $this->answer->findAnswersById($wip_id,$data['question_id']);
+        if ($check->isEmpty()) {
+            $this->answer->createAnswer($data);
+            return response()->json($data);
+        }else{
+            $this->answer->updateAnswerline($data);
+            return response()->json('updateComplete');
+        }
+
+    }
 }
