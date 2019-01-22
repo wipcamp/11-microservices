@@ -41,6 +41,11 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
     });
 
+//API Answers_Evaluation
+    Route::prefix('answerseva')->group(function () {
+        Route::post('/score', 'AnswerEvaluationController@answerEvaluations');
+    });
+
 //API Profile
     Route::prefix('profile')->group(function () {
         Route::get('/', 'ProfileController@getProfile');
