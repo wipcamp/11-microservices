@@ -52,10 +52,7 @@ class AnswerRepository implements AnswerRepositoryInterface
                     ]);
             }
     }
-     public function sendAnswerbyline($data,$wip_id)
-    {
-        # code...
-    }
+   
 
 
 
