@@ -37,7 +37,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
         //ของ line
         Route::get('/line/{question_id}', 'AnswerController@getAnswersByQuestionbywipId');
         //API wippo
-        Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
+        Route::post('/evaluations', 'AnswerEvaluationController@AnswerEvaluations');
     });
 
 //API Profile
