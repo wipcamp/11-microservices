@@ -17,8 +17,17 @@ class AnswerEvaluationController extends Controller
 
   public function answerEvaluations(Request $req)
   {
+      
       $evaluations = $req->all();
-      $evaluations = $this->answerEvaluations->answerEvaluations($evaluations);
+      $wip_id = $evaluations['wip_id'];
+      $evaluations = array_except($evaluations, ['wip_id']);
+      data_fill($evaluations,'*.wip_id',$wip_id);
+
+      for($i=0;$i<count($evaluations);$i++){
+        $this->answerEvaluations->answerEvaluations($evaluations[$i]);
+
+      }
+      
       return response()->json(["messege" => 'post Evaluations success ! '],201);
   }
 }
