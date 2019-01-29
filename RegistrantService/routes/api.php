@@ -38,7 +38,12 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::get('/line/{question_id}', 'AnswerController@getAnswersByQuestionbywipId');
         Route::post('/line/answerbyline', 'AnswerController@sendAnswerbyline');
         //API wippo
-        Route::post('/evaluations', 'AnswerEvaluationController@getAnswerEvaluations');
+        Route::post('/evaluations', 'AnswerEvaluationController@AnswerEvaluations');
+    });
+
+//API Answers_Evaluation
+    Route::prefix('answerseva')->group(function () {
+        Route::post('/score', 'AnswerEvaluationController@answerEvaluations');
     });
 
 //API Profile
