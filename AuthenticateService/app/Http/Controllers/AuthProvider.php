@@ -58,12 +58,12 @@ class AuthProvider
 
         $res = $this->checkProviderCredentials($URL);
         if ($res == null || $credentials['provider_fb'] !== $res['id']) {   
-            return response()->json(['error' => 'Invalid Facebook Account'],401);
+            return response()->json(['error' => 'Invalid Facebook Account'],200);
         }
 
         $user = $this->authentication->getByProviderId($credentials['provider_fb']);
         if(is_null($user)){
-            return response()->json(['error' => 'Please Register By Facebook Account Before Connect With Line'],403);
+            return response()->json(['error' => 'Please Register By Facebook Account Before Connect With Line'],200);
         }
 
         $URL = env('LINE_URL') . '/profile';
@@ -86,9 +86,8 @@ class AuthProvider
                 "role" => 1,
                 "wip_id" => $wipId
             ];
-        dd($user);
           $x = $this->authentication->createUser($user);
-            return response()->json($user);
+            return response()->json(['status' => true],200);
         }
         
         return response()->json(['status' => true],200);
