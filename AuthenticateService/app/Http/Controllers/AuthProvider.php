@@ -39,6 +39,7 @@ class AuthProvider
     }
 
     public function checkAttributes($credentials) {
+        dd($credentials)
         $schema = [
             'provider_fb' => 'required',
             'accessTokenFB' => 'required',
