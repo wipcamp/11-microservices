@@ -87,7 +87,7 @@ class AuthProvider
                 "wip_id" => $wipId
             ];
           $x = $this->authentication->createUser($user);
-            return response()->json($user);
+            return response()->json(['status' => true],200);
         }
         
         return response()->json(['status' => true],200);
