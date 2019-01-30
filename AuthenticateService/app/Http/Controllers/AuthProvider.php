@@ -86,7 +86,6 @@ class AuthProvider
                 "role" => 1,
                 "wip_id" => $wipId
             ];
-        dd($user);
           $x = $this->authentication->createUser($user);
             return response()->json($user);
         }
