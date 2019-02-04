@@ -36,9 +36,17 @@ class AuthController extends Controller
 
         $providerId = $credentials['provider_id'];
         $user = $this->authentication->getByProviderId($providerId);
-        if(is_null($user)){
-            $user = $this->authentication->createUser($credentials);
+        if ($credentials['provider_name']==='facebook') {
+            if(is_null($user)){
+                $user = $this->authentication->createUser($credentials);
+            }
+        }if ($credentials['provider_name']==='line') {
+            $user = $this->authentication->getByProviderId($providerId);
+            if(is_null($user)){
+                return response()->json(null);
+            }
         }
+       
         
         $wipId = $user->wip_id;
         $token = auth()->login($user);
