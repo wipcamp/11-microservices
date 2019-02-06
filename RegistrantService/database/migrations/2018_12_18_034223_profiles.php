@@ -40,6 +40,8 @@ class Profiles extends Migration
             $table->string('guardian_telno', 10)->nullable();
             $table->boolean('medical_approved',false)->nullable();
             $table->boolean('confirm_register',false)->nullable();
+            $table->boolean('is_call',false)->nullable();
+            $table->text('note')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
