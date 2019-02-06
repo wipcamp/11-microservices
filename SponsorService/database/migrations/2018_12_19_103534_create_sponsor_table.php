@@ -17,7 +17,7 @@ class CreateSponsorTable extends Migration
             $table->increments('sponsor_id'); 
             $table->string('sponsor_name');
             $table->integer('sponsor_order');
-            $table->string('sponsor_path');
+            $table->text('sponsor_path');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
         });

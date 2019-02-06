@@ -13,25 +13,19 @@ class SponsorController extends Controller
         $this->sponRepo = new SponsorRepository;
     }
 
-    public function getPosts(){
-        $spons = $this->sponRepo->getPosts();
+    public function getSponsors(){
+        $spons = $this->sponRepo->getSponsors();
         return response()->json($spons);
     }
 
-    public function getPost($sponsor_id){
-        $spon = $this->sponRepo->getPost($sponsor_id);
+    public function getSponsor($sponsor_id){
+        $spon = $this->sponRepo->getSponsor($sponsor_id);
         return response()->json($spon);
     }
 
     public function updateSponname(Request $request){
         $spon = $request->all();
-        $spon = $this->sponRepo->updatesponname($spon['sponsor_name'],$spon['sponsor_id']);
-        return response()->json(['message'=>'update success']);
-    }
-    
-    public function updateSponorder(Request $request){
-        $spon = $request->all();
-        $spon = $this->sponRepo->updatesponorder($spon['sponsor_order'],$spon['sponsor_id']);
+        $spon = $this->sponRepo->updatesponname($spon['sponsor_id'], $spon);
         return response()->json(['message'=>'update success']);
     }
 

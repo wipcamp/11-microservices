@@ -13,9 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/sponsors', 'SponsorController@getPosts');
-Route::get('/sponsor/{sponsor_id}', 'SponsorController@getPost');
-Route::post('/sponsor', 'SponsorController@createSponsor');
-Route::put('/sponsor/{sponsor_id}', 'SponsorController@updateSponname');
-Route::put('/sponsor/{sponsor_id}', 'SponsorController@updateSponorder');
-Route::delete('/sponsor/{sponsor_id}', 'SponsorController@delete');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token,Authorization');
+header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
+
+Route::get('/sponsors', 'SponsorController@getSponsors');
+Route::get('/sponsor/{sponsor_id}', 'SponsorController@getSponsor');
+
+Route::group(['middleware' => ['checkAuth']], function () {
+  Route::post('/sponsor', 'SponsorController@createSponsor');
+  Route::put('/sponsor/{sponsor_id}', 'SponsorController@updateSponname');
+  Route::delete('/sponsor/{sponsor_id}', 'SponsorController@delete');
+});
