@@ -6,11 +6,12 @@ use App\Models\Sponsor;
 
 class SponsorRepository implements SponsorRepositoryInterface
 {
-    public function getPosts(){
-        return Sponsor::get();
+    public function getSponsors(){
+        return Sponsor::select('sponsor_path','sponsor_id')->orderBy('sponsor_order', 'asc')->get();
+;
     }
 
-    public function getPost($sponsor_id){
+    public function getSponsor($sponsor_id){
         return Sponsor::Where('sponsor_id' , $sponsor_id)->get()->first();
     }
 
@@ -19,12 +20,10 @@ class SponsorRepository implements SponsorRepositoryInterface
         return $newspon::create($spon);
     }
 
-    public function updatesponname($spon,$id){
-        return Sponsor::where('sponsor_id', $id)->update(['sponsor_name' => $spon]);
-    }
-
-    public function updatesponorder($spon,$id){
-        return Sponsor::where('sponsor_id', $id)->update(['sponsor_order' => $spon]);
+    public function updatesponname($id,$sponsor){
+        $sponsors = Sponsor::where('sponsor_id',$id)->get()->first();
+        $updatesponsor = $sponsors->update($sponsor);
+        return response()->json($updatesponsor);
     }
 
     public function delete($sponsor_id){
