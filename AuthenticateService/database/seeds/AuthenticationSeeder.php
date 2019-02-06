@@ -12,10 +12,10 @@ class AuthenticationSeeder extends Seeder
     public function run()
     {
         $MAX_RANDOM = 2;
-        $provider_id = ["112452273135656", "89101113"];
+        $provider_id = ["112452273135656", "105588720573539"];
         $provider_name = ['facebook', 'facebook'];
-        $role = [1,4];
-        $wip_id = 11000;
+        $role = [1,1];
+        $wip_id = 110001;
         for($i = 0 ; $i < $MAX_RANDOM ; $i++){
             DB::table('credential')->insert([
                 'provider_id' => $provider_id[$i],
