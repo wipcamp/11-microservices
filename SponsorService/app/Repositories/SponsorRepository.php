@@ -7,7 +7,7 @@ use App\Models\Sponsor;
 class SponsorRepository implements SponsorRepositoryInterface
 {
     public function getSponsors(){
-        return Sponsor::select('sponsor_path','sponsor_id')->orderBy('sponsor_order', 'asc')->get();
+        return Sponsor::select('sponsor_path')->orderBy('sponsor_order', 'asc')->get();
 ;
     }
 
