@@ -11,8 +11,14 @@ class ChangeStatusRepository implements ChangeStatusRepositoryInterface
   {
     $wipId = $status['itim_wip_id'];
     $isCall = $status['is_call'];
-    $note = $status['note'];
-    $dataUpdate = Profile::where('wip_id',$wip_id)->update(array('is_call' => $isCall,'note'=>$note));
+    $dataUpdate = Profile::where('wip_id',$wip_id)->update(array('is_call' => $isCall));
+    return $dataUpdate;
+  }
+
+  public function updateNoteByWipId($wipId,$note){
+    $wipId = $note['itim_wip_id'];
+    $note = $note['note'];
+    $dataUpdate = Profile::where('wip_id',$wipId)->update(array('note' => $note));
     return $dataUpdate;
   }
   
