@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
             'Authentication',
             'Registrant',
             'AnswerEvaluation',
-            'Dashboard'
+            'Dashboard',
+            'ChangeStatus'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
