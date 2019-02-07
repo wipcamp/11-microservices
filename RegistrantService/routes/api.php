@@ -56,7 +56,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
 //API Registrant
 Route::prefix('registrants')->group(function(){
     Route::get('/', 'RegistrantController@getRegistrants');
-    // Route::put('/changstatus','');
+    Route::put('/changstatus','ChangeStatusController@changeStatusByWipId');
     });
 });
 
