@@ -12,4 +12,14 @@ class  JanpuRepository implements JanpuRepositoryInterface
      $score = Janpu::get();
     return $score;
  }
+ public function setScore($user)
+ {
+     
+     Janpu::create([
+         'player_name'=>$user['player_name'],
+         'score'=>$user['score']
+     ]);
+    return $user;
+     
+ }
 }

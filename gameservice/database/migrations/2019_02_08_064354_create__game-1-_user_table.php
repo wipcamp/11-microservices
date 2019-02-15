@@ -21,6 +21,8 @@ class CreateGame1UserTable extends Migration
             $table->double('exp', 8, 2);
             $table->double('hp', 8, 2);
             $table->double('max_hp', 8, 2);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

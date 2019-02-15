@@ -18,4 +18,11 @@ class JanpuController extends Controller
         $score = $this->janpu->getScore();
         return response()->json($score);
     }
+    public function setScore(Request $request)
+    {
+     $user = $request->all();
+     $this->janpu->setScore($user);
+     return response()->json("create complete");
+     
+    }
 }
