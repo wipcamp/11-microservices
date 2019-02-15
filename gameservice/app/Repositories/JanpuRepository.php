@@ -9,9 +9,10 @@ class  JanpuRepository implements JanpuRepositoryInterface
 {
  public function getScore()
  {
-     $score = Janpu::get();
+     $score = Janpu::orderBy('score')->get()->last();
     return $score;
  }
+ 
  public function setScore($user)
  {
      
