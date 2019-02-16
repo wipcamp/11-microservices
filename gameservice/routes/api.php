@@ -23,4 +23,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('players', 'PlayersController@getPlayers');
 Route::get('janpu', 'JanpuController@getScore');
+Route::get('janpu3score', 'JanpuController@getScores');
 Route::post('janpu', 'JanpuController@setScore');
