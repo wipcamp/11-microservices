@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token,Authorization');
+header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
