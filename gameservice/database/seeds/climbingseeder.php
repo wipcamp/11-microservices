@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class janpuseeder extends Seeder
+class Climbingseeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,17 +12,17 @@ class janpuseeder extends Seeder
     public function run()
     {
        
-        DB::table('janpu')->insert
+        DB::table('Climbing')->insert
         ([
         'player_name' =>'wippo',
         'score'=>1011
                    ]);
-                   DB::table('janpu')->insert
+                   DB::table('Climbing')->insert
         ([
         'player_name' =>'wippo',
         'score'=>1011
                    ]);
-                   DB::table('janpu')->insert
+                   DB::table('Climbing')->insert
         ([
         'player_name' =>'wippo',
         'score'=>1011
