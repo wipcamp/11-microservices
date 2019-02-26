@@ -11,4 +11,8 @@ class AnswerEvaluation extends Model
 
     public $timestamps = false;
     public $timestamp = false;
+
+    public function answers(){
+        $this->belongsTo('App\Models\Answer','answer_id','ans_id');
+    }
 }

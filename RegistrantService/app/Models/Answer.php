@@ -20,4 +20,7 @@ class Answer extends Model
     public function profiles(){
         $this->belongsTo('App\Models\Profile','wip_id');
     }
+    public function answerEvaluation(){
+        return $this->hasMany('App\Models\AnswerEvaluation','answer_id','ans_id');
+    }
 }

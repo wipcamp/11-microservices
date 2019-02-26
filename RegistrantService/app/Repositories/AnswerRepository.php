@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Answer;
 use App\Repositories\AnswerRepositoryInterface;
+use App\Models\AnswerEvaluation;
+use App\Repositories\AnswerEvaluationRepositoryInterface;
 
 class AnswerRepository implements AnswerRepositoryInterface
 {
@@ -17,16 +19,13 @@ class AnswerRepository implements AnswerRepositoryInterface
     {
         return Answer::select('ans_id','ans_content','question_id')->where('wip_id', $wip_id)->where('question_id', $question_id)->get();
     }
-
     public function createAnswer($answers)
     {
         return Answer::insert($answers);
     }
-  
-
     public function getAnswersByQuestionsId($question_id)
-    {
-        return Answer::select('ans_id', 'ans_content','wip_id')->where('question_id', $question_id)->get();
+    {   
+        return Answer::select('ans_id','ans_content','wip_id')->where('question_id', $question_id)->doesntHave('answerEvaluation')->get();
     }
 
     public function getAnswersByQuestionbywipId($question_id,$wip_id)
