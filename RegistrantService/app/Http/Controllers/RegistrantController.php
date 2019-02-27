@@ -23,6 +23,7 @@ class RegistrantController extends Controller
     $token = $req->header('Authorization');
     $jwt = substr($token,7);
     $URL = env('AUTH_URL') . '/role';
+    dd($URL);
     $headers = ['Authorization' => 'Bearer '.$jwt];
     $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
     $response = $client->request('GET',$URL,['query' => ['role_id' => $role_id]]);
