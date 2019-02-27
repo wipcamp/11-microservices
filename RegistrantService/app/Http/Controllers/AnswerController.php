@@ -55,7 +55,7 @@ class AnswerController extends Controller
             $this->answer->createAnswer($answers);
             return response()->json($answers);
         } else {
-            for ($i=0; $i < 5; $i++) {
+            for ($i=0; $i <6; $i++) {
                 $this->answer->updateAnswer($data,$i,$wip_id);
            }
            return response()->json(['message' => 'update success']);
