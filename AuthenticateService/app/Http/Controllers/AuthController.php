@@ -116,7 +116,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'token' => $token,
-            'expires' => auth()->factory()->getTTL() * 60,
+            'expires' => auth()->factory()->getTTL() * 60 * 60 * 24,
             'wip_id' => $wip_id,
             'role' => $role,
             'permission' => $permission
