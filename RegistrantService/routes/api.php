@@ -75,5 +75,8 @@ Route::prefix('stats')->group(function () {
         Route::get('/', 'DashboardController@getRegistrantStats');
         Route::get('/date', 'DashboardController@getRegistrantStatsByDate');
         Route::get('/time', 'DashboardController@getRegistrantStatsByTime');
+
+        Route::get('/medic', 'DashboardController@getRegistrantStatsMedic');
+        Route::get('/food', 'DashboardController@getRegistrantStatsFood');
     });
 });
