@@ -30,4 +30,10 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     ->where('role',$role_id)->get();
     return $wip_id;
   }
+  public function getforPermissionAll()
+  {
+    $users = RolePermission::join('credential','credential.role','=','role_permissions.role_id')
+    ->where('role',3)->get();
+    return $users;
+  }
 }

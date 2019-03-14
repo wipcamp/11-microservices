@@ -16,6 +16,16 @@ class DashboardRepository implements DashboardRepositoryInterface
             'total_success' => $total_success,
             'total_unsuccess' => $total_unsuccess]);
     }
+    public function getStatsByMedic()
+    {
+        $total_applicant = Profile::where('confirm_register', 1)->where('allergic_drug',"!=", "-")->orWhere('cangenital_disease',"!=", "-")->get();
+        return response()->json(['total_applicant' => $total_applicant]);
+    }
+    public function getStatsByFood()
+    {
+        $total_applicant = Profile::where('confirm_register', 1)->where('allergic_food',"!=", "-")->get();
+        return response()->json(['total_applicant' => $total_applicant]);
+    }
     public function getStatsByDate($start_date, $end_date)
     {
         $date = Profile::selectRaw('DATE(created_at) as date')->
