@@ -99,7 +99,6 @@ class AuthProvider
             $res = $client->get($url);
             $res = (string) $res->getBody();
             $res = json_decode($res, true);
-            dd($res);
         } catch (\Exception $e) { 
         }
 
