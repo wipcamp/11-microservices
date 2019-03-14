@@ -30,7 +30,6 @@ class AuthProvider
           }
           $send = "me?access_token=${credentials['accessToken']}";
           $URL = config('services.wip_config.facebook').$send;
-          dd($URL);
           $res = $this->checkProviderCredentials($URL);
         if ($res == null || $credentials['provider_id'] !== $res['id']) {   
             return response()->json(['error' => 'Invalid  Account'],401);
@@ -100,6 +99,7 @@ class AuthProvider
             $res = $client->get($url);
             $res = (string) $res->getBody();
             $res = json_decode($res, true);
+            dd($res);
         } catch (\Exception $e) { 
         }
 
