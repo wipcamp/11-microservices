@@ -100,6 +100,8 @@ class AuthProvider
             $res = (string) $res->getBody();
             $res = json_decode($res, true);
         } catch (\Exception $e) { 
+            dd($e);
+
         }
 
         return $res;
