@@ -95,10 +95,11 @@ class AuthProvider
     public function checkProviderCredentials($url){
         $client = new \GuzzleHttp\Client;
         $res = null;
+        dd($url);
         try {
             $res = $client->get($url);
-            $res = (string) $res->getBody();
             dd($res);
+            $res = (string) $res->getBody();
             $res = json_decode($res, true);
         } catch (\Exception $e) { 
             dd($e);
