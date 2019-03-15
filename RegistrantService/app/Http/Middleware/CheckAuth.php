@@ -17,9 +17,6 @@ class CheckAuth
      */
     public function handle($request, Closure $next)
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token,Authorization');
-        header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
         $jwt_secret = env('JWT_SECRET');
         $token = $request->header('Authorization');
         $tokenBearer = substr($token,0,7);
