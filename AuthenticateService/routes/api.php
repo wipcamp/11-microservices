@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-header('Access-Control-Allow-Origin: https://wippo.freezer.in.th , https://itim.freezer.in.th');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token,Authorization');
 header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 
