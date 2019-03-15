@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-header('Access-Control-Allow-Origin: https://wippo.freezer.in.th , https://itim.freezer.in.th');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token,Authorization');
 header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS');
 
@@ -34,5 +34,5 @@ Route::group([
 Route::group(['middleware' => ['checkAuth']], function () {
     Route::get('permissions', 'RolePermissionController@getPermissionByWipId');
     Route::get('role', 'RolePermissionController@getRoleForRegistrants');
-     Route::get('allpermissions', 'RolePermissionController@getPermissionAll');
+     Route::get('rolepending', 'RolePermissionController@getAllrolependings');
 });
