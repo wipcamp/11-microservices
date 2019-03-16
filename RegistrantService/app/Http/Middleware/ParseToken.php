@@ -16,8 +16,7 @@ class ParseToken
      */
     public function handle($request, Closure $next)
     {
-        // $user = JWTAuth::decode();
-        dd($user);
-        // return $next($request);
+        $user = JWTAuth::decode();
+        return $next($request);
     }
 }
