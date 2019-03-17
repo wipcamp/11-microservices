@@ -12,7 +12,7 @@ class DashboardController extends Controller
         $this->dashboard = $dashboardRepoInterface;
     }
     public function getRegistrantStats(){
-      return  response()->json([$this->dashboard->getStats()]);
+      return $this->dashboard->getStats();
     }
     public function getRegistrantStatsMedic(){
         return  response()->json($this->dashboard->getStatsByMedic());
