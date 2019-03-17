@@ -15,8 +15,7 @@ class DashboardController extends Controller
       return $this->dashboard->getStats();
     }
     public function getRegistrantStatsMedic(){
-        $data = $this->dashboard->getStatsByMedic();
-        return  response()->json(['total_applicant' => $data]);
+        return  response()->json($this->dashboard->getStatsByMedic());
       }
     public function getRegistrantStatsFood(){
         return  response()->json([$this->dashboard->getStatsByFood()]);

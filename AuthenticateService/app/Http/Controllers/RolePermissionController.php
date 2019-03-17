@@ -28,9 +28,13 @@ class RolePermissionController extends Controller
       $wip_id = $this->rolepermission->getRoleForRegistrants($role);
       return response()->json($wip_id);
   }
-  public function getPermissionAll()
+  public function getAllrolependings()
   {
       $users = $this->rolepermission->getforPermissionAll();
       return response()->json($users);
+  }
+  public function getallRoles()
+  {
+    return response()->json($this->rolepermission->getallRoles());
   }
 }
