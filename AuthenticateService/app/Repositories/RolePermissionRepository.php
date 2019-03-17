@@ -4,6 +4,7 @@ namespace App\Repositories;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\RolePermission;
+use App\Models\Role;
 use App\Repositories\RolePermissionRepositoryInterface;
 
 class RolePermissionRepository implements RolePermissionRepositoryInterface
@@ -29,6 +30,11 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     ->select('wip_id')
     ->where('role',$role_id)->get();
     return $wip_id;
+  }
+  public function getallRoles()
+  {
+    return Role::select('*')->get();
+    
   }
   public function getforPermissionAll()
   {
