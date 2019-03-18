@@ -26,7 +26,7 @@ class AnswerRepository implements AnswerRepositoryInterface
     public function getAnswersByQuestionsId($question_id,$wip_id)
     {   
         
-        return Answer::select('ans_id','ans_content','wip_id')->leftJoin('answer_evaluations','answer_evaluations.question_id','answers.question_id')->where('answers.question_id',$question_id)->where('answer_evaluations.checker_wip_id','<>',$wip_id)->get();
+        return Answer::select('ans_id','ans_content','wip_id')->leftJoin('answer_evaluations','answer_evaluations.question_id','answers.question_id')->where('answers.question_id',$question_id)->get();
     }
 
     public function getAnswersByQuestionbywipId($question_id,$wip_id)
