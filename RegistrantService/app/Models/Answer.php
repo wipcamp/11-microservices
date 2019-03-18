@@ -21,6 +21,7 @@ class Answer extends Model
         $this->belongsTo('App\Models\Profile','wip_id');
     }
     public function answerEvaluation(){
-        return $this->hasMany('App\Models\AnswerEvaluation','answer_id','ans_id');
+        return $this->hasMany('App\Models\AnswerEvaluation','answer_id','ans_id','checker_wip_id');
     }
+
 }

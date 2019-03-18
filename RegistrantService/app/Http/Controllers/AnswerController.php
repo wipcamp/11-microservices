@@ -25,7 +25,8 @@ class AnswerController extends Controller
     public function getAnswersByQuestionsId($question_id,Request $request)
     {
         $wip = $request->all()['wip_id'];
-        return response()->json($this->answer->getAnswersByQuestionsId($question_id,$wip_id));
+        
+        return response()->json($this->answer->getAnswersByQuestionsId($question_id,$wip));
     }
 
     public function getAnswersByQuestionbywipId(Request $request ,$question_id)
