@@ -22,9 +22,10 @@ class AnswerController extends Controller
         return response()->json($this->answer->findAllAnswersById($wip_id));
     }
 
-    public function getAnswersByQuestionsId($question_id)
+    public function getAnswersByQuestionsId($question_id,Request $request)
     {
-        return response()->json($this->answer->getAnswersByQuestionsId($question_id));
+        $wip = $request->all()['wip_id'];
+        return response()->json($this->answer->getAnswersByQuestionsId($question_id,$wip_id));
     }
 
     public function getAnswersByQuestionbywipId(Request $request ,$question_id)

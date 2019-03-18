@@ -23,9 +23,9 @@ class AnswerRepository implements AnswerRepositoryInterface
     {
         return Answer::insert($answers);
     }
-    public function getAnswersByQuestionsId($question_id)
+    public function getAnswersByQuestionsId($question_id,$wip_id)
     {   
-        return Answer::select('ans_id','ans_content','wip_id')->where('question_id', $question_id)->doesntHave('answerEvaluation')->get();
+        return Answer::select('ans_id','ans_content','wip_id')->where('question_id', $question_id)->doesntHave('checker_id',$wip_id)->get();
     }
 
     public function getAnswersByQuestionbywipId($question_id,$wip_id)
