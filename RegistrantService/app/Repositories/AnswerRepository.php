@@ -35,6 +35,19 @@ class AnswerRepository implements AnswerRepositoryInterface
         })->get();
     }
 
+//     SELECT * FROM answers a join profiles p 
+// 	on a.wip_id = p.wip_id
+// 	where p.confirm_register =1 
+// 		and a.question_id =1
+// 		AND a.ans_id NOT in
+
+// (
+// SELECT a.ans_id FROM answers a join answer_evaluations ae
+//     on a.ans_id = ae.answer_id 
+//     WHERE ae.checker_wip_id = 110684
+//     GROUP by a.ans_id
+// )
+
     public function getAnswersByQuestionbywipId($question_id,$wip_id)
     {
         return Answer::select('ans_id','ans_content')->where('wip_id', $wip_id)->where('question_id', $question_id)->get();
