@@ -27,9 +27,9 @@ class AnswerRepository implements AnswerRepositoryInterface
     {   
         return Answer::select('*')->join('profiles','answers.wip_id','profiles.wip_id')
         ->where('profiles.confirm_register',1)
-        ->where('question_id',$question_id)
+        ->where('answers.question_id',$question_id)
         ->whereNotIn('answers.ans_id',
-         Answer::pluck('ans_id'))->select('ans_id')->join('answer_evaluations','answer.ans_id','answer_evaluations.answer_id')
+         Answer::pluck('answers.ans_id'))->select('answers.ans_id')->join('answer_evaluations','answer.ans_id','answer_evaluations.answer_id')
         ->where('answer_evaluations.checker_wip_id',$wip_id)
         ->get();
     }
