@@ -25,10 +25,11 @@ class AnswerRepository implements AnswerRepositoryInterface
     }
     public function getAnswersByQuestionsId($question_id,$wip_id)
     {   
-        return Answer::select('ans_id','ans_content','question_id')->whereHas('profile', function($query) {
+        
+        return Answer::select('ans_id','ans_content','question_id','wip_id')->whereHas('profile', function($query) {
             $query->where('confirm_register', 1);
         })
-        ->has('answerEvaluations', '<', 3)
+        // ->has('answerEvaluations', '<', 3)
         ->where('question_id',$question_id)
         ->whereDoesntHave('answerEvaluations', function($query) use ($wip_id) {
             $query->where('checker_wip_id',  $wip_id);

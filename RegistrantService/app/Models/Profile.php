@@ -14,7 +14,7 @@ class Profile extends Model
     public $timestamp = false;
 
     public function answers(){
-        return $this->hasMaNy('App\Models\Answer','wip_id');
+        return $this->hasMaNy('App\Models\Answer','wip_id','wip_id');
     }
 }
 
