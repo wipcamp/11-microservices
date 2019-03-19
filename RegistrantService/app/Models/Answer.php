@@ -15,13 +15,13 @@ class Answer extends Model
 
 
     public function questions(){
-        $this->belongsTo('App\Models\Question'.'question_id');
+        return $this->belongsTo('App\Models\Question'.'question_id');
     }
-    public function profiles(){
-        $this->belongsTo('App\Models\Profile','wip_id');
+    public function profile(){
+        return $this->belongsTo('App\Models\Profile','wip_id', 'wip_id');
     }
-    public function answerEvaluation(){
-        return $this->hasMany('App\Models\AnswerEvaluation','answer_id','ans_id','checker_wip_id');
+    public function answerEvaluations(){
+        return $this->hasMany('App\Models\AnswerEvaluation','answer_id','ans_id');
     }
 
 }

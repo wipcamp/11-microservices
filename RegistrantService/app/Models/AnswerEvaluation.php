@@ -13,6 +13,6 @@ class AnswerEvaluation extends Model
     public $timestamp = false;
 
     public function answers(){
-        $this->belongsTo('App\Models\Answer','answer_id','ans_id','checker_wip_id');
+        $this->belongsTo('App\Models\Answer','answer_id','ans_id');
     }
 }
