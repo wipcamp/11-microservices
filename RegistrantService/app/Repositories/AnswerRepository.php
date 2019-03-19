@@ -28,7 +28,6 @@ class AnswerRepository implements AnswerRepositoryInterface
         return Answer::select('ans_id','ans_content','question_id')->whereHas('profile', function($query) {
             $query->where('confirm_register', 1);
         })
-        ->has('answerEvaluations', '<', 3)
         ->where('question_id',$question_id)
         ->whereDoesntHave('answerEvaluations', function($query) use ($wip_id) {
             $query->where('checker_wip_id',  $wip_id);
