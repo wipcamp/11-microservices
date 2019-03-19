@@ -29,7 +29,7 @@ class AnswerRepository implements AnswerRepositoryInterface
         ->where('profiles.confirm_register',1)
         ->where('answers.question_id',$question_id)
         ->whereNotIn('answers.ans_id',
-         Answer::pluck('answers.ans_id'))->select('answers.ans_id')->join('answer_evaluations','answer.ans_id','answer_evaluations.answer_id')
+         Answer::pluck('answers.ans_id'))->select('answers.ans_id')->join('answer_evaluations','answers.ans_id','answer_evaluations.answer_id')
         ->where('answer_evaluations.checker_wip_id',$wip_id)
         ->get();
     }
