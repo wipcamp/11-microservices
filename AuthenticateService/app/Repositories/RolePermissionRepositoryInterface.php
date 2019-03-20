@@ -7,4 +7,5 @@ interface RolePermissionRepositoryInterface{
   public function getRoleForRegistrants($role_id);
   public function getforPermissionAll();
   public function getallRoles();
+  public function updateRoleWip($data);
 }

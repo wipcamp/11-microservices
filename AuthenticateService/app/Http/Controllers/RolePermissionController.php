@@ -37,4 +37,11 @@ class RolePermissionController extends Controller
   {
     return response()->json($this->rolepermission->getallRoles());
   }
+  public function UpdateRoles(Request $req)
+  {
+    $wip_id = $req->all()['wip_id'];
+    $data = $req->all();
+    $res = $this->rolepermission->updateRoleWip($data);
+
+  }
 }

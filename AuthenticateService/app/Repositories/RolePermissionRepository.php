@@ -5,6 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\RolePermission;
 use App\Models\Role;
+use App\Models\Authentication;
 use App\Repositories\RolePermissionRepositoryInterface;
 
 class RolePermissionRepository implements RolePermissionRepositoryInterface
@@ -14,7 +15,13 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     $permission = RolePermission::select('permission_id')->where('role_id',$role_id)->get();
     return $permission;
   }
-
+ 
+  public function updateRoleWip($data){
+    Authentication::select('permission_id')->where('wip_id',$data['wip_req'])->update(array('role' => $data['role_id']));
+    return 'UpdateSucces';
+  }
+ 
+  
   public function getPermissionByWipId($wip_id)
   {
     $permission = RolePermission::join('credential','credential.role','=','role_permissions.role_id')
