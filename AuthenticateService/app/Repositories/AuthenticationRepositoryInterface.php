@@ -7,5 +7,4 @@ interface AuthenticationRepositoryInterface{
   public function updateByProviderId($provider_id, $wip_id);
   public function getRoleByWipId($wip_id);
   public function getPermissionByWipId($wip_id);
-  public function UpdateRole($data);
 }
