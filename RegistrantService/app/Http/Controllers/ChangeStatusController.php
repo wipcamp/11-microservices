@@ -18,6 +18,13 @@ class ChangeStatusController  extends Controller
     $itim_wip_id = $this->statusRepo->changeStatusByWipId($itim_wip_id['itim_wip_id'],$itim_wip_id);
     return response()->json(["changstatus" => "status update sucess !"]);
   }
+  public function changmedicApprove(Request $req)
+  {
+    $data = $req->all();
+
+   $this->statusRepo->changMedic($data['wip_checker']);
+    return response()->json(["changstatus" => "status update sucess !"]);
+  }
 
   public function updateNoteByWipId(Request $req)
   {

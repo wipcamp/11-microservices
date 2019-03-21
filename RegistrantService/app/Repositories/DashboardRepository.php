@@ -18,7 +18,7 @@ class DashboardRepository implements DashboardRepositoryInterface
     }
     public function getStatsByMedic()
     {
-        $total_applicant = Profile::where('confirm_register', 1)->where('allergic_drug',"!=", "-")->orWhere('cangenital_disease',"!=", "-")->get()->all();
+        $total_applicant = Profile::where('confirm_register', 1)->orWhere('allergic_drug',"!=", "-")->orWhere('cangenital_disease',"!=", "-")->orWhere('allergic_food',"!=", "-")->get()->all();
         return  $total_applicant;
     }
     public function getStatsByFood()

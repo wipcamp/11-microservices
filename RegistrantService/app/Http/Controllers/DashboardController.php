@@ -18,7 +18,7 @@ class DashboardController extends Controller
         return  response()->json($this->dashboard->getStatsByMedic());
       }
     public function getRegistrantStatsFood(){
-        return  response()->json([$this->dashboard->getStatsByFood()]);
+        return  response()->json($this->dashboard->getStatsByFood());
       }
     public function getRegistrantStatsByDate (Request $req){
         $start_date = $req->query('startdate');

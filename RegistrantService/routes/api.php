@@ -57,6 +57,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
 Route::prefix('registrants')->group(function(){
     Route::get('/', 'RegistrantController@getRegistrants');
     Route::put('/changstatus','ChangeStatusController@changeStatusByWipId');
+    Route::put('/changmedicapprove','ChangeStatusController@changmedicApprove');
     Route::put('/note','ChangeStatusController@updateNoteByWipId');
     });
 });
