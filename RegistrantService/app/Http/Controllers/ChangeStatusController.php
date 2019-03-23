@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Repositories\ChangeStatusRepositoryInterface;
+use GuzzleHttp\Client;
 
 class ChangeStatusController  extends Controller
 {
@@ -21,9 +23,23 @@ class ChangeStatusController  extends Controller
   public function changmedicApprove(Request $req)
   {
     $data = $req->all();
-
+    $wipId = $req->all()['wip_id'];
+    $token = $req->header('Authorization');
+    $URL = env('AUTH_URL') . '/permissions';
+    $headers = ['Authorization' => $token];
+    $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+    $response = $client->request('GET',$URL,['query' => ['wip_id' => $wipId]]);
+    $response = json_decode($response->getBody(),true);
+    $arr_res = Arr::dot($response['permission']);
+    $arr_res = Arr::flatten($arr_res);
+    if(in_array(4,$arr_res)||in_array(10,$arr_res)){
    $this->statusRepo->changMedic($data['wip_checker']);
-    return response()->json(["changstatus" => "status update sucess !"]);
+   return response()->json(["changstatus" => "status update sucess !"]);
+    }else{
+      return response()->json(['error' => "role or permission invalid !!"],405);
+    }
+    
+
   }
 
   public function updateNoteByWipId(Request $req)
