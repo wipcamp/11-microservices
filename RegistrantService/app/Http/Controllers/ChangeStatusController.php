@@ -32,7 +32,7 @@ class ChangeStatusController  extends Controller
     $response = json_decode($response->getBody(),true);
     $arr_res = Arr::dot($response['permission']);
     $arr_res = Arr::flatten($arr_res);
-    if(in_array(4,$arr_res)||in_array(10,$arr_res)){
+    if(in_array(3,$arr_res)||in_array(9,$arr_res)){
    $this->statusRepo->changMedic($data['wip_checker']);
    return response()->json(["changstatus" => "status update sucess !"]);
     }else{

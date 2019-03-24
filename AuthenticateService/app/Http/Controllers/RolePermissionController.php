@@ -47,7 +47,7 @@ class RolePermissionController extends Controller
     $response = Arr::flatten($response);
 
 
-    if(in_array(10,$response)){
+    if(in_array(9,$response)){
       $data = $req->all();
       $res = $this->rolepermission->updateRoleWip($data);
      return response()->json(["changstatus" => "status update sucess !"]);

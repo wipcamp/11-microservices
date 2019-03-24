@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Repositories\AnswerEvaluationRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+
 
 class AnswerEvaluationController extends Controller
 {
@@ -28,8 +30,8 @@ class AnswerEvaluationController extends Controller
     $response = json_decode($response->getBody(),true);
     $arr_res = Arr::dot($response['permission']);
     $arr_res = Arr::flatten($arr_res);
-    
-    if(in_array(4,$arr_res)||in_array(10,$arr_res)){
+
+    if(in_array(3,$arr_res)||in_array(9,$arr_res)){
       $evaluations = $req->all();
       $wip_id = $evaluations['wip_id'];
       $evaluations = array_except($evaluations, ['wip_id']);
