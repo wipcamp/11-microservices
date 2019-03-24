@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repositories\RolePermissionRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+
 class RolePermissionController extends Controller
 {
   protected $rolepermission;
@@ -39,9 +41,22 @@ class RolePermissionController extends Controller
   }
   public function UpdateRoles(Request $req)
   {
-    $wip_id = $req->all()['wip_id'];
-    $data = $req->all();
-    $res = $this->rolepermission->updateRoleWip($data);
+    $wipId = $req->all()['wip_id'];
+    $response =  $this->rolepermission->getPermissionByWipId($wipId);
+    $response = json_decode($response,true);
+    $response = Arr::flatten($response);
+
+
+    if(in_array(10,$response)){
+      $data = $req->all();
+      $res = $this->rolepermission->updateRoleWip($data);
+     return response()->json(["changstatus" => "status update sucess !"]);
+
+    }else{
+      return response()->json(['error' => "role or permission invalid !!"],405);
+    }
+    
+  
 
   }
 }
