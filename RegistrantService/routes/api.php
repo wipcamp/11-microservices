@@ -21,6 +21,9 @@ Route::get('jwt', function (Request $request) {
     return response()->json('hello' . $request['wip_id']);
 })->middleware('checkAuth');
 
+//ใช้ครั่งเดียว
+Route::get('/testQuery', 'ScoreEvaluationsController@testQuery');
+
 Route::group(['middleware' => ['checkAuth']], function () {
 // API User
     Route::prefix('questions')->group(function () {

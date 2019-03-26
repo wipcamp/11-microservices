@@ -18,6 +18,8 @@ class ChangeStatusRepository implements ChangeStatusRepositoryInterface
   {
    $check = Profile::where('wip_id',$data);
    $check = json_decode($check->get())[0]->medical_approved;
+   dd($check);
+   
    if ($check === 1) {
      $dataUpdate = Profile::where('wip_id',$data)->update(['medical_approved' => 0]);
    } else {

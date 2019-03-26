@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
             'Registrant',
             'AnswerEvaluation',
             'Dashboard',
-            'ChangeStatus'
+            'ChangeStatus',
+            'ScoreEvaluations'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
