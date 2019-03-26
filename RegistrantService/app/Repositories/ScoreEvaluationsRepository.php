@@ -114,6 +114,32 @@ class ScoreEvaluationsRepository implements ScoreEvaluationsRepositoryInterface
 
     public function getCatScores()
     {
-       return ScoreEvaluation::select('wip_id','mean_cat_int','mean_cat_com','mean_cat_crt')->orderBy('sum_mean_score','DESC')->get();
+        $mean_cats = array();
+        $mean_cats[0]=0;
+        $mean_cats[1]=0;
+        $mean_cats[2]=0;
+        $cats_storage =array();
+        $cats_storage[0]='mean_cat_int';
+        $cats_storage[1]='mean_cat_com';
+        $cats_storage[2]='mean_cat_crt';
+        $xBar = array();
+        $xBar[0]=720.53;
+        $xBar[1]=890.84;
+        $xBar[2]=1268.11;
+
+        $res =ScoreEvaluation::select('wip_id','mean_cat_int','mean_cat_com','mean_cat_crt')->orderBy('sum_mean_score','DESC')->get();
+        $res =  json_decode($res,true);
+        for ($i=0; $i != sizeof($res); $i++) { 
+            for ($j=0; $j <3 ; $j++) { 
+                $mean_cats[$j] += (($res[$i][$cats_storage[$j]] - $xBar[$j])) * ($res[$i][$cats_storage[$j]] - $xBar[$j]) ;
+            }
+            
+        }
+        for ($k=0; $k < sizeof($mean_cats); $k++) { 
+            $mean_cats[$k]/=sizeof($res);
+            $mean_cats[$k]=sqrt($mean_cats[$k]);
+        }
+        
+         return response()->json([$res,"all_mean_cat"=>$mean_cats]);
     }
 }
