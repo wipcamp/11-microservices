@@ -24,6 +24,9 @@ Route::get('jwt', function (Request $request) {
 //ใช้ครั่งเดียว สั่งคำนวนคะแนน
 Route::get('/calculatescore', 'ScoreEvaluationsController@testQuery');
 
+//test mockup login หน้าบ้าน
+Route::get('/testloginjaa', 'ProfileController@testGetprogile');
+
 Route::group(['middleware' => ['checkAuth']], function () {
 // API User
     Route::prefix('questions')->group(function () {

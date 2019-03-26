@@ -24,6 +24,10 @@ class ProfileController extends Controller
         $profile = $this->profileRepository->getProfile($wipId['wip_id']);
         return response()->json($profile);
     }
+    public function testGetprogile()
+    {
+        return  response()->json(['wow this is test login mockup!',"status"=>1], 200);
+    }
 
     public function createProfile(Request $req)
     {
