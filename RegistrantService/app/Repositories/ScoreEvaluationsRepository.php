@@ -128,7 +128,7 @@ class ScoreEvaluationsRepository implements ScoreEvaluationsRepositoryInterface
         $xBar[2]=1268.11;
 
    
-        $res = ScoreEvaluation::join('profiles','score_evaluations.wip_id','profiles.wip_id')->select('profiles.wip_id','profiles.firstname_th','profiles.lastname_th','profiles.nickname','profiles.gender','profiles.school_name','profiles.school_level','profiles.school_major','profiles.gpax','profiles.allergic_food','profiles.allergic_drug','profiles.cangenital_disease','score_evaluations.mean_cat_int','score_evaluations.mean_cat_com','score_evaluations.mean_cat_crt','score_evaluations.mean_score_question_1','score_evaluations.mean_score_question_2','score_evaluations.mean_score_question_3','score_evaluations.mean_score_question_4','score_evaluations.mean_score_question_5','score_evaluations.sum_mean_score')->orderBy('sum_mean_score','DESC');
+        $res = ScoreEvaluation::join('profiles','score_evaluations.wip_id','profiles.wip_id')->select('profiles.wip_id','profiles.citizen_no','profiles.firstname_th','profiles.lastname_th','profiles.nickname','profiles.gender','profiles.school_name','profiles.school_level','profiles.school_major','profiles.gpax','profiles.allergic_food','profiles.allergic_drug','profiles.cangenital_disease','score_evaluations.mean_cat_int','score_evaluations.mean_cat_com','score_evaluations.mean_cat_crt','score_evaluations.mean_score_question_1','score_evaluations.mean_score_question_2','score_evaluations.mean_score_question_3','score_evaluations.mean_score_question_4','score_evaluations.mean_score_question_5','score_evaluations.sum_mean_score')->orderBy('sum_mean_score','DESC');
         $res =  json_decode($res->get(),true);
 
         for ($i=0; $i != sizeof($res); $i++) { 
