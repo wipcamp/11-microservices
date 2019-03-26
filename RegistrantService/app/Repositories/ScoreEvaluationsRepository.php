@@ -127,8 +127,10 @@ class ScoreEvaluationsRepository implements ScoreEvaluationsRepositoryInterface
         $xBar[1]=890.84;
         $xBar[2]=1268.11;
 
-        $res =ScoreEvaluation::select('wip_id','mean_cat_int','mean_cat_com','mean_cat_crt')->orderBy('sum_mean_score','DESC')->get();
-        $res =  json_decode($res,true);
+   
+        $res = ScoreEvaluation::join('profiles','score_evaluations.wip_id','profiles.wip_id')->select('profiles.wip_id','profiles.firstname_th','profiles.lastname_th','profiles.nickname','profiles.gender','profiles.school_name','profiles.school_level','profiles.school_major','profiles.gpax','profiles.allergic_food','profiles.allergic_drug','profiles.cangenital_disease','score_evaluations.mean_cat_int','score_evaluations.mean_cat_com','score_evaluations.mean_cat_crt','score_evaluations.mean_score_question_1','score_evaluations.mean_score_question_2','score_evaluations.mean_score_question_3','score_evaluations.mean_score_question_4','score_evaluations.mean_score_question_5','score_evaluations.sum_mean_score')->orderBy('sum_mean_score','DESC');
+        $res =  json_decode($res->get(),true);
+
         for ($i=0; $i != sizeof($res); $i++) { 
             for ($j=0; $j <3 ; $j++) { 
                 $mean_cats[$j] += (($res[$i][$cats_storage[$j]] - $xBar[$j])) * ($res[$i][$cats_storage[$j]] - $xBar[$j]) ;
@@ -140,6 +142,8 @@ class ScoreEvaluationsRepository implements ScoreEvaluationsRepositoryInterface
             $mean_cats[$k]=sqrt($mean_cats[$k]);
         }
         
-         return response()->json([$res,"all_mean_cat"=>$mean_cats]);
+         return response()->json([
+             $res,"sd_cat_int"=>$mean_cats[0],"sd_cat_com"=>$mean_cats[1],"sd_cat_crt"=>$mean_cats[2]
+         ]);
     }
 }
