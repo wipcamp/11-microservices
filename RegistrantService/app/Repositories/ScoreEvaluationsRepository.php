@@ -82,6 +82,7 @@ class ScoreEvaluationsRepository implements ScoreEvaluationsRepositoryInterface
             for ($p=0; $p < sizeof($sum_cats); $p++) { 
                 $sum_mean +=$sum_cats[$p];
             }
+            $sum_mean/=5;
             ScoreEvaluation::create([
                 'wip_id' => $wip_ids[$i],
                 'mean_cat_int' => $mean_cats[0],
