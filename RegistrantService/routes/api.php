@@ -21,14 +21,17 @@ Route::get('jwt', function (Request $request) {
     return response()->json('hello' . $request['wip_id']);
 })->middleware('checkAuth');
 
-//ใช้ครั่งเดียว
-Route::get('/testQuery', 'ScoreEvaluationsController@testQuery');
+//ใช้ครั่งเดียว สั่งคำนวนคะแนน
+Route::get('/calculatescore', 'ScoreEvaluationsController@testQuery');
 
 Route::group(['middleware' => ['checkAuth']], function () {
 // API User
     Route::prefix('questions')->group(function () {
         Route::get('/', 'QuestionController@getQuestions');
         Route::get('/{question_id}', 'QuestionController@getQuestionById');
+    });
+    Route::prefix('scores')->group(function () {
+        Route::get('/categoryscores', 'ScoreEvaluationsController@getCatScores');
     });
 
 //API Answers

@@ -18,6 +18,11 @@ class ScoreEvaluationsController extends Controller
     public function testQuery(Request $req)
     {
 
-        $this->scoreEvaluation->testQuerys();
+        $res=$this->scoreEvaluation->testQuerys();
+        return  response()->json($res, 200);
+    }
+    public function getCatScores()
+    {
+        return $this->scoreEvaluation->getCatScores();
     }
 }
