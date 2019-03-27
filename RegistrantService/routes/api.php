@@ -24,6 +24,7 @@ Route::get('jwt', function (Request $request) {
 //ใช้ครั่งเดียว สั่งคำนวนคะแนน
 Route::get('/calculatescore', 'ScoreEvaluationsController@testQuery');
 
+//อย่าลืมลบตัวนี้นะ
 Route::get('/testgetscore', 'ScoreEvaluationsController@getCatScores');
 
 //test mockup login หน้าบ้าน
