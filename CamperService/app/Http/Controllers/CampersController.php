@@ -28,15 +28,14 @@ class CampersController extends Controller
   }
   public function uploadFile(Request $request)
   {
-    // $wip_id =  $request->all()['wip_id'];
     $wip_id = 'mockupjaa';
+    $time = time()+random_int(0,10);
     $file = $request->file('files');
     $filename = ($request.'_'.$wip_id);
-    $destinationPath = $wip_id.'/';
+    $destinationPath = $wip_id.'/'.$time;
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file[0]->getRealPath()));
     dd(file_get_contents($file[0]->getRealPath()));
     $url = Storage::disk('minio')->url($destinationPath);
-
     return  response()->json($url, 200);
   }
 }
