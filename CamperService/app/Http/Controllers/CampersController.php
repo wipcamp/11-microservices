@@ -32,7 +32,7 @@ class CampersController extends Controller
     $time = time();
     $file = $request->file('files');
     $filename = ($request.'_'.$wip_id);
-    $destinationPath = $wip_id.'/'.$time;
+    $destinationPath = $wip_id.'/'.$time.'/'.'thisisfilejaaa';
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file[0]->getRealPath()));
     $url = Storage::disk('minio')->url($destinationPath);
     return  response()->json($url, 200);

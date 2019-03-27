@@ -27,3 +27,9 @@ Route::prefix('campers')->group(function () {
     Route::post('/upload', 'CampersController@uploadFile');
     
 });
+
+Route::group(['middleware' => ['CheckAuth']], function () {
+    Route::prefix('test')->group(function () {
+        Route::get('/', 'CampersController@getCampers');    
+    });
+});
