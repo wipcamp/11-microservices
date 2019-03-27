@@ -32,7 +32,7 @@ class CampersController extends Controller
     $wip_id = 'mockupjaa';
     $file = $request->file('files');
     $filename = ($request.'_'.$wip_id);
-    $destinationPath = config('app.fileDestinationPath').'/'.$filename;
+    $destinationPath = $wip_id.'/'.$filename;
 
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file[0]->getRealPath()));
     $url = Storage::disk('minio')->url($destinationPath);
