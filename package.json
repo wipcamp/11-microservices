@@ -6,9 +6,10 @@
   "author": "SandzoNight <flukemdc@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:authenticateService dev:registrantService",
+    "dev": "npm-run-all --parallel dev:authenticateService dev:registrantService dev:camperService",
     "dev:authenticateService": "cd AuthenticateService && php artisan serve",
-    "dev:registrantService": "cd RegistrantService && php artisan serve --port 8001"
+    "dev:registrantService": "cd RegistrantService && php artisan serve --port 8001",
+    "dev:camperService": "cd CamperService && php artisan serve --port 8002"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5"

@@ -16,14 +16,13 @@ class ChangeStatusRepository implements ChangeStatusRepositoryInterface
   }
   public function changMedic($data)
   {
-   $check = Profile::where('wip_id',$data);
-   $check = json_decode($check->get())[0]->medical_approved;
-   dd($check);
-   
-   if ($check === 1) {
-     $dataUpdate = Profile::where('wip_id',$data)->update(['medical_approved' => 0]);
-   } else {
-    $dataUpdate = Profile::where('wip_id',$data)->update(['medical_approved' => 1]);     
+    $check = Profile::where('wip_id',$data);
+    $check = json_decode($check->get())[0]->medical_approved;
+
+   if ($check == 0 || $check == null) {
+     $dataUpdate = Profile::where('wip_id',$data)->update(['medical_approved' => 1]);     
+    } else if ( $check == 1){
+      $dataUpdate = Profile::where('wip_id',$data)->update(['medical_approved' => 0]);
    }
    
     return $dataUpdate;
