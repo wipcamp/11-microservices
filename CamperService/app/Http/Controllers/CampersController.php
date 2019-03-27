@@ -33,8 +33,8 @@ class CampersController extends Controller
     $file = $request->file('files');
     $filename = ($request.'_'.$wip_id);
     $destinationPath = $wip_id.'/'.$filename;
-dd(file_get_contents($file[0]->getRealPath()));
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file[0]->getRealPath()));
+    dd(file_get_contents($file[0]->getRealPath()));
     $url = Storage::disk('minio')->url($destinationPath);
 
     return  response()->json($url, 200);
