@@ -25,11 +25,13 @@ Route::prefix('campers')->group(function () {
     Route::get('/', 'CampersController@getCampers');
     Route::post('/', 'CampersController@mangeCampers');
     Route::post('/upload', 'CampersController@uploadFile');
+    Route::get('/getfile', 'CampersController@getFile');
     
 });
 
 Route::group(['middleware' => ['CheckAuth']], function () {
     Route::prefix('test')->group(function () {
+        Route::post('/upload/{path}', 'CampersController@uploadFile');
         Route::get('/', 'CampersController@getCampers');    
     });
 });

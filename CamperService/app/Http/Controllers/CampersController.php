@@ -13,8 +13,10 @@ use Illuminate\Support\Arr;
 
 use Storage;
 
+
 class CampersController extends Controller
 {
+  
     protected $campers;
     public function __construct(CampersRepositoryInterface $camp)
     {
@@ -26,16 +28,21 @@ class CampersController extends Controller
    
     return response()->json(['test' => $camps]);
   }
-  public function uploadFile(Request $request)
+  public function uploadFile(Request $request,$path)
   {
-    $wip_id = 'mockupjaa';
-    $time = time();
+    $wip_id = $request->all()['wip_id'];
     $file = $request->file('files');
-    $filename = ($request.'_'.$wip_id);
-    $destinationPath = $wip_id.'/'.$time.'/'.'thisisfilejaaa';
+    $filename = ($wip_id.'_'.$path);
+    $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file[0]->getRealPath()));
     $url = Storage::disk('minio')->url($destinationPath);
     return  response()->json($url, 200);
+  }
+  public function getFile()
+  {
+   $s = Storage::disk('minio')->files('mockupjaa/');
+    dd($s);
+    return  response()->json($presignedUrl, 200);
   }
 }
 
