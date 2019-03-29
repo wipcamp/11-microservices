@@ -49,4 +49,11 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     ->where('role',3)->get();
     return $users;
   }
+
+  public function changeRoleByWipId($wipId,$role)
+  {
+    $dataUpdate = Authentication::where('wip_id',$wipId)->update(array('role' => $role));
+    // dd($dataUpdate);
+    return $dataUpdate;
+  }
 }
