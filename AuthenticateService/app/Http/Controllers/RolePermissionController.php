@@ -23,7 +23,11 @@ class RolePermissionController extends Controller
     return response()->json(['permission'=>$permission]);
   }
   
-
+public function getRoleOnlyByWipIds(Request $req,$wip_id)
+{
+  $res =$this->rolepermission->getRoleOnlyByWipId($wip_id);
+  return  response()->json($res);
+}
   public function getRoleForRegistrants(Request $req)
   {
       $role = $req->input('role_id');

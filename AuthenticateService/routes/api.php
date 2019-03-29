@@ -32,8 +32,9 @@ Route::group([
 });
 
 Route::group(['middleware' => ['checkAuth']], function () {
-    Route::get('permissions', 'RolePermissionController@getPermissionByWipId');
-    Route::get('role', 'RolePermissionController@getRoleForRegistrants');
+     Route::get('permissions', 'RolePermissionController@getPermissionByWipId');
+     Route::get('role', 'RolePermissionController@getRoleForRegistrants');
+     Route::get('role/{wip_id}', 'RolePermissionController@getRoleOnlyByWipIds');
      Route::get('rolepending', 'RolePermissionController@getAllrolependings');
      Route::get('allroles', 'RolePermissionController@getallRoles');
      Route::put('changstatus', 'RolePermissionController@UpdateRoles');

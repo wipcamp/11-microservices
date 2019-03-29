@@ -21,8 +21,20 @@ class ScoreEvaluationsController extends Controller
         $res=$this->scoreEvaluation->testQuerys();
         return  response()->json($res, 200);
     }
-    public function getCatScores()
-    {
-        return $this->scoreEvaluation->getCatScores();
+    public function getCatScores(Request $req){
+        $data = $this->scoreEvaluation->getCatScores();
+        $profiles = $data[0];
+        for ($i=0; $i != 100; $i++) { 
+            $token = $req->header('Authorization');
+            $URL = env('AUTH_URL') . '/role/'.$profiles[''.$i.'']['wip_id'];
+            $headers = ['Authorization' => $token];
+            $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+            $response = $client->request('GET');
+            $response = json_decode($response->getBody(),true);
+            $arr_res = Arr::flatten($response);
+            $data[0][''.$i.'']['role'] = $arr_res[0];
+            
+        }
+        return  response()->json($data, 200);
     }
 }

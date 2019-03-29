@@ -30,7 +30,10 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
     ->get();
     return $permission;
   }
-
+public function getRoleOnlyByWipId($wip_id)
+{
+  return Authentication::select('role')->where('wip_id',$wip_id)->get();
+}
   public function getRoleForRegistrants($role_id)
   {
     $wip_id = RolePermission::join('credential','credential.role','=','role_permissions.role_id')
