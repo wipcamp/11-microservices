@@ -23,11 +23,22 @@ class RolePermissionController extends Controller
     return response()->json(['permission'=>$permission]);
   }
   
-public function getRoleOnlyByWipIds(Request $req,$wip_id)
+public function getRoleOnlyByWipIds(Request $req)
 {
-  $res =$this->rolepermission->getRoleOnlyByWipId($wip_id);
+
+  $res = $req->input('profiles');
+  $profile = json_decode($res);
+  $allWipId = $this->getWipIdByProfile($profile);
+  $res =$this->rolepermission->getRoleOnlyByWipId($allWipId);
   return  response()->json($res);
 }
+
+public function getWipIdByProfile($profile)
+{
+  $profile = array_pluck($profile,'wip_id');
+  return $profile;
+}
+
   public function getRoleForRegistrants(Request $req)
   {
       $role = $req->input('role_id');
