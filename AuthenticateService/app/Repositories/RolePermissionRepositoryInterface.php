@@ -9,4 +9,5 @@ interface RolePermissionRepositoryInterface{
   public function getforPermissionAll();
   public function getallRoles();
   public function updateRoleWip($data);
+  public function changeRoleByWipId($wipId,$role);
 }
