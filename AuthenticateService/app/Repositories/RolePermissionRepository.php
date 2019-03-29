@@ -32,7 +32,14 @@ class RolePermissionRepository implements RolePermissionRepositoryInterface
   }
 public function getRoleOnlyByWipId($wip_id)
 {
-  return Authentication::select('role')->where('wip_id',$wip_id)->get();
+  $registrants_arr = array();
+  for ($i=0; $i != count($wip_id); $i++) { 
+    $registrants = Authentication::select('role','wip_id')->
+    whereIn('role',[1,2,12])->where('wip_id',$wip_id[$i])->get()->toArray();
+    array_push($registrants_arr,$registrants);
+  }
+  $registrants = array_collapse($registrants_arr);
+  return $registrants;
 }
   public function getRoleForRegistrants($role_id)
   {
@@ -56,7 +63,6 @@ public function getRoleOnlyByWipId($wip_id)
   public function changeRoleByWipId($wipId,$role)
   {
     $dataUpdate = Authentication::where('wip_id',$wipId)->update(array('role' => $role));
-    // dd($dataUpdate);
     return $dataUpdate;
   }
 }
