@@ -30,23 +30,24 @@ class RolePermissionController extends Controller
       $wip_id = $this->rolepermission->getRoleForRegistrants($role);
       return response()->json($wip_id);
   }
+
   public function getAllrolependings()
   {
       $users = $this->rolepermission->getforPermissionAll();
       return response()->json($users);
   }
+
   public function getallRoles()
   {
     return response()->json($this->rolepermission->getallRoles());
   }
+
   public function UpdateRoles(Request $req)
   {
     $wipId = $req->all()['wip_id'];
     $response =  $this->rolepermission->getPermissionByWipId($wipId);
     $response = json_decode($response,true);
     $response = Arr::flatten($response);
-
-
     if(in_array(9,$response)){
       $data = $req->all();
       $res = $this->rolepermission->updateRoleWip($data);
@@ -55,8 +56,13 @@ class RolePermissionController extends Controller
     }else{
       return response()->json(['error' => "role or permission invalid !!"],405);
     }
-    
-  
 
+  }
+
+  public function changeRoleByWipId(Request $req){
+    $wipId = $req['wip_id_itim'];
+    $roleId = $req['role_id'];
+    $chengeRole = $this->rolepermission->changeRoleByWipId($wipId,$roleId);
+    return response()->json(['message' => "Update Role Success !! "], 200);
   }
 }
