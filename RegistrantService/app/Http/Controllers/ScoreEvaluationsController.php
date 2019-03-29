@@ -23,17 +23,16 @@ class ScoreEvaluationsController extends Controller
     }
     public function getCatScores(Request $req){
         $data = $this->scoreEvaluation->getCatScores();
-        $profiles = $data[0];
+        $profiles = json_encode($data[0]);
+        $token = $req->header('Authorization');
+        $URL = env('AUTH_URL') . '/roles';
+        $headers = ['Authorization' => $token];
+        $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+        $response = $client->request('PUT',$URL,['json' => ['profiles' => $profiles]]);
+        $response = json_decode($response->getBody());
         for ($i=0; $i != 557; $i++) { 
-            $token = $req->header('Authorization');
-            $URL = env('AUTH_URL') . '/role/'.$profiles[''.$i.'']['wip_id'];
-            $headers = ['Authorization' => $token];
-            $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
-            $response = $client->request('GET');
-            $response = json_decode($response->getBody(),true);
-            $arr_res = Arr::flatten($response);
-            $data[0][''.$i.'']['role'] = $arr_res[0];
-            
+            $arr_res = array($response);
+            $data[0][''.$i.'']['role'] = $response[$i];
         }
         return  response()->json($data, 200);
     }
