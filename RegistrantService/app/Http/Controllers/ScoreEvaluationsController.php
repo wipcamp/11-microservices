@@ -24,7 +24,7 @@ class ScoreEvaluationsController extends Controller
     public function getCatScores(Request $req){
         $data = $this->scoreEvaluation->getCatScores();
         $profiles = $data[0];
-        for ($i=0; $i != 100; $i++) { 
+        for ($i=0; $i != 557; $i++) { 
             $token = $req->header('Authorization');
             $URL = env('AUTH_URL') . '/role/'.$profiles[''.$i.'']['wip_id'];
             $headers = ['Authorization' => $token];
