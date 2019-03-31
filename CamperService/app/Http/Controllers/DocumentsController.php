@@ -72,5 +72,14 @@ class DocumentsController extends Controller
     }
     return response()->json(['message'=>"update locations success!"], 200);
   }
+  
+  
+  public function confirmCamper(Request $request)
+  {
+    $wipId = $request->all()['wip_id'];
+    $confirm = $request->all()['confirm'];
+    $confirm = $this->doc->checkDataForUpdate($wipId);
+    
+  }
 }
 

@@ -7,5 +7,8 @@ interface DocumentsRepositoryInterface {
     public function getDocumentByWipId($wipId);
     public function createDocBySize($wipId,$size);
     public function updateSize($wipId,$size);
+    public function createDocByLoca($wipId,$loca);
+    public function updateLoca($wipId,$loca);
+    
 
 }

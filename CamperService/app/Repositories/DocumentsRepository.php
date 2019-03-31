@@ -86,4 +86,10 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $docId = Documents::where('doc_id',$docId)->update(array('pick_location' => $loca));
     return $docId;
   }
+  
+  public function checkDataForUpdate($wipId)
+  {
+    $docId = 'doc_id_'.$wipId;
+    dd('checkDataForUpdate()',$docId);
+  }
 }
