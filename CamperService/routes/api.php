@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('campers')->group(function () {
+Route::prefix('test')->group(function () {
     Route::get('/', 'CampersController@getCampers');
     Route::post('/', 'CampersController@mangeCampers');
     Route::post('/upload', 'CampersController@uploadFile');
