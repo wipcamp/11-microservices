@@ -35,7 +35,7 @@ class Campers extends Migration
             $table->string('transcript')->nullable();
             $table->string('confrim')->nullable();
             $table->string('receipt')->nullable();
-            $table->enum('size', ['S', 'M','F','L','XL','XXL'])->nullable();	
+            $table->enum('size', ['S', 'M','F','L','XL','2XL','3XL','4XL','พิเศษ'])->nullable();	
             $table->string('pick_location')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
