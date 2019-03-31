@@ -25,18 +25,8 @@ class CampersController extends Controller
     public function getCampers(Request $req)
   {
      $camps = $this->campers->getCampers();
-   
+
     return response()->json(['test' => $camps]);
-  }
-  public function uploadFile(Request $request,$path)
-  {
-    $wip_id = $request->all()['wip_id'];
-    $file = $request->file('files');
-    $filename = ($wip_id.'_'.$path);
-    $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
-    $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file->getRealPath()));
-    $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(3));
-    return  response()->json($url, 200);
   }
   public function getFile()
   {
