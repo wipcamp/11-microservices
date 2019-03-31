@@ -9,6 +9,7 @@ interface DocumentsRepositoryInterface {
     public function updateSize($wipId,$size);
     public function createDocByLoca($wipId,$loca);
     public function updateLoca($wipId,$loca);
+    public function checkDataForUpdate($wipId);
     
 
 }

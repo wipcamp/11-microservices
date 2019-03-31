@@ -90,6 +90,6 @@ class DocumentsRepository implements DocumentsRepositoryInterface
   public function checkDataForUpdate($wipId)
   {
     $docId = 'doc_id_'.$wipId;
-    dd('checkDataForUpdate()',$docId);
+    $docId = Documents::where('doc_id',$docId)->update(array('status' => 'success'));
   }
 }

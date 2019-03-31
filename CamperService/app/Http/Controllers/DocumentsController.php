@@ -77,9 +77,14 @@ class DocumentsController extends Controller
   public function confirmCamper(Request $request)
   {
     $wipId = $request->all()['wip_id'];
-    $confirm = $request->all()['confirm'];
-    $confirm = $this->doc->checkDataForUpdate($wipId);
-    
+    $document=$this->doc->getDocumentByWipId($wipId);
+    $document = json_decode($document[0]);
+    if ($document->transcript!=null&&$document->confrim!=null&&$document->receipt!=null&&$document->size!=null&&$document->pick_location!=null) {
+    $res = $this->doc->checkDataForUpdate($wipId);
+    return  response()->json(["status" => true], 200);
+    }else{
+      return  response()->json(["status" => false], 200);
+    }
   }
 }
 
