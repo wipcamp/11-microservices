@@ -32,4 +32,11 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $docId = Documents::where('doc_id',$docId)->update(array($type => $path));
     return $docId;
   }
+
+  public function getDocumentByWipId($wipId)
+  {
+    $docId = 'doc_id_'.$wipId;
+    $document = Documents::where('doc_id',$docId)->get()->all();
+    return $document;
+  }
 }
