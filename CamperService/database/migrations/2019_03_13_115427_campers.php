@@ -13,43 +13,45 @@ class Campers extends Migration
      */
     public function up()
     {
-        Schema::create('Flavors', function (Blueprint $table) {
+
+        Schema::create('flavors', function (Blueprint $table) {
             $table->increments('flavor_id');
-            $table->Integer('score');
+            $table->integer('score');
 
         });
 
-        Schema::create('FlavorsScore', function (Blueprint $table) {
+        Schema::create('flavorsScore', function (Blueprint $table) {
             $table->increments('score_id');
             $table->string('flavors_name');
             $table->integer('flavor_id')->unsigned();
 
-            $table->foreign('flavor_id')->references('flavor_id')->on('Flavors');
+            $table->foreign('flavor_id')->references('flavor_id')->on('flavors');
         });
 
-        Schema::create('Documents', function (Blueprint $table) {
-            $table->increments('doc_id');
-            $table->string('status');
-            $table->string('reson');
-            $table->string('doc_path');
-            $table->enum('doc_type', ['TranScript', 'Permission','Receipt']);	
+        Schema::create('documents', function (Blueprint $table) {
+            $table->string('doc_id')->primary();
+            $table->enum('status',['unsuccess','success']);
+            $table->string('reason')->nullable();
+            $table->string('transcript')->nullable();
+            $table->string('confrim')->nullable();
+            $table->string('receipt')->nullable();
+            $table->enum('size', ['S', 'M','F','L','XL','XXL'])->nullable();	
+            $table->string('pick_location')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
         
-        Schema::create('Campers', function (Blueprint $table) {
+        Schema::create('campers', function (Blueprint $table) {
             $table->increments('camper_id');
-            $table->Integer('wip_id');
-            $table->Integer('bed_room');
-            $table->Integer('class_room');
+            $table->integer('wip_id');
+            $table->integer('bed_room');
+            $table->integer('class_room');
             $table->string('wifi_pass');
-            $table->string('pick_location');
-            $table->enum('size', ['S', 'M','F','L','XL','XXL']);	
             $table->integer('flavor_id')->unsigned();
-            $table->integer('doc_id')->unsigned();
+            $table->string('doc_id');
 
-            $table->foreign('flavor_id')->references('flavor_id')->on('Flavors');
-            $table->foreign('doc_id')->references('doc_id')->on('Documents');
+            $table->foreign('flavor_id')->references('flavor_id')->on('flavors');
+            $table->foreign('doc_id')->references('doc_id')->on('documents');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -62,9 +64,9 @@ class Campers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Flavors');
-        Schema::dropIfExists('FlavorsScore');
-        Schema::dropIfExists('Campers');
-        Schema::dropIfExists('Documents');
+        Schema::dropIfExists('flavors');
+        Schema::dropIfExists('flavorsScore');
+        Schema::dropIfExists('campers');
+        Schema::dropIfExists('documents');
     }
 }
