@@ -37,7 +37,14 @@ class DocumentsController extends Controller
     }else{
       $updateDoc = $this->doc->updateDoc($wip_id,$destinationPath,$path);
     }
-    return  response()->json($url, 200);
+    return  response()->json(['url_file' => $url], 200);
+  }
+
+  public function getDocumentByWipId(Request $request)
+  {
+    $wipId = $request->all()['wip_id'];
+    $document = $this->doc->getDocumentByWipId($wipId);
+    return response()->json($document, 200);
   }
 
 }
