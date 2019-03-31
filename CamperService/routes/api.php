@@ -33,5 +33,6 @@ Route::group(['middleware' => ['CheckAuth']], function () {
     Route::prefix('camper')->group(function () {
         Route::post('/upload/{path}', 'DocumentsController@uploadFile');
         Route::get('/', 'CampersController@getCampers');    
+        Route::get('/document','DocumentsController@getDocumentByWipId');
     });
 });
