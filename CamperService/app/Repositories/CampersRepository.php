@@ -8,6 +8,6 @@ class CampersRepository implements CampersRepositoryInterface
   public function getCampers()
   {
     $registrants = 'hello';
-  return $registrants;
+    return $registrants;
   }
 }
