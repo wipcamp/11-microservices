@@ -38,6 +38,12 @@ public function getWipIdByProfile($profile)
   $profile = array_pluck($profile,'wip_id');
   return $profile;
 }
+public function getRoleByWipId(Request $req)
+{
+  
+  $profile = $this->rolepermission->getRoleByWipId($req->all()['wip_id']);
+  return $profile;
+}
 
   public function getRoleForRegistrants(Request $req)
   {

@@ -65,4 +65,9 @@ public function getRoleOnlyByWipId($wip_id)
     $dataUpdate = Authentication::where('wip_id',$wipId)->update(array('role' => $role));
     return $dataUpdate;
   }
+  public function getRoleByWipId($wipId)
+  {
+    $res = Authentication::select('role','wip_id')->where('wip_id',$wipId)->get()->first();
+    return $res;
+  }
 }
