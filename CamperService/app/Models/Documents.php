@@ -7,8 +7,6 @@ class Documents extends Model
 {
     protected $table = 'documents';
 
-    protected $primaryKey = 'doc_id';
-
     protected $fillable = ['doc_id',
                             'pick_location',
                             'size',
