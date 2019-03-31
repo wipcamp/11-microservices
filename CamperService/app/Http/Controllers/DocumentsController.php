@@ -57,7 +57,7 @@ class DocumentsController extends Controller
     }else {
       $size = $this->doc->updateSize($wipId,$size);
     }
-    return response()->json(['message'=>"update size success!"], 200);
+    return response()->json(["message" => true], 200);
   }
 
   public function updateLocation(Request $request)
@@ -70,7 +70,7 @@ class DocumentsController extends Controller
     }else {
       $size = $this->doc->updateLoca($wipId,$loca);
     }
-    return response()->json(['message'=>"update locations success!"], 200);
+    return response()->json(["message" => true], 200);
   }
   
   
@@ -81,7 +81,7 @@ class DocumentsController extends Controller
     $document = json_decode($document[0]);
     if ($document->transcript!=null&&$document->confrim!=null&&$document->receipt!=null&&$document->size!=null&&$document->pick_location!=null) {
     $res = $this->doc->checkDataForUpdate($wipId);
-    return  response()->json(["status" => true], 200);
+    return  response()->json(["message" => true], 200);
     }else{
       return  response()->json(["status" => false], 200);
     }
