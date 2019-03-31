@@ -47,5 +47,17 @@ class DocumentsController extends Controller
     return response()->json($document, 200);
   }
 
+  public function updateSize(Request $request)
+  {
+    $wipId = $request->all()['wip_id'];
+    $size = $request->all()['size'];
+    $check = $this->doc->checkDocId($wipId);
+    if($check){
+      $size = $this->doc->createSize($wipId,$size);
+    }else {
+      $size = $this->doc->updateSize($wipId,$size);
+    }
+    return response()->json(['message'=>"update size success!"], 200);
+  }
 }
 
