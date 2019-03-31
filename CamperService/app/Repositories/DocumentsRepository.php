@@ -39,4 +39,28 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $document = Documents::where('doc_id',$docId)->get()->all();
     return $document;
   }
+
+
+  public function updateSize($wipId,$size)
+  {
+    $docId = 'doc_id_'.$wipId;
+    $docId = Documents::where('doc_id',$docId)->update(array('size' => $size));
+    return $docId;
+  }
+
+  public function ctreateSize($wipId,$size)
+  {
+    $status = 'unsuccess'; 
+    $createDoc = Documents::create([
+      'doc_id' => 'doc_id_'.$wipId,
+      'transcript' => null,
+      'confrim' => null,
+      'receipt' => null,
+      'status' => $status,
+      'reason' => null,
+      'pick_location' => null,
+      'size' => $size
+    ]);
+    return $createDoc;
+  }
 }
