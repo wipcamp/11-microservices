@@ -36,5 +36,6 @@ Route::group(['middleware' => ['CheckAuth']], function () {
         Route::get('/document','DocumentsController@getDocumentByWipId');
         Route::post('/size','DocumentsController@updateSize');
         Route::post('/location','DocumentsController@updateLocation');
+        Route::put('/confirm', 'DocumentsController@confirmCamper');
     });
 });
