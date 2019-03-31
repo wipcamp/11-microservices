@@ -12,7 +12,7 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     return $docId->isEmpty();
   }
 
-  public function ctreateDocBywipId($wipId,$path,$type)
+  public function createDocBywipId($wipId,$path,$type)
   {
     $status = 'unsuccess'; 
     $createDoc = Documents::create([
@@ -48,7 +48,7 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     return $docId;
   }
 
-  public function ctreateSize($wipId,$size)
+  public function createDocBySize($wipId,$size)
   {
     $status = 'unsuccess'; 
     $createDoc = Documents::create([
@@ -62,5 +62,28 @@ class DocumentsRepository implements DocumentsRepositoryInterface
       'size' => $size
     ]);
     return $createDoc;
+  }
+
+  public function createDocByLoca($wipId,$loca)
+  {
+    $status = 'unsuccess'; 
+    $createDoc = Documents::create([
+      'doc_id' => 'doc_id_'.$wipId,
+      'transcript' => null,
+      'confrim' => null,
+      'receipt' => null,
+      'status' => $status,
+      'reason' => null,
+      'pick_location' => $loca,
+      'size' => null
+    ]);
+    return $createDoc;
+  }
+
+  public function updateLoca($wipId,$loca)
+  {
+    $docId = 'doc_id_'.$wipId;
+    $docId = Documents::where('doc_id',$docId)->update(array('pick_location' => $loca));
+    return $docId;
   }
 }

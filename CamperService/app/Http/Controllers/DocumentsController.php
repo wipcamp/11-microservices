@@ -33,7 +33,7 @@ class DocumentsController extends Controller
     $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(7));
     $check = $this->doc->checkDocId($wip_id);
     if($check){
-      $createdDoc = $this->doc->ctreateDocBywipId($wip_id,$destinationPath,$path);
+      $createdDoc = $this->doc->createDocBywipId($wip_id,$destinationPath,$path);
     }else{
       $updateDoc = $this->doc->updateDoc($wip_id,$destinationPath,$path);
     }
@@ -53,11 +53,24 @@ class DocumentsController extends Controller
     $size = $request->all()['size'];
     $check = $this->doc->checkDocId($wipId);
     if($check){
-      $size = $this->doc->createSize($wipId,$size);
+      $size = $this->doc->createDocBySize($wipId,$size);
     }else {
       $size = $this->doc->updateSize($wipId,$size);
     }
     return response()->json(['message'=>"update size success!"], 200);
+  }
+
+  public function updateLocation(Request $request)
+  {
+    $wipId = $request->all()['wip_id'];
+    $loca = $request->all()['location'];
+    $check = $this->doc->checkDocId($wipId);
+    if($check){
+      $size = $this->doc->createDocByLoca($wipId,$loca);
+    }else {
+      $size = $this->doc->updateLoca($wipId,$loca);
+    }
+    return response()->json(['message'=>"update locations success!"], 200);
   }
 }
 
