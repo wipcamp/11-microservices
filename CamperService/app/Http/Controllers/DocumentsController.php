@@ -31,7 +31,12 @@ class DocumentsController extends Controller
     $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file->getRealPath()));
     $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(7));
-    $createdDoc = $this->doc->ctreateDocBywipId($wip_id,$destinationPath);
+    $check = $this->doc->checkDocId($wip_id);
+    if($check){
+      $createdDoc = $this->doc->ctreateDocBywipId($wip_id,$destinationPath,$path);
+    }else{
+      $updateDoc = $this->doc->updateDoc($wip_id,$destinationPath,$path);
+    }
     return  response()->json($url, 200);
   }
 
