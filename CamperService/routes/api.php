@@ -30,12 +30,12 @@ Route::prefix('test')->group(function () {
 });
 
 Route::group(['middleware' => ['CheckAuth']], function () {
-    Route::prefix('campers')->group(function () {
-        Route::post('/upload/{path}', 'DocumentsController@uploadFile');
-        Route::get('/', 'CampersController@getCampers');    
-        Route::get('/document','DocumentsController@getDocumentByWipId');
-        Route::post('/size','DocumentsController@updateSize');
-        Route::post('/location','DocumentsController@updateLocation');
-        Route::post('/confirm', 'DocumentsController@confirmCamper');
-    });
 });
+        Route::prefix('campers')->group(function () {
+            Route::post('/upload/{path}', 'DocumentsController@uploadFile');
+            Route::get('/', 'CampersController@getCampers');    
+            Route::get('/document','DocumentsController@getDocumentByWipId');
+            Route::post('/size','DocumentsController@updateSize');
+            Route::post('/location','DocumentsController@updateLocation');
+            Route::post('/confirm', 'DocumentsController@confirmCamper');
+        });
