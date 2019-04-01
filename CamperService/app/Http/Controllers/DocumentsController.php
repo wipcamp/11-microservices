@@ -29,6 +29,7 @@ class DocumentsController extends Controller
     $file = $request->file('files');
     $filename = ($wip_id.'_'.$path);
     $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
+    dd(file_get_contents($file->getRealPath()));
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file->getRealPath()));
     $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(7));
     $check = $this->doc->checkDocId($wip_id);
