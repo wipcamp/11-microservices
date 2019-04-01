@@ -30,7 +30,6 @@ class DocumentsController extends Controller
     $filename = ($wip_id.'_'.$path);
     $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file->getRealPath()));
-    dd($created);
     $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(7));
     $check = $this->doc->checkDocId($wip_id);
     if($check){
