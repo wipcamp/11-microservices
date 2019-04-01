@@ -22,6 +22,7 @@ COPY ./server.php .
 COPY ./webpack.mix.js .
 
 RUN composer dump-autoload
+RUN composer update
 
 RUN chmod -R 777 bootstrap/cache
 RUN chmod -R 777 storage
