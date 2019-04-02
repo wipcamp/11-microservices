@@ -30,7 +30,7 @@ class DocumentsController extends Controller
     $filename = ($wip_id.'_'.$path);
     $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
     $created = Storage::disk('minio')->put($destinationPath,file_get_contents($file->getRealPath()));
-    $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(7));
+    $url = Storage::cloud()->temporaryUrl($destinationPath, \Carbon\Carbon::now()->addDays(1));
     $check = $this->doc->checkDocId($wip_id);
     if($check){
       $createdDoc = $this->doc->createDocBywipId($wip_id,$destinationPath,$path);
@@ -98,5 +98,20 @@ class DocumentsController extends Controller
     $response = json_decode($response->getBody());
     $response = Arr::flatten($response);
     return  response()->json($response, 200);
+  }
+  public function getPreviewImageByWipId(Request $req)
+  {
+  $wip_id = $req->all()['wip_id_itim'];
+  $res = $this->doc->getPreviewImageByWipId($wip_id);
+  $res = json_decode($res,true);
+  $res = Arr::flatten($res);
+    $urls = array();
+  for ($i=0; $i !=3 ; $i++) { 
+    $url = Storage::cloud()->temporaryUrl($res[$i], \Carbon\Carbon::now()->addDays(1));
+    array_push($urls,$url);
+  }
+
+
+  return response()->json($urls, 200);
   }
 }

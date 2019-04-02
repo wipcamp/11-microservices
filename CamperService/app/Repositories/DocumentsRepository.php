@@ -52,6 +52,11 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $res = Documents::select('*')->where('status','success')->get();
     return $res;
   }
+public function getPreviewImageByWipId($wip_id)
+  {
+    $res = Documents::select('transcript','confrim','receipt')->where('doc_id','doc_id_'.$wip_id)->get();
+    return $res;
+  }
 
   public function createDocBySize($wipId,$size)
   {
