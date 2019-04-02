@@ -86,5 +86,17 @@ class DocumentsController extends Controller
       return  response()->json(["status" => false], 200);
     }
   }
+  public function getDocumentAllSuccess(Request $req)
+  {
+    $res = $this->doc->getDocumentSucess();
+    $res =json_decode($res,true);
+    $token = $req->header('Authorization');
+    $URL = env('RIGISTANT_URL') . '/registrants/passingregistrants';
+    $headers = ['Authorization' => $token];
+    $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+    $response = $client->request('PUT',$URL,['json' => ['res' => $res]]);
+    $response = json_decode($response->getBody());
+    $response = Arr::flatten($response);
+    return  response()->json($response, 200);
+  }
 }
-

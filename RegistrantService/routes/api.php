@@ -71,6 +71,7 @@ Route::prefix('registrants')->group(function(){
     Route::put('/changstatus','ChangeStatusController@changeStatusByWipId');
     Route::put('/changmedicapprove','ChangeStatusController@changmedicApprove');
     Route::put('/note','ChangeStatusController@updateNoteByWipId');
+    Route::put('/passingregistrants','ProfileController@getPassProfile');
     });
 });
 

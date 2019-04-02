@@ -47,6 +47,11 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $docId = Documents::where('doc_id',$docId)->update(array('size' => $size));
     return $docId;
   }
+  public function getDocumentSucess()
+  {
+    $res = Documents::select('*')->where('status','success')->get();
+    return $res;
+  }
 
   public function createDocBySize($wipId,$size)
   {

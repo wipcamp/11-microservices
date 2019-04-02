@@ -10,6 +10,7 @@ interface DocumentsRepositoryInterface {
     public function createDocByLoca($wipId,$loca);
     public function updateLoca($wipId,$loca);
     public function checkDataForUpdate($wipId);
+    public function getDocumentSucess();
     
 
 }

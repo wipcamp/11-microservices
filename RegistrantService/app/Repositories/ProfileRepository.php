@@ -9,6 +9,17 @@ class ProfileRepository implements ProfileRepositoryInterface
         $profile = Profile::where('wip_id',$wipId)->get()->first();
         return $profile;
     }
+    public function getProfiles($data)
+    {
+        $profiles = array();
+        for ($i=0; $i != count($data); $i++) { 
+        $wip_id = substr($data[$i],7);
+        $profile = Profile::where('wip_id',$wip_id)->get();
+        array_push($profiles,$profile);
+        }
+
+        return $profiles;
+    }
 
     public function createProfile($profile)
     {
