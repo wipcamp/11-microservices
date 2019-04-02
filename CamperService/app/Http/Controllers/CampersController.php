@@ -30,8 +30,9 @@ class CampersController extends Controller
   }
   public function getFile()
   {
-   $s = Storage::disk('minio')->files('mockupjaa/');
-    dd($s);
+    
+    $url = Storage::cloud()->temporaryUrl('profile/WIPID110014/110014_confrim', \Carbon\Carbon::now()->addDays(7));
+    dd($url);
     return  response()->json($presignedUrl, 200);
   }
 }

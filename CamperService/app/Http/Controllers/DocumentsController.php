@@ -86,9 +86,9 @@ class DocumentsController extends Controller
       return  response()->json(["status" => false], 200);
     }
   }
-  public function getDocumentAllSuccess(Request $req)
+  public function getAllDocument(Request $req)
   {
-    $res = $this->doc->getDocumentSucess();
+    $res = $this->doc->getAllDocument();
     $res =json_decode($res,true);
     $token = $req->header('Authorization');
     $URL = env('RIGISTANT_URL') . '/registrants/passingregistrants';
