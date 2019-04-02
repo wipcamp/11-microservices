@@ -105,10 +105,14 @@ class DocumentsController extends Controller
   $res = $this->doc->getPreviewImageByWipId($wip_id);
   $res = json_decode($res,true);
   $res = Arr::flatten($res);
-    $urls = array();
+  $urls = array();
   for ($i=0; $i !=3 ; $i++) { 
-    $url = Storage::cloud()->temporaryUrl($res[$i], \Carbon\Carbon::now()->addDays(1));
-    array_push($urls,$url);
+    if($res[$i]!=null){
+      $url = Storage::cloud()->temporaryUrl($res[$i], \Carbon\Carbon::now()->addDays(1));
+      array_push($urls,$url);
+    }else {
+      array_push($urls,null);
+    }
   }
 
 
