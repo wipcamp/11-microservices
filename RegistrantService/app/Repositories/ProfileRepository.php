@@ -29,7 +29,7 @@ class ProfileRepository implements ProfileRepositoryInterface
         }
     
       
-        return $profiles;
+        return $profile;
     }
 
     public function createProfile($profile)
