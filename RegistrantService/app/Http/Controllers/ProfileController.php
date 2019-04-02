@@ -28,7 +28,6 @@ class ProfileController extends Controller
     public function getPassProfile(Request $req)
     {
         $res = $req->input('res');
-        $res = array_pluck($res,'doc_id');
         $data = $this->profileRepository->getProfiles($res);
         return $data;
     }
