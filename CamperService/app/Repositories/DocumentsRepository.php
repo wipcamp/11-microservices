@@ -59,7 +59,7 @@ class DocumentsRepository implements DocumentsRepositoryInterface
   }
 public function getPreviewImageByWipId($wip_id,$type)
   {
-    $res = Documents::select('transcript','confrim','receipt')->where('doc_id','doc_id_'.$wip_id)->get();
+    $res = Documents::select($type)->where('doc_id','doc_id_'.$wip_id)->get();
     return $res;
   }
 

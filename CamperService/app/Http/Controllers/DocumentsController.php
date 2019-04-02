@@ -102,22 +102,12 @@ class DocumentsController extends Controller
   public function getPreviewImageByWipId(Request $req)
   {
   $wip_id = $req->all()['wip_id_itim'];
-  $type = $req->all()['type'];
+  $type = $req->all()['type_path'];
   $res = $this->doc->getPreviewImageByWipId($wip_id,$type);
-  $res = json_decode($res,true);
-  $res = Arr::flatten($res);
-  $urls = array();
-  for ($i=0; $i !=3 ; $i++) { 
-    if($res[$i]!=null){
-      $url = Storage::cloud()->temporaryUrl($res[$i], \Carbon\Carbon::now()->addDays(1));
-      array_push($urls,$url);
-    }else {
-      array_push($urls,null);
-    }
-  }
+  $url = Storage::cloud()->temporaryUrl($res, \Carbon\Carbon::now()->addDays(1));
 
 
-  return response()->json($urls, 200);
+  return response()->json([$type=>$url], 200);
   }
   public function updateReson(Request $req)
   {

@@ -10,7 +10,7 @@ interface DocumentsRepositoryInterface {
     public function createDocByLoca($wipId,$loca);
     public function updateLoca($wipId,$loca);
     public function checkDataForUpdate($wipId);
-    public function getPreviewImageByWipId($wip_id);
+    public function getPreviewImageByWipId($wip_id,$type);
     public function updateReson($wip_id,$status);
     public function getAllDocument();
     
