@@ -117,7 +117,8 @@ class DocumentsController extends Controller
   public function updateReson(Request $req)
   {
   $wip_id = $req->all()['wip_id_itim'];
-  $this->doc->updateReson($wip_id);
+  $status = $req->all()['status'];
+  $this->doc->updateReson($wip_id,$status);
   return response()->json(['status'=>true], 200);
   }
 }

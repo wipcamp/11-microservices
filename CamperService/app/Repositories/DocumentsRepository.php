@@ -52,9 +52,9 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $res = Documents::select('*')->where('status','success')->get();
     return $res;
   }
-  public function updateReson($wip_id)
+  public function updateReson($wip_id,$status)
   {
-    $res = Documents::where('doc_id','doc_id_'.$wip_id)->update(array('reason' => 'confirm'));
+    $res = Documents::where('doc_id','doc_id_'.$wip_id)->update(array('reason' => $status));
     return $res;
   }
 public function getPreviewImageByWipId($wip_id)

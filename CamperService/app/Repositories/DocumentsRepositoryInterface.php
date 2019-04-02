@@ -11,7 +11,7 @@ interface DocumentsRepositoryInterface {
     public function updateLoca($wipId,$loca);
     public function checkDataForUpdate($wipId);
     public function getPreviewImageByWipId($wip_id);
-    public function updateReson($wip_id);
+    public function updateReson($wip_id,$status);
     
 
 }
