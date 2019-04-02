@@ -102,7 +102,8 @@ class DocumentsController extends Controller
   public function getPreviewImageByWipId(Request $req)
   {
   $wip_id = $req->all()['wip_id_itim'];
-  $res = $this->doc->getPreviewImageByWipId($wip_id);
+  $type = $req->all()['type'];
+  $res = $this->doc->getPreviewImageByWipId($wip_id,$type);
   $res = json_decode($res,true);
   $res = Arr::flatten($res);
   $urls = array();

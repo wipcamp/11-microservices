@@ -57,7 +57,7 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $res = Documents::where('doc_id','doc_id_'.$wip_id)->update(array('reason' => $status));
     return $res;
   }
-public function getPreviewImageByWipId($wip_id)
+public function getPreviewImageByWipId($wip_id,$type)
   {
     $res = Documents::select('transcript','confrim','receipt')->where('doc_id','doc_id_'.$wip_id)->get();
     return $res;
