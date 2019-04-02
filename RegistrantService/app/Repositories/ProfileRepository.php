@@ -16,7 +16,7 @@ class ProfileRepository implements ProfileRepositoryInterface
         $doc_id = array_pluck($data,'doc_id');
         for ($i=0; $i != count($data); $i++) { 
         $wip_id = substr($doc_id[$i],7);
-        $profile = Profile::where('wip_id',$wip_id)->get();
+        $profile = Profile::select('firstname_th','lastname_th','nickname','gender','gpax','religion','telno','school_name','school_major')->where('wip_id',$wip_id)->get();
         $profile[0]->doc_id=$data[$i]['doc_id'];
         $profile[0]->status=$data[$i]['status'];
         $profile[0]->reason=$data[$i]['reason'];
