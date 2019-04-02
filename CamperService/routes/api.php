@@ -38,6 +38,7 @@ Route::group(['middleware' => ['CheckAuth']], function () {
         Route::post('/location','DocumentsController@updateLocation');
         Route::post('/confirm', 'DocumentsController@confirmCamper');
         Route::get('/success', 'DocumentsController@getDocumentAllSuccess');
-        Route::post('/image', 'DocumentsController@getPreviewImageByWipId');
+        Route::get('/image', 'DocumentsController@getPreviewImageByWipId');
+        Route::put('/resons', 'DocumentsController@updateReson');
     });
 });

@@ -52,6 +52,11 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $res = Documents::select('*')->where('status','success')->get();
     return $res;
   }
+  public function updateReson($wip_id)
+  {
+    $res = Documents::where('doc_id','doc_id_'.$wip_id)->update(array('reason' => 'confirm'));
+    return $res;
+  }
 public function getPreviewImageByWipId($wip_id)
   {
     $res = Documents::select('transcript','confrim','receipt')->where('doc_id','doc_id_'.$wip_id)->get();
