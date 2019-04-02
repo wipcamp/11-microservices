@@ -105,7 +105,9 @@ class DocumentsController extends Controller
   $type = $req->all()['type_path'];
   $res = $this->doc->getPreviewImageByWipId($wip_id,$type);
   $url = Storage::cloud()->temporaryUrl($res, \Carbon\Carbon::now()->addDays(1));
-  return response($url, 200);
+
+
+  return response()->json($url, 200);
   }
   public function updateReson(Request $req)
   {
