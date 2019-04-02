@@ -17,19 +17,19 @@ class ProfileRepository implements ProfileRepositoryInterface
         for ($i=0; $i != count($data); $i++) { 
         $wip_id = substr($doc_id[$i],7);
         $profile = Profile::select('firstname_th','lastname_th','nickname','gender','gpax','religion','telno','school_name','school_major')->where('wip_id',$wip_id)->get();
-        $profile[0]->doc_id=$data[$i]['doc_id'];
-        $profile[0]->status=$data[$i]['status'];
-        $profile[0]->reason=$data[$i]['reason'];
-        $profile[0]->transcript=$data[$i]['transcript'];
-        $profile[0]->confrim=$data[$i]['confrim'];
-        $profile[0]->receipt=$data[$i]['receipt'];
-        $profile[0]->size=$data[$i]['size'];
-        $profile[0]->pick_location=$data[$i]['pick_location'];
+        // $profile[0]->doc_id=$data[$i]['doc_id'];
+        // $profile[0]->status=$data[$i]['status'];
+        // $profile[0]->reason=$data[$i]['reason'];
+        // $profile[0]->transcript=$data[$i]['transcript'];
+        // $profile[0]->confrim=$data[$i]['confrim'];
+        // $profile[0]->receipt=$data[$i]['receipt'];
+        // $profile[0]->size=$data[$i]['size'];
+        // $profile[0]->pick_location=$data[$i]['pick_location'];
         array_push($profiles,$profile);
         }
     
       
-        return $profile;
+        return $profiles;
     }
 
     public function createProfile($profile)
