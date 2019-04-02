@@ -103,8 +103,9 @@ class DocumentsController extends Controller
   {
   $wip_id = $req->all()['wip_id_itim'];
   $type = $req->all()['type_path'];
-  $res = $this->doc->getPreviewImageByWipId($wip_id,$type);
-  $url = Storage::cloud()->temporaryUrl($res, \Carbon\Carbon::now()->addDays(1));
+  $filename = ($wip_id.'_'.$type);
+  $destinationPath = 'WIPID'.$wip_id.'/'.$filename;
+  $url = Storage::cloud()->temporaryUrl($destinationPath,\Carbon\Carbon::now()->addDays(1));
 
 
   return response()->json($url, 200);
