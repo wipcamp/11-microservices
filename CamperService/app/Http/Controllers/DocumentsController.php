@@ -117,4 +117,13 @@ class DocumentsController extends Controller
   $this->doc->updateReson($wip_id,$status);
   return response()->json(['status'=>true], 200);
   }
+  public function createCampers(Request $req)
+  {
+  $wip_id= $req->all()['wip_id'];
+  $data = $req->all();
+  $data = Arr::except($data, ['wip_id']);
+  $this->doc->createCampers($data);
+  return response()->json(['status'=>true], 200);
+  }
+
 }

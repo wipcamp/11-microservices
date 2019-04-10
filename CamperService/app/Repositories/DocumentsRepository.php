@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\Models\Documents;
+use App\Models\Campers;
 use App\Repositories\DocumentsRepositoryInterface;
 
 class DocumentsRepository implements DocumentsRepositoryInterface
@@ -61,6 +62,22 @@ public function getPreviewImageByWipId($wip_id,$type)
   {
     $res = Documents::select($type)->where('doc_id','doc_id_'.$wip_id)->get();
     return $res;
+  }
+public function createCampers($data)
+  {
+    for ($i=0; $i != count($data) ; $i++) { 
+      $res = Documents::select('*')->where('reason','checked')->where('doc_id','doc_id_'.$data[$i]['wipId'])->get();
+      if (!$res->isEmpty()) {
+        $res = Campers::select('*')->where('wip_id',$data[$i]['wipId'])->get();
+      if ($res->isEmpty()) {
+        Campers::insert([
+          'wip_id'=>$data[$i]['wipId'],
+          'doc_id'=>'doc_id_'.$data[$i]['wipId'],
+        ]);
+       }        
+      }
+    }
+    return true;
   }
 
   public function createDocBySize($wipId,$size)

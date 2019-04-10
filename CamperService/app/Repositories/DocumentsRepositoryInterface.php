@@ -13,6 +13,7 @@ interface DocumentsRepositoryInterface {
     public function getPreviewImageByWipId($wip_id,$type);
     public function updateReson($wip_id,$status);
     public function getAllDocument();
+    public function createCampers($data);
     
 
 }

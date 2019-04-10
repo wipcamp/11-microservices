@@ -40,5 +40,7 @@ Route::group(['middleware' => ['CheckAuth']], function () {
         Route::get('/documents', 'DocumentsController@getAllDocument');
         Route::put('/image', 'DocumentsController@getPreviewImageByWipId');
         Route::put('/resons', 'DocumentsController@updateReson');
+        Route::post('/updatecamper', 'DocumentsController@updateCamper');
+        Route::post('/createcampers', 'DocumentsController@createCampers');
     });
 });
