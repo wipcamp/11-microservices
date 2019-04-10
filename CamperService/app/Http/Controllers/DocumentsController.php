@@ -120,7 +120,7 @@ class DocumentsController extends Controller
   public function createCampers(Request $req)
   {
   $wip_id= $req->all()['wip_id'];
-  $data = $req->all();
+  $data = $req->all()['campers'];
   $data = Arr::except($data, ['wip_id']);
   $this->doc->createCampers($data);
   return response()->json(['status'=>true], 200);
