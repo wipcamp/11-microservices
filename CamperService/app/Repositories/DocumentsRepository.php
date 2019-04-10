@@ -58,6 +58,11 @@ class DocumentsRepository implements DocumentsRepositoryInterface
     $res = Documents::where('doc_id','doc_id_'.$wip_id)->update(array('reason' => $status));
     return $res;
   }
+  public function updateCamper($data)
+  {
+    $res = Campers::where('wip_id',$data['wipId'])->update(array('bed_room' => $data['bed_room'],"class_room"=>$data['class_room'],'flavor_id'=>$data['flavor_id']));
+    return $res;
+  }
 public function getPreviewImageByWipId($wip_id,$type)
   {
     $res = Documents::select($type)->where('doc_id','doc_id_'.$wip_id)->get();

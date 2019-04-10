@@ -14,6 +14,7 @@ interface DocumentsRepositoryInterface {
     public function updateReson($wip_id,$status);
     public function getAllDocument();
     public function createCampers($data);
+    public function updateCamper($data);
     
 
 }
