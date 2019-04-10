@@ -24,7 +24,6 @@ class Campers extends Migration
             $table->increments('score_id');
             $table->string('flavors_name');
             $table->integer('flavor_id')->unsigned();
-
             $table->foreign('flavor_id')->references('flavor_id')->on('flavors');
         });
 
@@ -44,11 +43,11 @@ class Campers extends Migration
         Schema::create('campers', function (Blueprint $table) {
             $table->increments('camper_id');
             $table->integer('wip_id');
-            $table->integer('bed_room');
-            $table->integer('class_room');
-            $table->string('wifi_pass');
+            $table->integer('bed_room')->nullable();
+            $table->integer('class_room')->nullable();
+            $table->string('wifi_pass')->nullable();
             $table->integer('flavor_id')->unsigned();
-            $table->string('doc_id');
+            $table->string('doc_id')->nullable();
 
             $table->foreign('flavor_id')->references('flavor_id')->on('flavors');
             $table->foreign('doc_id')->references('doc_id')->on('documents');
