@@ -7,7 +7,7 @@ class CampersRepository implements CampersRepositoryInterface
 {
   public function getCampers()
   {
-    $registrants = 'hello';
+    $registrants = Campers::all();
     return $registrants;
   }
 }
