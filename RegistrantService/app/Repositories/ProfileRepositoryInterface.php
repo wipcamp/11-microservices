@@ -8,4 +8,5 @@ interface ProfileRepositoryInterface {
     public function createProfile($profile);  
     public function getByWipId($wipId);
     public function updateProfile($wipId,$profile);
+    public function getProfilesByWipIdForCamper($wipId);
 }
