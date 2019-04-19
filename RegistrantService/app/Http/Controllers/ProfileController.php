@@ -87,4 +87,11 @@ class ProfileController extends Controller
     {   $profile = $req->all();
         return response()->json(['answer' => $this->profileRepository->findAnswersByWipId($profile['wip_id'])]);
     }
+
+    public function getProfilesByWipIdForCamper(Request $req)
+    {
+        $campers =  $req->input('campers');
+        $campers = $this->profileRepository->getProfilesByWipIdForCamper($campers);
+        return response()->json($campers, 200);
+    }
 }
