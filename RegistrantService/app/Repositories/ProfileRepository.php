@@ -59,7 +59,6 @@ class ProfileRepository implements ProfileRepositoryInterface
     }
     
     public function getProfilesByWipIdForCamper($campers){
-        // dd(count($campers));
         $profiles = array();
         for ($i=0; $i < count($campers); $i++) { 
             $wipId = $campers[$i]['wip_id'];
@@ -72,7 +71,6 @@ class ProfileRepository implements ProfileRepositoryInterface
             $profile[0]->doc_id=$campers[$i]['doc_id'];
             array_push($profiles,$profile);
         }
-        // dd($profiles);
         return $profiles;
     }
 

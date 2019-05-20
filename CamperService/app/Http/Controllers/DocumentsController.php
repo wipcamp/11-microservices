@@ -136,4 +136,11 @@ class DocumentsController extends Controller
   return response()->json(['status'=>true], 200);
   }
 
+  public function getDocumentConfirmByWipId(Request $req){
+    $wip_id = $req->all()['wip_id'];
+    $destinationPath = 'WIPID'.$wip_id.'/'.$wip_id;
+    $url = Storage::cloud()->temporaryUrl($destinationPath,\Carbon\Carbon::now()->addDays(1));
+    return response()->json($url, 200);
+  }
+
 }
