@@ -23,14 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('test')->group(function () {
     Route::get('/', 'CampersController@getCampers');
-    Route::post('/', 'CampersController@mangeCampers');
-    Route::post('/upload', 'CampersController@uploadFile');
-    Route::get('/getfile', 'CampersController@getFile');
-    
+    Route::get('/score', 'FlavorsScoreController@viewScores');
 });
-
 Route::group(['middleware' => ['CheckAuth']], function () {
     Route::prefix('campers')->group(function () {
+        Route::post('/score', 'FlavorsScoreController@insertScore');
         Route::post('/upload/{path}', 'DocumentsController@uploadFile');
         Route::get('/', 'CampersController@getCampers');    
         Route::get('/document','DocumentsController@getDocumentByWipId');
