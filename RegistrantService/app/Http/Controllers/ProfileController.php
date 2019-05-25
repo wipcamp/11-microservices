@@ -24,6 +24,12 @@ class ProfileController extends Controller
         $profile = $this->profileRepository->getProfile($wipId['wip_id']);
         return response()->json($profile);
     }
+    public function getProfilebyCitizen(Request $req)
+    {
+        $citizen = $req->all()['citizen'];
+        $res = $this->profileRepository->getProfilebyCitizen($citizen);
+        return response()->json(['profile'=>$res], 200 );
+    }
 
     public function getPassProfile(Request $req)
     {

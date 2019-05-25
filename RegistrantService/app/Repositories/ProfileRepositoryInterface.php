@@ -9,4 +9,6 @@ interface ProfileRepositoryInterface {
     public function getByWipId($wipId);
     public function updateProfile($wipId,$profile);
     public function getProfilesByWipIdForCamper($wipId);
+    public function getProfilebyCitizen($citizen);
+
 }

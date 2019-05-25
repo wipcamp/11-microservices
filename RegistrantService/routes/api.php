@@ -25,7 +25,7 @@ Route::get('jwt', function (Request $request) {
 Route::get('/calculatescore', 'ScoreEvaluationsController@testQuery');
 
 //อย่าลืมลบตัวนี้นะ
-Route::get('/testgetscore', 'ScoreEvaluationsController@getCatScores');
+Route::post('/testgetprofile', 'ProfileController@getProfilebyCitizen');
 
 //test mockup login หน้าบ้าน
 Route::get('/testloginjaa', 'ProfileController@testGetprogile');
