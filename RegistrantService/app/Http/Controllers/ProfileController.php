@@ -100,4 +100,11 @@ class ProfileController extends Controller
         $campers = $this->profileRepository->getProfilesByWipIdForCamper($campers);
         return response()->json($campers, 200);
     }
+
+    public function editProfileByCitizen(Request $req)
+    {
+        $data = $this->profileRepository->getProfilebyCitizen($req['citizen']);
+        $update = $this->profileRepository->updateProfileByCitizen($data['citizen_no'],$req['nameTh'],$req['nameEn'],$req['lastname_th'],$req['lastname_en']);
+        dd($update);
+    }
 }

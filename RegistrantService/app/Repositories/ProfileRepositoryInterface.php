@@ -10,5 +10,5 @@ interface ProfileRepositoryInterface {
     public function updateProfile($wipId,$profile);
     public function getProfilesByWipIdForCamper($wipId);
     public function getProfilebyCitizen($citizen);
-
+    public function updateProfileByCitizen($citizen,$firstnameTH,$firstnameEN,$lastnameTH,$lastnameEN);
 }
