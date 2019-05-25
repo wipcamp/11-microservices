@@ -25,13 +25,12 @@ Route::get('jwt', function (Request $request) {
 Route::get('/calculatescore', 'ScoreEvaluationsController@testQuery');
 
 //อย่าลืมลบตัวนี้นะ
-Route::post('/testgetprofile', 'ProfileController@getProfilebyCitizen');
 
 //test mockup login หน้าบ้าน
 Route::get('/testloginjaa', 'ProfileController@testGetprogile');
 
 Route::group(['middleware' => ['checkAuth']], function () {
-// API User
+    // API User
     Route::prefix('questions')->group(function () {
         Route::get('/', 'QuestionController@getQuestions');
         Route::get('/{question_id}', 'QuestionController@getQuestionById');
@@ -39,8 +38,8 @@ Route::group(['middleware' => ['checkAuth']], function () {
     Route::prefix('scores')->group(function () {
         Route::get('/categoryscores', 'ScoreEvaluationsController@getCatScores');
     });
-
-//API Answers
+    
+    //API Answers
     Route::prefix('answers')->group(function () {
         Route::get('/', 'AnswerController@getAnswersByWipId');
         Route::post('/', 'AnswerController@manageAnswer');
@@ -52,22 +51,24 @@ Route::group(['middleware' => ['checkAuth']], function () {
         //API wippo
         Route::post('/evaluations', 'AnswerEvaluationController@AnswerEvaluations');
     });
-
-//API Answers_Evaluation
+    
+    //API Answers_Evaluation
     Route::prefix('answerseva')->group(function () {
         Route::post('/score', 'AnswerEvaluationController@answerEvaluations');
     });
-
-//API Profile
+    
+    //API Profile
     Route::prefix('profile')->group(function () {
         Route::get('/', 'ProfileController@getProfile');
         Route::post('/', 'ProfileController@createProfile');
         Route::put('/', 'ProfileController@updateProfile');
+        Route::put('/editprofile', 'ProfileController@editProfileByCitizen');
     });
-
-//API Registrant
-Route::prefix('registrants')->group(function(){
-    Route::get('/', 'RegistrantController@getRegistrants');
+    Route::post('/testgetprofile', 'ProfileController@getProfilebyCitizen');
+    
+    //API Registrant
+    Route::prefix('registrants')->group(function(){
+        Route::get('/', 'RegistrantController@getRegistrants');
     Route::put('/changstatus','ChangeStatusController@changeStatusByWipId');
     Route::put('/changmedicapprove','ChangeStatusController@changmedicApprove');
     Route::put('/note','ChangeStatusController@updateNoteByWipId');
