@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,6 +62,7 @@ Route::group(['middleware' => ['checkAuth']], function () {
         Route::post('/', 'ProfileController@createProfile');
         Route::put('/', 'ProfileController@updateProfile');
         Route::put('/editprofile', 'ProfileController@editProfileByCitizen');
+        Route::put('/citizen','ProfileController@getProfilebyCitizen');
     });
     Route::post('/testgetprofile', 'ProfileController@getProfilebyCitizen');
     
