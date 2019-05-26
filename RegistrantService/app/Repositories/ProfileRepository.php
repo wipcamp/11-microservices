@@ -79,4 +79,15 @@ class ProfileRepository implements ProfileRepositoryInterface
         return $profiles;
     }
 
+    public function updateProfileByCitizen($citizen,$firstnameTH,$firstnameEN,$lastnameTH,$lastnameEN)
+    {
+        $data = Profile::where('citizen_no',$citizen)->update([
+            'firstname_th'=>$firstnameTH,
+            'lastname_th' => $lastnameTH,
+            'firstname_en' => $firstnameEN,
+            'lastname_en' => $lastnameEN
+            ]);
+        // $profile = $data->update(['firstname_th'=>$firstnameTH]);
+        return $data;
+    }
 }
