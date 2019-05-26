@@ -54,6 +54,6 @@ class CampersController extends Controller
     $response = $client->request('PUT', $URL, ['json' => ['citizen' => $citizen]]);
     $response = json_decode($response->getBody());
     $camper = $this->campers->updateCamperByWipId($response->profile->wip_id,$req['checked'],$req['wifi']);
-    return response()->json(["message" => "Updated Camper."], 200,$camper);
+    return response()->json($camper, 200);
   }
 }
