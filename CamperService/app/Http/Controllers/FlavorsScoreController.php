@@ -24,8 +24,8 @@ class FlavorsScoreController extends Controller
     }
    public function insertScore(Request $req)
    {
-     $data = $req->all();
-    $this->scores->insertScore($data);
+       $data = $req->all();
+    $this->scores->insertScore($data['data']);
     return response()->json('ok', 200);
    }
    public function viewScores(Request $req)
