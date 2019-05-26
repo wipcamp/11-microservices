@@ -38,7 +38,6 @@ class ProfileController extends Controller
         $response = $client->request('POST',$URL,['json' => ['wip_id_camper' => $res['wip_id']]]);
         $response = json_decode($response->getBody());
         $response = Arr::flatten($response);
-
         return response()->json(['profile'=>$res,'camper'=>$response[0]], 200 );
     }
 
