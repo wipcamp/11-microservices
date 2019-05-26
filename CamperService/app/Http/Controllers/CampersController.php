@@ -22,6 +22,13 @@ class CampersController extends Controller
     {
         $this->campers = $camp;
     }
+    public function getCamperByWipId(Request $req)
+    {
+
+     $data = $req->all()['wip_id_camper'];
+     $res = $this->campers->getCamperByWipId($data);
+     return response()->json($res, 200);
+    }
     public function getCampers(Request $req)
   {
     $camps = $this->campers->getCampers();

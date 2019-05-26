@@ -8,6 +8,7 @@ use App\Repositories\ProfileRepositoryInterface;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Requests\ProfileRequests;
+use Illuminate\Support\Arr;
 
 class ProfileController extends Controller
 {
@@ -28,7 +29,17 @@ class ProfileController extends Controller
     {
         $citizen = $req->all()['citizen'];
         $res = $this->profileRepository->getProfilebyCitizen($citizen);
-        return response()->json(['profile'=>$res], 200 );
+        $res =json_decode($res,true);
+        $token = $req->header('Authorization');
+        
+        $URL = env('CAMPER_URL') . '/campers/camper';
+        $headers = ['Authorization' => $token];
+        $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
+        $response = $client->request('POST',$URL,['json' => ['wip_id_camper' => $res['wip_id']]]);
+        $response = json_decode($response->getBody());
+        $response = Arr::flatten($response);
+
+        return response()->json(['profile'=>$res,'camper'=>$response[0]], 200 );
     }
 
     public function getPassProfile(Request $req)
