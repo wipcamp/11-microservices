@@ -9,6 +9,7 @@ class FlavorsScoreRepository implements FlavorsScoreRepositoryInterface
 {
  public function insertScore($data)
  {
+    
     for ($i=0; $i != sizeof($data); $i++) { 
        FlavorsScore::insert(['score'=>$data[$i]['score'],'flavor_id'=>$i+1]);
     }

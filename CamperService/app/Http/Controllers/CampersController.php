@@ -16,12 +16,19 @@ use Storage;
 
 class CampersController extends Controller
 {
+  
+    protected $campers;
+    public function __construct(CampersRepositoryInterface $camp)
+    {
+        $this->campers = $camp;
+    }
+    public function getCamperByWipId(Request $req)
+    {
+     $data = $req->all()['wip_id_camper'];
+     $res = $this->campers->getCamperByWipId($data);
+     return response()->json($res, 200);
+    }
 
-  protected $campers;
-  public function __construct(CampersRepositoryInterface $camp)
-  {
-    $this->campers = $camp;
-  }
   public function getCampers(Request $req)
   {
     $camps = $this->campers->getCampers();

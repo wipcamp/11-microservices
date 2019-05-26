@@ -32,6 +32,7 @@ Route::group(['middleware' => ['CheckAuth']], function () {
         Route::get('/', 'CampersController@getCampers');    
         Route::get('/document','DocumentsController@getDocumentByWipId');
         Route::post('/size','DocumentsController@updateSize');
+        Route::post('/camper','CampersController@getCamperByWipId');
         Route::post('/location','DocumentsController@updateLocation');
         Route::post('/confirm', 'DocumentsController@confirmCamper');
         Route::get('/documents', 'DocumentsController@getAllDocument');
