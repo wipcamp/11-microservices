@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Repositories\FlavorsScoreRepositoryInterface;
 use App\Models\FlavorsScore;
-use App\Models\Flavors;
 
 class FlavorsScoreRepository implements FlavorsScoreRepositoryInterface
 {
@@ -17,6 +16,6 @@ class FlavorsScoreRepository implements FlavorsScoreRepositoryInterface
  } 
  public function viewScores()
  {
-    return  FlavorsScore::join('flavors','flavors.flavor_id','=','flavorsScore.flavor_id')->Select('flavors.flavor_id','name')->selectRaw('sum(score) as total_score')->orderBy('flavors.flavor_id','asc')->groupBy('flavors.flavor_id','flavors.name')->get();
+    return  FlavorsScore::Select('flavor_id')->selectRaw('sum(score) as total_score')->orderBy('flavor_id','desc')->groupBy('flavor_id')->get();
  }
 }
