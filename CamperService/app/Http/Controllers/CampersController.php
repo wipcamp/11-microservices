@@ -53,14 +53,8 @@ class CampersController extends Controller
 
   public function checkInCamper(Request $req)
   {
-    $token = $req->header('Authorization');
-    $citizen= $req['citizen'];
-    $URL = env('RIGISTANT_URL') . '/profile/citizen';
-    $headers = ['Authorization' => $token];
-    $client = new \GuzzleHttp\Client(['base_uri' => $URL, 'headers' => $headers]);
-    $response = $client->request('PUT', $URL, ['json' => ['citizen' => $citizen]]);
-    $response = json_decode($response->getBody());
-    $camper = $this->campers->updateCamperByWipId($response->profile->wip_id,$req['checked'],$req['wifi']);
+    $wipId = $req['wipId'];
+    $camper = $this->campers->updateCamperByWipId($wipId,$req['checked'],$req['wifi']);
     return response()->json($camper, 200);
   }
 }

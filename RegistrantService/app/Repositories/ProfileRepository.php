@@ -14,7 +14,9 @@ class ProfileRepository implements ProfileRepositoryInterface
     }
     public function getProfilebyCitizen($citizen)
     {
-        $profile = Profile::where('citizen_no', $citizen)->get()->first();
+        $profile = Profile::select('wip_id', 'firstname_th', 
+        'lastname_th','firstname_en', 'lastname_en','citizen_no')
+        ->where('citizen_no', $citizen)->get()->first();
         return $profile;
     }
     public function getProfiles($data)

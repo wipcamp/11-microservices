@@ -31,7 +31,6 @@ class ProfileController extends Controller
         $res = $this->profileRepository->getProfilebyCitizen($citizen);
         $res =json_decode($res,true);
         $token = $req->header('Authorization');
-        
         $URL = env('CAMPER_URL') . '/campers/camper';
         $headers = ['Authorization' => $token];
         $client = new \GuzzleHttp\Client(['base_uri' => $URL,'headers' => $headers]);
@@ -115,6 +114,6 @@ class ProfileController extends Controller
     {
         $data = $this->profileRepository->getProfilebyCitizen($req['citizen']);
         $update = $this->profileRepository->updateProfileByCitizen($data['citizen_no'],$req['nameTh'],$req['nameEn'],$req['lastname_th'],$req['lastname_en']);
-        dd($update);
+        return response()->json($update, 200);
     }
 }
