@@ -75,7 +75,7 @@ class ProfileRepository implements ProfileRepositoryInterface
             $profile = Profile::select('wip_id', 'firstname_th', 'lastname_th', 'nickname', 'gender', 'religion', 'telno', 'school_name')->where('wip_id', $wipId)->get();
             $profile[0]->camper_id = $campers[$i]['camper_id'];
             $profile[0]->bed_room = $campers[$i]['bed_room'];
-            $profile[0]->class_room = $campers[$i]['check_in'];
+            $profile[0]->class_room = $campers[$i]['class_room'];
             $profile[0]->wifi_pass = $campers[$i]['wifi_pass'];
             $profile[0]->flavor_id = $campers[$i]['flavor_id'];
             $profile[0]->doc_id = $campers[$i]['doc_id'];
