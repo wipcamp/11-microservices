@@ -16,6 +16,6 @@ class FlavorsScoreRepository implements FlavorsScoreRepositoryInterface
  } 
  public function viewScores()
  {
-    return  FlavorsScore::Select('flavor_id')->selectRaw('sum(score) as total_score')->orderBy('flavor_id','desc')->groupBy('flavor_id')->get();
- }
+   return  FlavorsScore::join('flavors','flavors.flavor_id','=','flavorsScore.flavor_id')->Select('flavors.flavor_id','name')->selectRaw('sum(score) as total_score')->orderBy('flavors.flavor_id','asc')->groupBy('flavors.flavor_id','flavors.name')->get();
+}
 }
