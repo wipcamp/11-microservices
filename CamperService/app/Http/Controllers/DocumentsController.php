@@ -143,5 +143,12 @@ class DocumentsController extends Controller
     $url = Storage::disk('minio-documentconfirmwip')->temporaryUrl($destinationPath,\Carbon\Carbon::now()->addDays(1));
     return response()->json($url, 200);
   }
+    
+    public function getCertificateByWipId(Request $req){
+    $wip_id = $req->all()['wip_id'];
+    $destinationPath = $wip_id.'.pdf';
+    $url = Storage::disk('minio-certificatemwip')->temporaryUrl($destinationPath,\Carbon\Carbon::now()->addDays(1));
+    return response()->json($url, 200);
+  }
 
 }
